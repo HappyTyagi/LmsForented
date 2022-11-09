@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <title>Library</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <!-- Custom Theme files -->
+    <link href="css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+    <!-- shop css -->
+    <link href="css/shop.css" type="text/css" rel="stylesheet" media="all">
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="all">
+    <link href="css/common.css" type="text/css" rel="stylesheet" media="all">
+    <!-- font-awesome icons -->
+    <link href="css/font-awesome.css" rel="stylesheet">
+    <!-- //Custom Theme files -->
+    <script src="js/book.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.all.min.js"></script>
+
+
+    <style>
+        .loginbox {
+            width: 100%;
+        }
+    </style>
+</head>
+
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+    <div id="home">
+        <!-- header -->
+        <!-- navbar -->
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="main-nav">
+                <div class="container">
+
+                    <div class="navbar-header page-scroll">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                            data-target=".navbar-ex1-collapse">
+                            <span class="sr-only">Library</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <h1>
+                            <a class="navbar-brand" href="index.html"><img src="images/lms-logo.png"></a>
+                        </h1>
+                    </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse navbar-ex1-collapse nav-right">
+                        <ul class="nav navbar-nav navbar-left cl-effect-15">
+                            <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                            <li class="hidden">
+                                <a class="page-scroll" href="#page-top"></a>
+                            </li>
+                            <li>
+                                <a href="dashboard.html">Dashboard</a>
+                            </li>
+
+                            <li class="dropdown active-nav">
+                                <a href="Books.html" class="dropdown-toggle effect-3" data-toggle="dropdown">Books
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="active-subnav">
+                                        <a href="add-book.html">Add Book</a>
+                                    </li>
+                                    <li>
+                                        <a href="manage-books.html">Manage Books</a>
+                                    </li>
+                                    <li>
+                                        <a href="damaged-books.html">Damaged Books</a>
+                                    </li>
+                                    <li>
+                                        <a href="books-maintenance.html">Books Maintenance</a>
+                                    </li>
+                                    <li>
+                                        <a href="subscription.html">Subscription</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            
+                            <li class="dropdown ">
+                                <a href="Books.html" class="dropdown-toggle effect-3" data-toggle="dropdown">Issue Books
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="issue-book.html">Issue New Book</a>
+                                    </li>
+                                    <li>
+                                        <a href="manage-issue-books.html">Manage Issued Books</a>
+                                    </li>
+                                    <li >
+                                        <a href="return-book.html">Return Book</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle effect-3" data-toggle="dropdown">Categories
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="add-categories.html">Add Category</a>
+                                    </li>
+                                    <li>
+                                        <a href="manage-categories.html">Manage Categories</a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle effect-3" data-toggle="dropdown">Admin
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li >
+                                        <a href="add-authors.html">Add Author</a>
+                                    </li>
+                                    <li>
+                                        <a href="manage-authors.html">Manage Author</a>
+                                    </li>
+                                    <li>
+                                        <a href="reminder-services.html">Reminder Services</a>
+                                    </li>
+                                    <li>
+                                        <a href="generate-reports.html">Generate Reports</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="login.html">Reg. Student</a>
+                            </li>
+                            <li>
+                                <a href="login.html" title="SignIn & SignUp">
+                                    <span class="fa fa-user nav-icon" aria-hidden="true"></span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <!-- /.navbar-collapse -->
+                    <div class="clearfix"></div>
+                </div>
+                <!-- /.container -->
+            </div>
+        </nav>
+        <!-- //navbar ends here -->
+        <div class="spacer"></div>
+        <!-- breadcrumbs -->
+        <div class="crumbs text-center">
+            <div class="container">
+                <div class="row">
+                    <ul class="btn-group btn-breadcrumb bc-list">
+                        <li class="btn btn1">
+                            <a href="index.html">
+                                <i class="glyphicon glyphicon-home"></i>
+                            </a>
+                        </li>
+                        <li class="btn btn2">
+                            <a href="#">Books</a>
+                        </li>
+                        <li class="btn btn3">
+                            <a href="add-categories.html">Add Book</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--//breadcrumbs ends here-->
+
+        <!-- add authors form -->
+        <div class="login-form section text-center">
+            <div class="container">
+                <h4 class="rad-txt">
+                    <span class="abtxt1">Add</span>
+                    <span class="abtext">Books</span>
+                </h4>
+                <div id="loginbox" style="margin-top:30px;" class="mainbox  loginbox">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <div class="panel-title">Book Info</div>
+                        </div>
+                        <div style="padding-top:30px" class="panel-body">
+                            <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+                            <form id="loginform" class="form-horizontal" action="#" method="post">
+                                <div class="col-md-4">
+                                    <div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="glyphicon glyphicon-book"></i>
+                                        </span>
+                                        <input id="book-name" type="text" class="form-control"
+                                            name="book-name"   placeholder="Book/Journal Name"
+                                            required=""> 
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="glyphicon glyphicon-book"></i>
+                                        </span>
+                                        <input id="publication-name" type="text" class="form-control"
+                                            name="publication-name"   placeholder="Publication"
+                                            required="">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="glyphicon glyphicon-book"></i>
+                                        </span>
+                                        <input id="edition" type="text" class="form-control"
+                                            name="edition"   placeholder="Edition"
+                                            required="">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="glyphicon glyphicon-book"></i>
+                                        </span>
+                                        <input id="publish-date" type="text" class="form-control date"
+                                           placeholder="Publish Date" required="" >
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="glyphicon glyphicon-book"></i>
+                                        </span>
+                                        <select class="form-control" id="category">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="glyphicon glyphicon-book"></i>
+                                        </span>
+                                        <input id="local-number" type="text" class="form-control"
+                                            name="local-number"   placeholder="Assigned local number/name"
+                                            required="">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="glyphicon glyphicon-book"></i>
+                                        </span>
+                                        <input id="no-pages" type="text" class="form-control"
+                                            name="no-pages"   placeholder="Number of Pages"
+                                            required="">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="glyphicon glyphicon-book"></i>
+                                        </span>
+                                        <input id="quantity" type="text" class="form-control"
+                                            name="quantity"   placeholder="Quantity"
+                                            required="">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="glyphicon glyphicon-book"></i>
+                                        </span>
+                                        <input id="dateTime" type="text" class="form-control datetime"
+                                            name="dateTime"   placeholder="Adding Date and Time to Library"
+                                            required="" >
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="glyphicon glyphicon-book"></i>
+                                        </span>
+                                        <select class="form-control" id="sel1">
+                                            <option> Select Item Type</option>
+                                            <option>Book</option>
+                                            <option>Magazine</option>
+                                            <option>NewsPaper</option>
+                                            <option>Reports</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="glyphicon glyphicon-book"></i>
+                                        </span>
+                                        <input id="purchased" type="text" class="form-control"
+                                            name="purchased"   placeholder="Purchased?"
+                                            required="">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="glyphicon glyphicon-book"></i>
+                                        </span>
+                                        <input id="sourceName" type="text" class="form-control"
+                                            name="sourceName"   placeholder="Source Name"
+                                            required="">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="glyphicon glyphicon-book"></i>
+                                        </span>
+                                        <input id="sourceAddress" type="text" class="form-control"
+                                            name="sourceAddress"   placeholder="Source Address"
+                                            required="">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="glyphicon glyphicon-book"></i>
+                                        </span>
+                                        <input id="sourceContactNo" type="text" class="form-control"
+                                            name="sourceContactNo"   placeholder="Source Contact Number"
+                                            required="">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="glyphicon glyphicon-book"></i>
+                                        </span>
+                                        <input id="billNum" type="text" class="form-control"
+                                            name="billNum"   placeholder="Bill Number"
+                                            required="">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="glyphicon glyphicon-book"></i>
+                                        </span>
+                                        <input id="cost" type="text" class="form-control"
+                                            name="cost"   placeholder="Cost"
+                                            required="text">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="glyphicon glyphicon-book"></i>
+                                        </span>
+                                        <input id="purchasedBy" type="text" class="form-control"
+                                            name="purchasedBy"   placeholder="Purchase Made By"
+                                            required="text">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="glyphicon glyphicon-book"></i>
+                                        </span>
+                                        <input id="bookcondition" type="text" class="form-control"
+                                            name="bookcondition"   placeholder="Book Condition"
+                                            required="">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="glyphicon glyphicon-book"></i>
+                                        </span>
+                                        <input id="withBinding" type="text" class="form-control"
+                                            name="withBinding"   placeholder="With Binding"
+                                            required="">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="glyphicon glyphicon-book"></i>
+                                        </span>
+                                        <select class="form-control" id="sel1">
+                                            <option> Select Author</option>
+                                            <option>Shashi Chawla</option>
+                                            <option>Herbert Schildt</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div style="margin-top:10px" class="form-group">
+                                    <!-- Button -->
+                                    <div class="col-sm-12 controls">
+                                        <a id="btn-login" href="#" class="btn btn-success" onclick="return addBook()">Add Book </a>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12 control">
+                                        <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%">
+                                            For Manage Books!
+                                            <a href="manage-books.html">
+                                                Click Here
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--//add authors form ends here-->
+
+    </div>
+    <!-- footer -->
+    <div class="footer-bottom section">
+        <div class="container">
+            <!-- newsletter -->
+            <div class="subscribe-main section-w3layouts text-center">
+                <h4 class="rad-txt">
+                    <span class="abtxt1">keep yourself</span>
+                    <span class="abtext">updated</span>
+                </h4>
+                <h5>subscribe to our newsletter to stay up-to-date with our projects.</h5>
+                <div class="subscribe-form">
+                    <form action="#" method="post" class="subscribe_form">
+                        <div class="email-news">
+                            <input type="email" placeholder="Email" required="">
+                        </div>
+                        <div class="sub-news">
+                            <input type="submit" value="subscribe">
+                        </div>
+                    </form>
+                    <div class="clearfix"> </div>
+                </div>
+                <p>We respect your privacy.No spam ever!</p>
+            </div>
+            <!-- //newsletter ends here -->
+            <!-- footer grids-->
+            <div class="footer-cpy">
+                <!-- footer-grid1 -->
+                <div class="col-md-3 col-sm-6 footer-logo">
+                    <a class="mb-2" href="index.html"><img src="images/lms-logo.png"></a>
+
+                    <h4>about us</h4>
+                    <p>Vallis Molestie Arcu Morbi Dapibus Suscipit Ante Sit Efficitur Eu estie Arcu Mor Anestie Ate
+                        Vesti.</p>
+                </div>
+                <!-- //footer-grid1 -->
+                <!-- footer-grid2 -->
+                <div class="col-md-3 col-sm-6 footer-nav text-center">
+                    <h4>navigation</h4>
+                    <ul>
+                        <li>
+                            <a href="index.html">Home</a>
+                        </li>
+                        <li>
+                            <a href="about.html">About us</a>
+                        </li>
+                        <li>
+                            <a href="shop.html">shop</a>
+                        </li>
+                        <li>
+                            <a href="contact.html">contact us</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- //footer-grid2 -->
+                <!-- footer-grid3 -->
+                <div class="col-md-3 col-sm-6 blog-footer">
+                    <h4>latest from blog</h4>
+                    <div class="blog1">
+                        <div class="col-md-3 col-sm-3 col-xs-2 bl1">
+                            <a href="#">
+                                <img src="images/b1.jpg" alt="" class="img-responsive" />
+                            </a>
+                        </div>
+                        <div class="col-md-9 col-sm-9 col-xs-10 bl2">
+                            <a href="#">Dapibus Suscipit Ante Sit by instagram</a>
+                            <p>February 15, 2018</p>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="blog1">
+                        <div class="col-md-3 col-sm-3 col-xs-2 bl1">
+                            <a href="#">
+                                <img src="images/b2.jpg" alt="" class="img-responsive" />
+                            </a>
+                        </div>
+                        <div class="col-md-9 col-sm-9 col-xs-10 bl2">
+                            <a href="#">Dapibus Suscipit Ante Sit by instagram</a>
+                            <p>February 20, 2018</p>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <!-- //footer-grid3 -->
+                <!-- footer-grid4 -->
+                <div class="col-md-3 col-sm-6 contact-foot text-right">
+                    <h4>contact us</h4>
+                    <ul>
+                        <li>
+                            <span class="fa fa-home"></span>
+                            1185 Burlington
+                            <br> Canada.
+                        </li>
+                        <li>
+                            <span class="fa fa-phone"></span>
+                            +12 345 678
+                        </li>
+                        <li>
+                            <span class="fa fa-envelope"></span>
+                            <a href="mailto:info@example.com">mail@Library.com</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- //footer-grid4 -->
+                <div class="clearfix"></div>
+            </div>
+            <!-- //footer-grids -->
+            <!-- footer social -->
+            <div class="footer-social text-center">
+                <h4>stay connected</h4>
+                <ul>
+                    <li>
+                        <a href="#">
+                            <span class="fa fa-facebook icon_facebook"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="fa fa-twitter icon_twitter"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="fa fa-dribbble icon_dribbble"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="fa fa-google-plus icon_g_plus"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- //footer social -->
+        </div>
+        <!-- //footer container -->
+    </div>
+    <!-- //footer -->
+    <div class="cpy-right">
+        <p>© 2018 Library. All rights reserved | Design by
+            <a href="#"> Library.</a>
+        </p>
+    </div>
+    <!-- //home -->
+    <!-- js -->
+    <script src="js/jquery-2.2.3.min.js"></script>
+    <!-- //js -->
+    <!--search jQuery-->
+    <script src="js/main.js"></script>
+    <!--search jQuery-->
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+
+    <!-- dropdown nav -->
+    <script>
+        $(document).ready(function () {
+            $(".dropdown").hover(
+                function () {
+                    $('.dropdown-menu', this).stop(true, true).slideDown("fast");
+                    $(this).toggleClass('open');
+                },
+                function () {
+                    $('.dropdown-menu', this).stop(true, true).slideUp("fast");
+                    $(this).toggleClass('open');
+                }
+            );
+        });
+    </script>
+    <!-- //dropdown nav -->
+
+    <!-- Scrolling Nav JavaScript -->
+    <script src="js/scrolling-nav.js"></script>
+    <!-- //fixed-scroll-nav-js -->
+    <!-- start-smooth-scrolling -->
+    <script src="js/move-top.js"></script>
+    <script src="js/easing.js"></script>
+    <script>
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+
+                $('html,body').animate({
+                    scrollTop: $(this.hash).offset().top
+                }, 1000);
+            });
+        });
+    </script>
+    <!-- //end-smooth-scrolling -->
+    <!-- smooth-scrolling-of-move-up -->
+    <script>
+        $(document).ready(function () {
+            /*
+            var defaults = {
+                containerID: 'toTop', // fading element id
+                containerHoverID: 'toTopHover', // fading element hover id
+                scrollSpeed: 1200,
+                easingType: 'linear' 
+            };
+            */
+
+            $().UItoTop({
+                easingType: 'easeOutQuart'
+            });
+
+        });
+    </script>
+
+    <script src="js/SmoothScroll.min.js"></script>
+    <!-- //smooth-scrolling-of-move-up -->
+    <!-- Bootstrap core JavaScript
+ ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/bootstrap.js"></script>
+</body>
+
+</html>
