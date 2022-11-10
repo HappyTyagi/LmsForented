@@ -22,23 +22,10 @@
     <link href="css/common.css" type="text/css" rel="stylesheet" media="all">
     <!-- font-awesome icons -->
     <link href="css/font-awesome.css" rel="stylesheet">
-    <script>
-        $(document).ready(function(){
-            $('#studentId').show();
-                 $('#department').hide();
-            $('input:radio[name=issuetype]').change(function() {
-                 alert('ghgdhasgd');
-
-                 if (this.value == '001') {
-                     $('#studentId').show();
-                     $('#department').hide();
-                 }
-                 else if (this.value == '002') {
-                     $('#studentId').hide();
-                     $('#department').show();    }
-                });
-              });
-        </script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 </head>
 
 
@@ -193,6 +180,13 @@
                         <span class="abtext" onClick="$('#loginbox').hide(); $('#signupbox').show()">Department</span>
                     </h4>
                     <div id="loginbox" style="margin-top:30px;" class="mainbox">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <div class="panel-title">Reminder Data</div>
+                            </div>
+                            <div style="padding-top:30px" class="panel-body">
+                                <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+                                <form id="loginform" class="form-horizontal" action="#" method="post">
                         <div class="input-group align-center radio-wrap mb-3">
                             <div class="checkbox">
                                 <label>
@@ -217,7 +211,7 @@
                                     <span class="input-group-addon">
                                         <i class="glyphicon glyphicon-book"></i>
                                     </span>
-                                    <select class="form-control" id="departmentInput">
+                                    <select class="form-control select2" id="departmentInput">
                                         <option> Select Department</option>
                                         <option>Adminstration</option>
                                         <option>Physics Lab</option>
@@ -237,41 +231,42 @@
                                 <a id="btn-search" href="#" class="btn btn-success">Search </a>
                             </div>
                             </div>
-                            <div class="col-md-12">
-                        <table class="table table-bordered">
-                            <thead class="thead-dark">
-                              <tr>
-                                <th scope="col">S.No.</th>
-                                <th scope="col">Book Name</th>
-                                <th scope="col">Item Type</th>  
-                                <td scope="col">Action</td>
-  
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <th scope="row">1</th>
-                                <td>Computer science</td>
-                                <td>Book</td>
-                                <td><button type="button" class="btn btn-primary"><i class="fa fa-edit"></i>Reminder</button>
-                                </td>
-                              </tr>
-                              <tr>
-                                <th scope="row">2</th>
-                                <td>Navbharat Times</td>
-                                <td>Newspaper</td>
-                                <td><button type="button" class="btn btn-primary"><i class="fa fa-edit"></i>Reminder</button>
-                                </td>                
-                              </tr>
-                              <tr>
-                                <th scope="row">3</th>
-                                <td>Applied Chemistry</td>
-                                <td>Book</td>
-                                <td><button type="button" class="btn btn-primary"><i class="fa fa-edit"></i>Reminder</button>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
+                            <div class="col-md-12 toverflow theight">
+                                <table class="table table-bordered">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th scope="col">S.No.</th>
+                                            <th scope="col">Book Name</th>
+                                            <th scope="col">Item Type</th>
+                                            <th scope="col">Publication</th>
+                                            <td scope="col">Action</td>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>Computer science</td>
+                                            <td>Book</td>
+                                            <td>Publication 1</td>
+                                            <td><button type="button" class="btn btn-primary"><i class="fa fa-edit"></i>Reminder</button>
+                                            </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>Navbharat Times</td>
+                                            <td>Newspaper</td>
+                                            <td>Publication 2</td>
+                                            <td><button type="button" class="btn btn-primary"><i class="fa fa-edit"></i>Reminder</button>
+                                            </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td>Applied Chemistry</td>
+                                            <td>Book</td>
+                                            <td>Publication 3</td>
+                                            <td><button type="button" class="btn btn-primary"><i class="fa fa-edit"></i>Reminder</button>
+                                            </tr>
+                                    </tbody>
+                                </table>
                           </div>
                       <nav aria-label="..." class="float-right">
                         <ul class="pagination">
@@ -288,6 +283,12 @@
                           </li>
                         </ul>
                       </nav>
+                      </form>
+                      <script>
+                        $('.select2').select2();
+                    </script>
+                      </div>
+                      </div>
                     </div>
 
                 </div>

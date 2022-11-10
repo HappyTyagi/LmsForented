@@ -1,16 +1,25 @@
 jQuery(document).ready(function($){
 
-	$('#studentId').show();
 	$('#department').hide();
+	$('#studentId').show();
+	$('#bookName').show();
+	$('#departmentissueId').hide();
 $('input:radio[name=issuetype]').change(function() {
 	if (this.value == '001') {
 		$('#studentId').show();
 		$('#department').hide();
+		$('#bookName').show();
+		$('#departmentissueId').hide();
 	}
 	else if (this.value == '002') {
 		$('#studentId').hide();
-		$('#department').show();    }
+		$('#bookName').hide();
+		$('#department').show();
+		$('#departmentissueId').show();
+	}
+	
    });
+   
 	//if you change this breakpoint in the style.css file (or _layout.scss if you use SASS), don't forget to update this value as well
 	var MqL = 1170;
 	//move nav element position according to window width
@@ -230,4 +239,7 @@ $('input:radio[name=issuetype]').change(function() {
   );
 
 });
+
+
+
 

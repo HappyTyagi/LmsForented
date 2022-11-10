@@ -17,8 +17,10 @@
     <!-- //Custom Theme files -->
     <script src="js/book.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.all.min.js"></script>
-
-
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
     <style>
         .loginbox {
             width: 100%;
@@ -230,8 +232,9 @@
                                         <span class="input-group-addon">
                                             <i class="glyphicon glyphicon-book"></i>
                                         </span>
-                                        <select class="form-control" id="category">
+                                        <select class="form-control select2" id="category">
                                         </select>
+                                        
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -242,6 +245,7 @@
                                         <input id="local-number" type="text" class="form-control"
                                             name="local-number"   placeholder="Assigned local number/name"
                                             required="">
+                                            
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -279,7 +283,7 @@
                                         <span class="input-group-addon">
                                             <i class="glyphicon glyphicon-book"></i>
                                         </span>
-                                        <select class="form-control" id="sel1">
+                                        <select class="form-control select2" id="itemType">
                                             <option> Select Item Type</option>
                                             <option>Book</option>
                                             <option>Magazine</option>
@@ -373,9 +377,11 @@
                                         <span class="input-group-addon">
                                             <i class="glyphicon glyphicon-book"></i>
                                         </span>
-                                        <input id="withBinding" type="text" class="form-control"
-                                            name="withBinding"   placeholder="With Binding"
-                                            required="">
+                                        <select class="form-control select2" id="witBinding">
+                                            <option> With Binding?</option>
+                                            <option>Yes</option>
+                                            <option>No</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -383,7 +389,7 @@
                                         <span class="input-group-addon">
                                             <i class="glyphicon glyphicon-book"></i>
                                         </span>
-                                        <select class="form-control" id="sel1">
+                                        <select class="form-control select2" id="sel1">
                                             <option> Select Author</option>
                                             <option>Shashi Chawla</option>
                                             <option>Herbert Schildt</option>
@@ -408,6 +414,9 @@
                                     </div>
                                 </div>
                             </form>
+                            <script>
+                                $('.select2').select2();
+                            </script>
                         </div>
                     </div>
                 </div>
