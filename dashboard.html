@@ -30,6 +30,10 @@
     <link href="css/common.css" type="text/css" rel="stylesheet" media="all" />
     <!-- font-awesome icons -->
     <link href="css/font-awesome.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
   </head>
 
   <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
@@ -255,9 +259,9 @@
               <div class="card dashboard-product">
                 <span class="card-title">Books Overdue</span>
                 <h2 class="dashboard-total-products"><span>30</span></h2>
-                <span class="label label-success">Total</span> Books Overdue
+                <span class="label label-danger">Total</span> Books Overdue
                 <div class="side-box">
-                  <i class="fa fa-calendar-times-o	f-28 icon-success"></i>
+                  <i class="fa fa-calendar-times-o	f-28 icon-danger"></i>
                 </div>
               </div>
             </div>
@@ -265,9 +269,9 @@
               <div class="card dashboard-product">
                 <span class="card-title">Registered Users</span>
                 <h2 class="dashboard-total-products"><span>50</span></h2>
-                <span class="label label-danger">Total</span> Registered Users
+                <span class="label label-success">Total</span> Registered Users
                 <div class="side-box">
-                  <i class="fa fa-user	f-28 icon-danger"></i>
+                  <i class="fa fa-user	f-28 icon-success"></i>
                 </div>
               </div>
             </div>
@@ -307,192 +311,8 @@
           </div>
         </div>
       </div>
-      <!-- User dashboard - services -->
-      <div class="principles-grids principles-grids1 team-container">
-        <div class="container">
-          <h1 class="mt-4">User Dashboard</h1>
-          <div class="abt-btm agileits w3layouts aos-init aos-animate mb-5">
-            <div
-              class="col-md-4 col-sm-4 agileits elite-services1 w3layouts bottom-gds"
-              data-aos="fade-up"
-            >
-              <div class="bott-img agileits w3layouts">
-                <div class="icon-holder agileits w3layouts">
-                  <span
-                    class="fa fa-book agileits w3layouts service-icon"
-                    aria-hidden="true"
-                  ></span>
-                </div>
-                <h4 class="mission agileits w3layouts mb-1">10</h4>
-                <h4 class="mission agileits w3layouts">Issued Books</h4>
-                <div class="description agileits w3layouts">
-                  <a href="#">Check Now</a>
-                </div>
-              </div>
-            </div>
-            <div
-              class="col-md-4 col-sm-4 agileits elite-services2 w3layouts bottom-gds"
-              data-aos="fade-down"
-            >
-              <div class="bott-img bott-img1 agileits w3layouts">
-                <div class="icon-holder agileits w3layouts">
-                  <span
-                    class="fa fa-calendar-times-o agileits w3layouts service-icon"
-                    aria-hidden="true"
-                  ></span>
-                </div>
-                <h4 class="mission agileits w3layouts mb-1">6</h4>
-                <h4 class="mission agileits w3layouts">Return Overdue</h4>
-                <div class="description agileits w3layouts">
-                  <a href="#">Check Now</a>
-                </div>
-              </div>
-            </div>
-            <div
-              class="col-md-4 col-sm-4 agileits elite-services2 w3layouts bottom-gds"
-              data-aos="fade-down"
-            >
-              <div class="bott-img bott-img1 agileits w3layouts">
-                <div class="icon-holder agileits w3layouts">
-                  <span
-                    class="fa fa-rupee agileits w3layouts service-icon"
-                    aria-hidden="true"
-                  ></span>
-                </div>
-                <h4 class="mission agileits w3layouts mb-1">100 Rs</h4>
-                <h4 class="mission agileits w3layouts">Total penalty</h4>
-                <div class="description agileits w3layouts">
-                  <a href="#">Check Now</a>
-                </div>
-              </div>
-            </div>
-            <div class="clearfix"></div>
-          </div>
-        </div>
-      </div>
-      <!-- //User dashboard - services ends here -->
 
-      <!-- Admin dashboard - services -->
-      <div class="principles-grids principles-grids1 team-container">
-        <div class="container">
-          <h1 class="mt-4">Admin Dashboard</h1>
-          <div class="abt-btm agileits w3layouts aos-init aos-animate mb-5">
-            <div
-              class="col-md-4 col-sm-4 agileits elite-services1 w3layouts bottom-gds"
-              data-aos="fade-up"
-            >
-              <div class="bott-img agileits w3layouts">
-                <div class="icon-holder agileits w3layouts">
-                  <span
-                    class="fa fa-book agileits w3layouts service-icon"
-                    aria-hidden="true"
-                  ></span>
-                </div>
-                <h4 class="mission agileits w3layouts mb-1">100</h4>
-                <h4 class="mission agileits w3layouts">Books Listed</h4>
-                <div class="description agileits w3layouts">
-                  <a href="#">Check Now</a>
-                </div>
-              </div>
-            </div>
-            <div
-              class="col-md-4 col-sm-4 agileits elite-services2 w3layouts bottom-gds"
-              data-aos="fade-down"
-            >
-              <div class="bott-img bott-img1 agileits w3layouts">
-                <div class="icon-holder agileits w3layouts">
-                  <span
-                    class="fa fa-calendar-check-o agileits w3layouts service-icon"
-                    aria-hidden="true"
-                  ></span>
-                </div>
-                <h4 class="mission agileits w3layouts mb-1">10</h4>
-                <h4 class="mission agileits w3layouts">Books Issued</h4>
-                <div class="description agileits w3layouts">
-                  <a href="#">Check Now</a>
-                </div>
-              </div>
-            </div>
-            <div
-              class="col-md-4 col-sm-4 agileits elite-services2 w3layouts bottom-gds"
-              data-aos="fade-down"
-            >
-              <div class="bott-img bott-img1 agileits w3layouts">
-                <div class="icon-holder agileits w3layouts">
-                  <span
-                    class="fa fa-calendar-times-o agileits w3layouts service-icon"
-                    aria-hidden="true"
-                  ></span>
-                </div>
-                <h4 class="mission agileits w3layouts mb-1">10</h4>
-                <h4 class="mission agileits w3layouts">
-                  Books Not Returned Yet
-                </h4>
-                <div class="description agileits w3layouts">
-                  <a href="#">Check Now</a>
-                </div>
-              </div>
-            </div>
-            <div
-              class="col-md-4 col-sm-4 agileits elite-services2 w3layouts bottom-gds"
-              data-aos="fade-down"
-            >
-              <div class="bott-img agileits w3layouts mt-4">
-                <div class="icon-holder agileits w3layouts">
-                  <span
-                    class="fa fa-users agileits w3layouts service-icon"
-                    aria-hidden="true"
-                  ></span>
-                </div>
-                <h4 class="mission agileits w3layouts mb-1">10</h4>
-                <h4 class="mission agileits w3layouts">Registered Users</h4>
-                <div class="description agileits w3layouts">
-                  <a href="#">Check Now</a>
-                </div>
-              </div>
-            </div>
-            <div
-              class="col-md-4 col-sm-4 agileits elite-services1 w3layouts bottom-gds"
-              data-aos="fade-up"
-            >
-              <div class="bott-img agileits bott-img1 w3layouts mt-4">
-                <div class="icon-holder agileits w3layouts">
-                  <span
-                    class="fa fa-user agileits w3layouts service-icon"
-                    aria-hidden="true"
-                  ></span>
-                </div>
-                <h4 class="mission agileits w3layouts mb-1">10</h4>
-                <h4 class="mission agileits w3layouts">Authors Listed</h4>
-                <div class="description agileits w3layouts">
-                  <a href="#">Check Now</a>
-                </div>
-              </div>
-            </div>
-            <div
-              class="col-md-4 col-sm-4 agileits elite-services2 w3layouts bottom-gds"
-              data-aos="fade-down"
-            >
-              <div class="bott-img bott-img1 agileits mt-4 w3layouts">
-                <div class="icon-holder agileits w3layouts">
-                  <span
-                    class="fa fa-list-alt agileits w3layouts service-icon"
-                    aria-hidden="true"
-                  ></span>
-                </div>
-                <h4 class="mission agileits w3layouts mb-1">6</h4>
-                <h4 class="mission agileits w3layouts">Listed Categories</h4>
-                <div class="description agileits w3layouts">
-                  <a href="#">Check Now</a>
-                </div>
-              </div>
-            </div>
 
-            <div class="clearfix"></div>
-          </div>
-        </div>
-      </div>
-      <!-- //Admin dashboard - services ends here -->
     </div>
     <!-- footer -->
     <div class="footer-bottom section">
