@@ -13,67 +13,6 @@
         function hideURLbar() {
             window.scrollTo(0, 1);
         }
-
-    const api_url = "http://35.154.104.127:8080/LMS/category/getAllCategories";
-  
-    async function getapi(url) {
-        const response = await fetch(url,{
-                method : 'GET',
-                headers : {
-                            'Content-Type' : 'application/json',
-                            'token': localStorage.getItem("jwt")
-                         }
-            });
-        var data = await response.json();
-       // console.log(data['response']);
-        if (response) {
-           if(!response.ok){
-                if(response.status=='401'){
-                    //localStorage.removeItem('jwt');
-                    //window.location.href = './login.html'
-                    console.log(localStorage.getItem("jwt"));
-                }
-                return false;
-           }
-        }
-        show(data.response);
-}
-getapi(api_url);
-
-function show(data) {
-    let tab = 
-        `<thead class="thead-dark">
-            <tr>
-                <th scope="col">S.No.</th>
-                <th scope="col">Category Name</th>
-                <th scope="col">Status</th>
-                <th scope="col">Action</th>
-            </tr>
-        </thead>
-        <tbody>`;
-    
-    // Loop to access all rows 
-    let sr = 0;
-    //for (let r of data.list) 
-    data.forEach(e => {
-        sr++;
-        tab += `<tr> 
-        <th scope="row">${sr}</th>
-        <td>${e.categories}</td>
-        <td>${e.isActive == "0"? "Active" : "Inactive"}</td>
-        <td> 
-            <button type="button" class="btn btn-primary" onClick = "updateBook('${e.categoryId}')"><i class="fa fa-edit"></i></button>
-            <button type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button>
-        </td>
-        </tr>`;
-        
-    });
-    tab += `</tbody>`;
-        document.getElementById("categories").innerHTML = tab;
-    }
-    function updateBook(catId){
-        window.location.href = './add-categories.html?catId='+catId;
-    }
     </script>
     <!-- Custom Theme files -->
     <link href="css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
@@ -81,8 +20,11 @@ function show(data) {
     <link href="css/shop.css" type="text/css" rel="stylesheet" media="all">
     <link href="css/style.css" type="text/css" rel="stylesheet" media="all">
     <link href="css/common.css" type="text/css" rel="stylesheet" media="all">
+    
     <!-- font-awesome icons -->
     <link href="css/font-awesome.css" rel="stylesheet">
+    <script src="js/author.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.all.min.js"></script>
 
 </head>
 
@@ -151,12 +93,12 @@ function show(data) {
                                     <li>
                                         <a href="manage-issue-books.html">Manage Issued Books</a>
                                     </li>
-                                    <li >
+                                    <li>
                                         <a href="return-book.html">Return Book</a>
                                     </li>
                                 </ul>
                             </li>
-                            <li class="dropdown active-nav">
+                            <li class="dropdown">
                                 <a href="#" class="dropdown-toggle effect-3" data-toggle="dropdown">Categories
                                     <b class="caret"></b>
                                 </a>
@@ -164,18 +106,18 @@ function show(data) {
                                     <li>
                                         <a href="add-categories.html">Add Category</a>
                                     </li>
-                                    <li class="active-subnav">
+                                    <li>
                                         <a href="manage-categories.html">Manage Categories</a>
                                     </li>
 
                                 </ul>
                             </li>
-                            <li class="dropdown">
+                            <li class="dropdown active-nav">
                                 <a href="#" class="dropdown-toggle effect-3" data-toggle="dropdown">Admin
                                     <b class="caret"></b>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li >
+                                    <li class="active-subnav">
                                         <a href="add-authors.html">Add Author</a>
                                     </li>
                                     <li>
@@ -219,10 +161,10 @@ function show(data) {
                             </a>
                         </li>
                         <li class="btn btn2">
-                            <a href="add-categories.html">Categories</a>
+                            <a href="#">Authors</a>
                         </li>
                         <li class="btn btn3">
-                            <a href="manage-categories.html">Manage Categories</a>
+                            <a href="add-categories.html">Add Author</a>
                         </li>
                     </ul>
                 </div>
@@ -234,26 +176,44 @@ function show(data) {
             <div class="login-form section text-center">
                 <div class="container">
                     <h4 class="rad-txt">
-                        <span class="abtxt1">Manage</span>
-                        <span class="abtext">Categories</span>
+                        <span class="abtxt1">Add</span>
+                        <span class="abtext">Authors</span>
                     </h4>
-                    <table class="table table-bordered" id="categories">
-                    </table>
-                    <nav aria-label="..." class="float-right">
-                        <ul class="pagination">
-                          <li class="page-item disabled">
-                            <a class="page-link" href="#" tabindex="-1">Previous</a>
-                          </li>
-                          <li class="page-item"><a class="page-link" href="#">1</a></li>
-                          <li class="page-item active">
-                            <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                          </li>
-                          <li class="page-item"><a class="page-link" href="#">3</a></li>
-                          <li class="page-item">
-                            <a class="page-link" href="#">Next</a>
-                          </li>
-                        </ul>
-                      </nav>
+                    <div id="loginbox" style="margin-top:30px;" class="mainbox  loginbox">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <div class="panel-title">Author Info</div>
+                            </div>
+                            <div style="padding-top:30px" class="panel-body">
+                                <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+                                <form id="loginform" class="form-horizontal" action="#" method="post">
+                                    <div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="glyphicon glyphicon-user"></i>
+                                        </span>
+                                        <input id="author-name" type="text" class="form-control" name="author name" value="" placeholder="Author Name" required="">
+                                    </div>
+
+                                    <div style="margin-top:10px" class="form-group">
+                                        <!-- Button -->
+                                        <div class="col-sm-12 controls">
+                                            <a id="btn-login" href="#" class="btn btn-success" onclick="return addAuthor()">Add Author </a>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12 control">
+                                            <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%">
+                                                For Add Book of Authors!
+                                                <a href="#">
+                                                    Click Here
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

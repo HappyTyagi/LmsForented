@@ -56,7 +56,7 @@ function show(data) {
         <td>${e.fullName}</td>
         <td>Active</td>
         <td> 
-            <button type="button" class="btn btn-primary"><i class="fa fa-edit"></i></button>
+            <button type="button" class="btn btn-primary" onClick="updateauthorShow('${e.autherId}')"><i class="fa fa-edit"></i></button>
             <button type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button>
 
          </td>
@@ -64,4 +64,8 @@ function show(data) {
     });
     tab += `</tbody>`;
         document.getElementById("authorList").innerHTML = tab;
+    }
+
+    function updateauthorShow(authorId){
+      window.location.href = './update-authors.html?authId='+authorId;
     }

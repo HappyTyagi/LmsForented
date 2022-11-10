@@ -31,31 +31,23 @@ async function getapi(url) {
   return data;
 }
 
-const showCategory = (async() =>{
-  var data = await getapi(BASE_URL+"/category/getAllCategories");
-  console.log(data);
-  let tab = `<option value = ""> Select Category</option>`;
+const getBookByBookId = (async(bookId) =>{
+  //var data = await getapi(BASE_URL+"/book/searchBookById/"+bookId);
+  let tab = ``;
   let sr = 0; 
-  data.response.forEach(e => {
-    tab += `<option value = ${e.categoryId}>${e.categories}</option>`;
-  });
-  document.getElementById("category").innerHTML = tab;
+  var tbl = document.getElementById("bookList").getElementsByTagName('tbody')[0];
+ // data.response.forEach(e => {
+    let row = tbl.insertRow();
+    let cell1 = row.insertCell(0);
+    let cell2 = row.insertCell(1);
+    let cell3 = row.insertCell(2);
+    
+    cell1.innerHTML = tbl.rows.length;
+    cell1.setAttribute("id",tbl.rows.length);
+    cell2.innerHTML = 'JAHID';
+    cell3.innerHTML = 23;
+  //});
 });
-
-const showAuthorName = (async() =>{
-  var data = await getapi(BASE_URL+"/author/authors");
-  console.log(data);
-  let tab = `<option value = ""> Select Author</option>`;
-  let sr = 0; 
-  data.response.forEach(e => {
-    tab += `<option value = ${e.autherId}>${e.fullName}</option>`;
-  });
-  document.getElementById("authorName").innerHTML = tab;
-});
-
-showCategory();
-showAuthorName();
-
 
 function addBook(){
     const bookName = document.getElementById("book-name").value;

@@ -88,3 +88,42 @@ function addUser(){
   };
   return false;
 }
+
+
+
+
+//get Role
+
+async function getapi(url) {
+  const response = await fetch(url,{
+          method : 'GET',
+          headers : {
+                      'Content-Type' : 'application/json',
+                      'token': localStorage.getItem("jwt")
+                   }
+      });
+  var data = await response.json();
+  if (response) {
+     if(!response.ok){
+          if(response.status=='401'){
+              //localStorage.removeItem('jwt');
+              //window.location.href = './login.html'
+              //console.log(localStorage.getItem("jwt"));
+          }
+          return false;
+     }
+  }
+  return data;
+}
+
+const showRole = (async() =>{
+  var data = await getapi(BASE_URL+"role/getAllRole");
+  console.log(data);
+  let tab = `<option value = ""> Select Role</option>`;
+  let sr = 0; 
+  data.response.forEach(e => {
+    tab += `<option value = ${e.categoryId}>${e.categories}</option>`;
+  });
+  document.getElementById("role").innerHTML = tab;
+});
+

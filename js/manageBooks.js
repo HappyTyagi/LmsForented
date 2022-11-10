@@ -28,13 +28,12 @@ async function getapi(url) {
           return false;
      }
   }
-  show(data.response);
+  show(data.response.books);
 }
 
 getapi(BASE_URL+"/book/getAllBook");
 
-
-function show(data) {
+async function show(data) {
     let tab = 
         `<thead class="thead-dark">
         <tr>

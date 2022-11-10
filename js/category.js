@@ -12,7 +12,7 @@ function logout() {
 
 function addCategory(){
     const category = document.getElementById("category-name").value;
-    const body = {"categories": category  };
+    const body = {"categories": category , "isActive" : 0 };
     let url = BASE_URL+"/category/addCategory";
     
     const xhttp = new XMLHttpRequest();
