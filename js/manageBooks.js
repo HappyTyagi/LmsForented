@@ -28,7 +28,7 @@ async function getapi(url) {
           return false;
      }
   }
-  show(data.response.books);
+  show(data.response.addBooks);
 }
 
 getapi(BASE_URL+"/book/getAllBook");

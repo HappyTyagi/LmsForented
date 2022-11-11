@@ -74,7 +74,7 @@ function addBook(){
     const cost = document.getElementById("cost").value;
     const purchasedBy = document.getElementById("purchasedBy").value;
     const bookcondition = document.getElementById("bookcondition").value;
-    const costWithBinding = document.getElementById("withBinding").value;
+    const withBinding = document.getElementById("withBinding").value;
     const authorName = document.getElementById("authorName").value;
 
     const body = {
@@ -93,9 +93,9 @@ function addBook(){
         "cost": cost,
         "quantity": quantity,
         "purchased": purchased,
-        "costWithBinding": costWithBinding,
-        "authorsId": "LMS_KA_AU1667382124220",
-        "categoriesId": "LMS_KA_CA1667378766657"
+        "enableBinding": withBinding,
+        "authorsId": authorName,
+        "categoriesId": category
         }
 
     console.log(JSON.stringify(body));    
@@ -110,9 +110,7 @@ function addBook(){
     xhttp.onreadystatechange = function () {
       if (this.readyState == 4) {
         const objects = JSON.parse(this.responseText);
-        console.log(objects)
         const response = objects['response'];
-        console.log(response);
         if (objects['status'] == '200') {
           Swal.fire({
             text: 'Book addedd successfully',
@@ -120,7 +118,7 @@ function addBook(){
             confirmButtonText: 'OK'
           }).then((result) => {
             if (result.isConfirmed) {
-              window.location.href = './manage-categories.html';
+              window.open(response.filePath, "_blank")
             }
           });
         } else {

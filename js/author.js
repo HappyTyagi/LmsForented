@@ -12,9 +12,18 @@ function logout() {
 
 function addAuthor(){
     const authorName = document.getElementById("author-name").value;
-    const body = {"fullName": authorName };   
+    const edition = document.getElementById("edition").value;
+    const publishedDate = document.getElementById("publishedDate").value;
+    const publication = document.getElementById("publication").value;
+
+    const body = {  "fullName": authorName,
+                    "edition": edition,
+                    "publistionDate": publishedDate,
+                    "publication": publication  
+                 }; 
+
     let url = BASE_URL+"/author/addAuthor";
-    
+    console.log(JSON.stringify(body));
     const xhttp = new XMLHttpRequest();
     xhttp.open("POST", url);
     xhttp.setRequestHeader("Content-Type", "application/json");
@@ -23,9 +32,7 @@ function addAuthor(){
     xhttp.onreadystatechange = function () {
       if (this.readyState == 4) {
         const objects = JSON.parse(this.responseText);
-        console.log(objects)
         const response = objects['response'];
-        console.log(response);
         if (objects['status'] == '200') {
           Swal.fire({
             text: 'Author added successfully',

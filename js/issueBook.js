@@ -1,4 +1,6 @@
 const BASE_URL = 'http://35.154.104.127:8080/LMS';
+const BookSerialArray = [];
+
 const jwt = localStorage.getItem("jwt");
 if (jwt == null) {
   window.location.href = './login.html'
@@ -31,69 +33,50 @@ async function getapi(url) {
   return data;
 }
 
-const getBookByBookId = (async(bookId) =>{
-  //var data = await getapi(BASE_URL+"/book/searchBookById/"+bookId);
-  let tab = ``;
-  let sr = 0; 
+async function getBookByBookId(){
+  let bookId = document.getElementById("bookId").value;
+  var data = await getapi(BASE_URL+"/book/searchBookById/"+bookId);
   var tbl = document.getElementById("bookList").getElementsByTagName('tbody')[0];
- // data.response.forEach(e => {
-    let row = tbl.insertRow();
-    let cell1 = row.insertCell(0);
-    let cell2 = row.insertCell(1);
-    let cell3 = row.insertCell(2);
-    
-    cell1.innerHTML = tbl.rows.length;
-    cell1.setAttribute("id",tbl.rows.length);
-    cell2.innerHTML = 'JAHID';
-    cell3.innerHTML = 23;
-  //});
+  
+  data.response.addBooks.forEach(e => {
+    if(!BookSerialArray.includes(e.bookId)){
+      let row = tbl.insertRow();
+      let cell1 = row.insertCell(0);
+      let cell2 = row.insertCell(1);
+      let cell3 = row.insertCell(2);
+      let cell4 = row.insertCell(3);
+      let cell5 = row.insertCell(4);
+      var rowIndex = tbl.rows.length;
+      cell1.innerHTML = rowIndex;
+      //cell1.setAttribute("id",tbl.rows.length);
+      cell2.innerHTML = e.bookName;
+      cell3.innerHTML = "Type not present in Book API";
+      cell4.innerHTML = "Publication not present in Book API";
+      cell5.innerHTML = "CheckBox";
+      BookSerialArray[rowIndex-1] = e.bookId;
+  }else{
+    alert("Book already added in list");
+  }
 });
+};
 
-function addBook(){
-    const bookName = document.getElementById("book-name").value;
-    const publication = document.getElementById("publication-name").value;
-    const edition = document.getElementById("edition").value;
-    const publishDate = document.getElementById("publish-date").value;
-    const category = document.getElementById("category").value;
-    const localNo = document.getElementById("local-number").value;
-    const noPages = document.getElementById("no-pages").value;
-    const quantity = document.getElementById("quantity").value;
-    const purchased = document.getElementById("purchased").value;
-    const sourceName = document.getElementById("sourceName").value;
-    const sourceAddress = document.getElementById("sourceAddress").value;
-    const sourceContactNo = document.getElementById("sourceContactNo").value;
-    const billNum = document.getElementById("billNum").value;
-    const cost = document.getElementById("cost").value;
-    const purchasedBy = document.getElementById("purchasedBy").value;
-    const bookcondition = document.getElementById("bookcondition").value;
-    const costWithBinding = document.getElementById("withBinding").value;
-    const authorName = document.getElementById("authorName").value;
 
+function addIssuedBook(){
+    const userId = document.getElementById("user-id").value;
+    const departmentId = document.getElementById("departmentId").value;
+    const issuedTo = document.getElementById("issued-to").value;
+    const issueDateTime = document.getElementById("issueDateTime").value;
+    const issuedNoDays = document.getElementById("issuedNoDays").value;
+    console.log(BookSerialArray);
     const body = {
-        "bookName": bookName,
-        //"serialName": "ASDE987654df45",
-        //"description" : "Computer bascis and programing language",
-        "noOfPages": noPages,
-        "sourceAddress": sourceAddress,
-        "sourceContactNo": sourceContactNo,
-        "purchasedBy": purchasedBy,
-        "edition":edition,
-        "billNo": billNum,
-        "bookCondition": bookcondition,
-        "sourceName": sourceName,
-        "assignLocalNo": localNo,
-        "cost": cost,
-        "quantity": quantity,
-        "purchased": purchased,
-        "costWithBinding": costWithBinding,
-        "authorsId": "LMS_KA_AU1667382124220",
-        "categoriesId": "LMS_KA_CA1667378766657"
+        "userId": userId,
+        "issuedTo": issuedTo,
+        "departmentId": departmentId,
+        "returnDate": 1667891034000,
+        "bookSerialNo" : BookSerialArray
         }
-
     console.log(JSON.stringify(body));    
-    
-    let url = BASE_URL+"/book/addBook";
-    
+    let url = BASE_URL+"/issuedBook/addIssuedBook";
     const xhttp = new XMLHttpRequest();
     xhttp.open("POST", url);
     xhttp.setRequestHeader("Content-Type", "application/json");
@@ -107,12 +90,12 @@ function addBook(){
         console.log(response);
         if (objects['status'] == '200') {
           Swal.fire({
-            text: 'Book addedd successfully',
+            text: 'Book issued successfully',
             icon: 'success',
             confirmButtonText: 'OK'
           }).then((result) => {
             if (result.isConfirmed) {
-              window.location.href = './manage-categories.html';
+              window.location.href = './issue-book.html';
             }
           });
         } else {
