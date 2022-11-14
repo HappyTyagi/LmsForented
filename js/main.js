@@ -1,5 +1,5 @@
 jQuery(document).ready(function($){
-
+	$('#waveoffAmount').hide();
 	$('#department').hide();
 	$('#studentId').show();
 	$('#bookName').show();
@@ -18,6 +18,16 @@ $('input:radio[name=issuetype]').change(function() {
 		$('#departmentissueId').show();
 	}
 	
+   });
+
+   $('#waveOff').change(function(){
+	if(this.value =="Yes"){
+	$('#waveoffAmount').show();
+	}
+	else{
+		$('#waveoffAmount').hide();
+
+	}
    });
    
 	//if you change this breakpoint in the style.css file (or _layout.scss if you use SASS), don't forget to update this value as well

@@ -293,3 +293,11 @@ width: 100%;
     height: 46px !important;
 }
 
+.waveoff{
+    float: left;
+    margin-left: 10px !important;
+    height: 46px;
+    width: 46px;
+    margin-top: 0px !important;
+    
+}
