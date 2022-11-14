@@ -59,8 +59,8 @@ async function show(data) {
         <td>"Get Category by categoryID API is needed"</td>
         <td><img src="./images/a1.jpg" class="manage-image"></td>
         <td> 
-            <button type="button" class="btn btn-primary"><i class="fa fa-edit"></i></button>
-            <button type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+            <button type="button" class="btn btn-primary" onClick ="removeBook('${e.bookId}')"><i class="fa fa-edit"></i></button>
+            <button type="button" class="btn btn-danger" onClick = "updateBook('${e.bookId}')"><i class="fa fa-trash"></i></button>
 
          </td>
       </tr>`;
@@ -68,3 +68,32 @@ async function show(data) {
     tab += `</tbody>`;
         document.getElementById("bookList").innerHTML = tab;
     }
+
+async function removeBook(bookId){
+  const url = BASE_URL+"/book/removeBook/"+bookId; 
+  const response = await fetch(url,{
+      method : 'GET',
+      headers : {
+                  'Content-Type' : 'application/json',
+                  'token': localStorage.getItem("jwt")
+               }
+  });
+    if (response.status == '200') {
+      Swal.fire({
+        text: response.response.message,
+        icon: 'success',
+        confirmButtonText: 'OK'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = './manage-book.html';       
+        }
+      });
+    } else {
+      Swal.fire({
+        text: objects['message'],
+        icon: 'error',
+        confirmButtonText: 'OK'
+      });
+    }
+    return false;
+  }

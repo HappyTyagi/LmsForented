@@ -34,8 +34,8 @@ async function getapi(url) {
 }
 
 async function getBookByBookId(){
-  let bookId = document.getElementById("bookId").value;
-  var data = await getapi(BASE_URL+"/book/searchBookById/"+bookId);
+  let bookSerialId = document.getElementById("bookId").value;
+  var data = await getapi(BASE_URL+"/book/findBookBySerialNo/"+bookSerialId);
   var tbl = document.getElementById("bookList").getElementsByTagName('tbody')[0];
   
   data.response.addBooks.forEach(e => {
@@ -53,13 +53,29 @@ async function getBookByBookId(){
       cell3.innerHTML = "Type not present in Book API";
       cell4.innerHTML = "Publication not present in Book API";
       cell5.innerHTML = "CheckBox";
-      BookSerialArray[rowIndex-1] = e.bookId;
+      BookSerialArray[rowIndex-1] = bookId;
+      
   }else{
     alert("Book already added in list");
   }
 });
+document.getElementById("bookId").value ="";
 };
 
+async function getUserByUserId(){
+  let userId = document.getElementById("user-id").value;
+  var data = await getapi(BASE_URL+"/loginController/getAllUsersById/"+userId);
+    document.getElementById("issued-to").value = data.response.fullName;
+};
+
+
+function getUserType(){
+  var ele = document.getElementsByName('issuetype');
+    for(i = 0; i < ele.length; i++) {
+        if(ele[i].checked) { console.log(ele[i].value); return ele[i].value;}
+    }  
+    return "0";
+}
 
 function addIssuedBook(){
     const userId = document.getElementById("user-id").value;
@@ -67,13 +83,15 @@ function addIssuedBook(){
     const issuedTo = document.getElementById("issued-to").value;
     const issueDateTime = document.getElementById("issueDateTime").value;
     const issuedNoDays = document.getElementById("issuedNoDays").value;
-    console.log(BookSerialArray);
+    const userType = getUserType();
+    
     const body = {
         "userId": userId,
         "issuedTo": issuedTo,
         "departmentId": departmentId,
-        "returnDate": 1667891034000,
-        "bookSerialNo" : BookSerialArray
+        "returnDate": "2022-12-30",
+        "bookSerialNo" : BookSerialArray,
+        "userType" : userType
         }
     console.log(JSON.stringify(body));    
     let url = BASE_URL+"/issuedBook/addIssuedBook";

@@ -34,6 +34,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.all.min.js"></script>
     
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
     <div id="home">
@@ -252,7 +253,7 @@
                                             <i class="glyphicon glyphicon-book"></i>
                                         </span>
                                         <input id="user-id" type="text" class="form-control" name="Student Id"
-                                            value="" placeholder="Student Id" required="">
+                                            value="" placeholder="Student Id" required="" onblur="getUserByUserId()">
                                     </div>
                                 </div>                                
                                 <div class="col-md-4" id="departmentissueId">
@@ -261,7 +262,7 @@
                                             <i class="glyphicon glyphicon-book"></i>
                                         </span>
                                         <select class="form-control select2" id="departmentId">
-                                            <option> Select Department</option>
+                                            <option value = ""> Select Department</option>
                                             <option value = "Adminstration">Adminstration</option>
                                             <option value = "Physics">Physics Lab</option>
                                             <option value = "Chemistry Lab">Chemistry Lab</option>
