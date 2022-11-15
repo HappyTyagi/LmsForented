@@ -13,12 +13,7 @@
         function hideURLbar() {
             window.scrollTo(0, 1);
         }
-
-
     </script>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
     <!-- Custom Theme files -->
     <link href="css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
     <!-- shop css -->
@@ -27,15 +22,14 @@
     <link href="css/common.css" type="text/css" rel="stylesheet" media="all">
     <!-- font-awesome icons -->
     <link href="css/font-awesome.css" rel="stylesheet">
-
-    <script src="js/issueBook.js"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.all.min.js"></script>
-    
+
+</head>
+
+
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
     <div id="home">
         <!-- header -->
@@ -95,13 +89,13 @@
                                     <b class="caret"></b>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li class="active-subnav">
+                                    <li>
                                         <a href="issue-book.html">Issue New Book</a>
                                     </li>
-                                    <li>
+                                    <li class="active-subnav">
                                         <a href="reissue-books.html">Reissue Books</a>
                                     </li>
-                                    <li>
+                                    <li >
                                         <a href="return-book.html">Return Book</a>
                                     </li>
                                 </ul>
@@ -172,7 +166,7 @@
                             <a href="#">Issue Books</a>
                         </li>
                         <li class="btn btn3">
-                            <a href="add-categories.html">Issue a New Book</a>
+                            <a href="add-categories.html">Return Book</a>
                         </li>
                     </ul>
                 </div>
@@ -180,21 +174,20 @@
         </div>
         <!--//breadcrumbs ends here-->
 
-        <!-- issue book form -->
+        <!-- add authors form -->
         <div class="login-form section text-center">
             <div class="container">
                 <h4 class="rad-txt">
-                    <span class="abtxt1">Issue</span>
+                    <span class="abtxt1">Return</span>
                     <span class="abtext">Book</span>
                 </h4>
                 <div id="loginbox" style="margin-top:30px;" class="mainbox">
                     <div class="panel panel-info">
                         <div class="panel-heading">
-                            <div class="panel-title">Issue a New Book</div>
+                            <div class="panel-title">Return a Book</div>
                         </div>
                         <div style="padding-top:30px" class="panel-body">
                             <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
-
                             <form id="loginform" class="form-horizontal" action="#" method="post">
                                 <div class="input-group align-center radio-wrap mb-3">
                                     <div class="checkbox">
@@ -206,66 +199,28 @@
                                             <input id="Department" type="radio" name="issuetype" value="002"> Department
                                         </label>
                                     </div>
+
                                 </div>
                                 <div class="col-md-4" id="bookName">
                                     <div style="margin-bottom: 25px" class="input-group">
                                         <span class="input-group-addon">
                                             <i class="glyphicon glyphicon-book"></i>
                                         </span>
-                                        <input  id="bookNameInput" type="text" class="form-control" name="Book Name"
-                                            value="" placeholder="Book Name" required=""/>
+                                        <input id="category-name" type="text" class="form-control" name="Book Name"
+                                            value="" placeholder="Book Name" required="">
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div style="margin-bottom: 25px" class="input-group">
-                                        <span class="input-group-addon">
-                                            <i class="glyphicon glyphicon-book"></i>
-                                        </span>
-                                        <input id="bookId" type="text" class="form-control" name="Book Id"
-                                            value="" placeholder="Book Id" required=""/>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div style="margin-bottom: 25px" class="input-group">
-                                        <a id="btn-search" href="#" class="btn btn-success" onclick="getBookByBookId()">Search </a>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 toverflow theight">
-                                    <table class="table table-bordered " id = "bookList">
-                                        <thead class="thead-dark">
-                                            <tr>
-                                                <th scope="col">S.No.</th>
-                                                <th scope="col">Book Name</th>
-                                                <th scope="col">Item Type</th>
-                                                <th scope="col">Publication</th>
-                                                <td scope="col"><input type="checkbox"></td>
 
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                          
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="col-md-4" id="studentId">
+                                <div class="col-md-4" id="department">
                                     <div style="margin-bottom: 25px" class="input-group">
                                         <span class="input-group-addon">
                                             <i class="glyphicon glyphicon-book"></i>
                                         </span>
-                                        <input id="user-id" type="text" class="form-control" name="Student Id"
-                                            value="" placeholder="Student Id" required="" onblur="getUserByUserId()">
-                                    </div>
-                                </div>                                
-                                <div class="col-md-4" id="departmentissueId">
-                                    <div style="margin-bottom: 25px" class="input-group">
-                                        <span class="input-group-addon">
-                                            <i class="glyphicon glyphicon-book"></i>
-                                        </span>
-                                        <select class="form-control select2" id="departmentId">
-                                            <option value = ""> Select Department</option>
-                                            <option value = "Adminstration">Adminstration</option>
-                                            <option value = "Physics">Physics Lab</option>
-                                            <option value = "Chemistry Lab">Chemistry Lab</option>
+                                        <select class="form-control select2" id="departmentSelect">
+                                            <option> Select Department</option>
+                                            <option>Adminstration</option>
+                                            <option>Physics Lab</option>
+                                            <option>Chemistry Lab</option>
                                         </select>
                                     </div>
                                 </div>
@@ -274,8 +229,67 @@
                                         <span class="input-group-addon">
                                             <i class="glyphicon glyphicon-book"></i>
                                         </span>
-                                        <input id="issued-to" type="text" class="form-control" name="Issued to"
-                                            value="" placeholder="Issued to" required="" maxlength="30">
+                                        <input id="category-name" type="text" class="form-control" name="Book Id"
+                                            value="" placeholder="Book Id" required="">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div style="margin-bottom: 25px" class="input-group">
+                                        <a id="btn-search" href="#" class="btn btn-success">Search </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 toverflow theight">
+                                    <table class="table table-bordered">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th scope="col">S.No.</th>
+                                                <th scope="col">Book Name</th>
+                                                <th scope="col">Item Type</th>
+                                                <th scope="col">Publication</th>
+                                                <th scope="col">Issue Date</th>
+                                                <th scope="col">Return Date</th>
+                                                <td scope="col"><input type="checkbox"></td>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">1</th>
+                                                <td>Computer science</td>
+                                                <td>Book</td>
+                                                <td>Publication 1</td>
+                                                <td>11/11/2022</td>
+                                                <td>22/11/2022</td>
+                                                <td><input type="checkbox"></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">2</th>
+                                                <td>Navbharat Times</td>
+                                                <td>Newspaper</td>
+                                                <td>Publication 2</td>
+                                                <td>11/11/2022</td>
+                                                <td>22/11/2022</td>
+                                                <td><input type="checkbox"></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">3</th>
+                                                <td>Applied Chemistry</td>
+                                                <td>Book</td>
+                                                <td>Publication 3</td>
+                                                <td>11/11/2022</td>
+                                                <td>22/11/2022</td>
+                                                <td><input type="checkbox"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-md-4" id="studentId">
+                                    <div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="glyphicon glyphicon-book"></i>
+                                        </span>
+                                        <input id="category-name" type="text" class="form-control" name="Student Id"
+                                            value="" placeholder="Student Id" required="">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -283,9 +297,21 @@
                                         <span class="input-group-addon">
                                             <i class="glyphicon glyphicon-book"></i>
                                         </span>
-                                        <input id="issueDateTime" type="text" class="form-control datetime"
-                                            name="Issuing date and time" value="" placeholder="Issuing date and time"
-                                            required="">
+                                        <input id="category-name" type="text" class="form-control" name="Reissue To"
+                                            value="" placeholder="Reissue To" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4" id="departmentissueId">
+                                    <div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="glyphicon glyphicon-book"></i>
+                                        </span>
+                                        <select class="form-control select2" id="dprtSelect">
+                                            <option> Select Department</option>
+                                            <option>Adminstration</option>
+                                            <option>Physics Lab</option>
+                                            <option>Chemistry Lab</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -293,21 +319,60 @@
                                         <span class="input-group-addon">
                                             <i class="glyphicon glyphicon-book"></i>
                                         </span>
-                                        <input id="issuedNoDays" type="number" class="form-control"
-                                            name="Issued for no of days" value="" placeholder="Issued for no of days"
-                                            required="" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==3) return false;">
+                                        <input id="datetime" type="text" class="form-control datetime"
+                                            name="Reissue date and time" value=""
+                                            placeholder="Reissue date and time" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="glyphicon glyphicon-book"></i>
+                                        </span>
+                                        <input id="delayDays" type="text" class="form-control" name="Delay in Days"
+                                            value="" placeholder="Delay in Days" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="glyphicon glyphicon-book"></i>
+                                        </span>
+                                        <input id="late-fee" type="number" class="form-control" name="Late fees (if any)"
+                                            value="" placeholder="Late fees (if any)" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==5) return false;" >
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="glyphicon glyphicon-book"></i>
+                                        </span>
+                                        <select class="form-control" id="waveOff">
+                                            <option> Wave Off?</option>
+                                            <option value="Yes">Yes</option>
+                                            <option value="No">No</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4" id="waveoffAmount">
+                                    <div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="glyphicon glyphicon-book"></i>
+                                        </span>
+                                        <input id="waveoffInput" type="number" class="form-control" name="Wave Off Amount"
+                                            value="" placeholder="Wave Off Amount" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==5) return false;">
                                     </div>
                                 </div>
                                 <div style="margin-top:10px" class="form-group">
                                     <!-- Button -->
                                     <div class="col-sm-12 controls">
-                                        <a id="btn-login" href="#" class="btn btn-success" onclick="addIssuedBook()">Issue Book </a>
+                                        <a id="btn-return" class="btn btn-success">Return Book </a>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-12 control">
                                         <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%">
-                                            For Manage Issued Books!
+                                            For Manage Return Books!
                                             <a href="#">
                                                 Click Here
                                             </a>
@@ -327,6 +392,7 @@
     <!--//add authors form ends here-->
 
     </div>
+    <!-- footer -->
 
     <!-- //footer -->
     <div class="cpy-right">
@@ -402,6 +468,7 @@
  ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="js/bootstrap.js"></script>
+
 </body>
 
 </html>
