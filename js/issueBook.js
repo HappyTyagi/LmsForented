@@ -72,7 +72,7 @@ async function getUserByUserId(){
 function getUserType(){
   var ele = document.getElementsByName('issuetype');
     for(i = 0; i < ele.length; i++) {
-        if(ele[i].checked) { console.log(ele[i].value); return ele[i].value;}
+        if(ele[i].checked) { return ele[i].value;}
     }  
     return "0";
 }

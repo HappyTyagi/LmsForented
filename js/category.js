@@ -10,11 +10,29 @@ function logout() {
   window.location.href = './login.html';
 }
 
+function getSelectedValueforCheckboxRadio(elementName){
+  var ele = document.getElementsByName(elementName); 
+  for(i = 0; i < ele.length; i++) {
+      if(ele[i].type="radio") {
+          if(ele[i].checked)
+            return (ele[i].value);
+      }
+  }
+}
+
 function addCategory(){
-    const category = document.getElementById("category-name").value;
-    const body = {"categories": category , "isActive" : 0 };
+    const category = document.getElementById("categoryName").value;
+    const isActive = getSelectedValueforCheckboxRadio("status");
+    const itemType = getSelectedValueforCheckboxRadio("itemtype")
+    const penaltyRate = document.getElementById("penaltyRate").value;
+    const body = {
+                    "categories": category , 
+                    "isActive" : isActive ,
+                    "bookOrJournel" :  itemType,
+                    "penaltyRate" : penaltyRate
+                  };
     let url = BASE_URL+"/category/addCategory";
-    
+    console.log(body);
     const xhttp = new XMLHttpRequest();
     xhttp.open("POST", url);
     xhttp.setRequestHeader("Content-Type", "application/json");

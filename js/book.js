@@ -112,6 +112,7 @@ function addBook(){
         const objects = JSON.parse(this.responseText);
         const response = objects['response'];
         if (objects['status'] == '200') {
+          document.getElementById("addBookform").reset(); 
           Swal.fire({
             text: 'Book addedd successfully',
             icon: 'success',
@@ -132,3 +133,17 @@ function addBook(){
     };
     return false;
   }
+
+
+  const showCategoryOnselect = (async(bookOrJournel) =>{
+    var data = await getapi(BASE_URL+"/category/getAllCategories");
+    console.log(bookOrJournel)
+    console.log(data);
+    let tab = `<option value = ""> Select Category</option>`;
+    let sr = 0; 
+    data.response.forEach(e => {
+      if(e.bookOrJournel==bookOrJournel)
+      tab += `<option value = ${e.categoryId}>${e.categories}</option>`;
+    });
+    document.getElementById("category").innerHTML = tab;
+  });

@@ -15,7 +15,7 @@
     <!-- font-awesome icons -->
     <link href="css/font-awesome.css" rel="stylesheet">
     <!-- //Custom Theme files -->
-    <script src="js/book.js"></script>
+    <script src="js/upadte-book.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.all.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -187,7 +187,7 @@
                         </div>
                         <div style="padding-top:30px" class="panel-body">
                             <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
-                            <form id="addBookform" class="form-horizontal" action="#" method="post">
+                            <form id="loginform" class="form-horizontal" action="#" method="post">
                                 <div class="input-group align-center radio-wrap mb-3">
                                     <div class="checkbox">
                                         <label>
@@ -195,7 +195,7 @@
                                                 checked="checked" onchange="showCategoryOnselect(this.value)"> Book
                                         </label>
                                         <label>
-                                            <input  type="radio" name="itemtype" value="0" onchange="showCategoryOnselect(this.value)"> Journal
+                                            <input  type="radio" name="itemtype" value="2" onchange="showCategoryOnselect(this.value)"> Journal
                                         </label>
                                     </div>    
                                 </div>
@@ -296,7 +296,7 @@
                                             <i class="glyphicon glyphicon-book"></i>
                                         </span>
                                         <select class="form-control select2" id="itemType">
-                                            <option> Select Item Type</option>
+                                            <option > Select Item Type</option>
                                             <option>Book</option>
                                             <option>Magazine</option>
                                             <option>NewsPaper</option>
@@ -309,7 +309,7 @@
                                         <span class="input-group-addon">
                                             <i class="glyphicon glyphicon-book"></i>
                                         </span>
-                                        <select class="form-control select2" id="purchased">
+                                        <select class="form-control select2" id="itemType">
                                             <option> Purchased?</option>
                                             <option>Purchased</option>
                                             <option>Promotional</option>

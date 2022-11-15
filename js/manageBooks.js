@@ -56,11 +56,11 @@ async function show(data) {
         <th scope="row">${sr}</th>
         <td>${e.bookName}</td>
         <td>"Publication name not present in API response"</td>
-        <td>"Get Category by categoryID API is needed"</td>
+        <td>${getCategoty(e.categoriesId)}</td>
         <td><img src="./images/a1.jpg" class="manage-image"></td>
         <td> 
-            <button type="button" class="btn btn-primary" onClick ="removeBook('${e.bookId}')"><i class="fa fa-edit"></i></button>
-            <button type="button" class="btn btn-danger" onClick = "updateBook('${e.bookId}')"><i class="fa fa-trash"></i></button>
+            <button type="button" class="btn btn-primary" onClick ="updateBookShow('${e.bookId}')"><i class="fa fa-edit"></i></button>
+            <button type="button" class="btn btn-danger" onClick = "removeBook('${e.bookId}')"><i class="fa fa-trash"></i></button>
 
          </td>
       </tr>`;
@@ -80,7 +80,7 @@ async function removeBook(bookId){
   });
     if (response.status == '200') {
       Swal.fire({
-        text: response.response.message,
+        text: 'Book deleted',
         icon: 'success',
         confirmButtonText: 'OK'
       }).then((result) => {
@@ -96,4 +96,8 @@ async function removeBook(bookId){
       });
     }
     return false;
+  }
+
+  function updateBookShow(authorId){
+    window.location.href = './update-book.html?authId='+authorId;
   }
