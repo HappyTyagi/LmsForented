@@ -28,13 +28,14 @@ async function getapi(url) {
           return false;
      }
   }
-  show(data.response.addBooks);
+  return data;
 }
 
-getapi(BASE_URL+"/book/getAllBook");
+getBooks();
 
-async function show(data) {
-    let tab = 
+async function getBooks(data) {
+  var data = await getapi(BASE_URL+"/book/getAllBook");   
+  let tab = 
         `<thead class="thead-dark">
         <tr>
           <th scope="col">S.No.</th>
@@ -50,13 +51,15 @@ async function show(data) {
     // Loop to access all rows 
     let sr = 0;
     //for (let r of data.list) 
-    data.forEach(e => {
+    data.response.addBooks.forEach(e => {
         sr++;
+        var categories = getCategoryName(e.categoriesId); 
+        console.log(categories);
         tab += `<tr>
         <th scope="row">${sr}</th>
         <td>${e.bookName}</td>
         <td>"Publication name not present in API response"</td>
-        <td>${getCategoty(e.categoriesId)}</td>
+        <td>${categories}</td>
         <td><img src="./images/a1.jpg" class="manage-image"></td>
         <td> 
             <button type="button" class="btn btn-primary" onClick ="updateBookShow('${e.bookId}')"><i class="fa fa-edit"></i></button>
@@ -98,6 +101,26 @@ async function removeBook(bookId){
     return false;
   }
 
-  function updateBookShow(authorId){
-    window.location.href = './update-book.html?authId='+authorId;
+  function updateBookShow(bookId){
+    window.location.href = './update-book.html?bookId='+bookId;
+  }
+  
+  function  getCategoryName(catId) {
+    console.log(catId);
+    let url = BASE_URL+"/category/findByCategoryId/"+catId;
+    const xhttp = new XMLHttpRequest();
+    xhttp.open("GET", url);
+    xhttp.setRequestHeader("Content-Type", "application/json");
+    xhttp.setRequestHeader("token",jwt);
+    xhttp.send();
+    xhttp.onreadystatechange = function () {
+      if (this.readyState == 4) {
+        const objects = JSON.parse(this.responseText);
+        const response = objects['response'];
+        if (objects['status'] != '200') {
+          return "";
+        }
+        return (response['categories']);
+      }
+    }; 
   }
