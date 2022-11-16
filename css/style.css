@@ -393,7 +393,7 @@ span.nav-icon {
 }
 
 nav.navbar.navbar-default.navbar-fixed-top {
-    background: #34c663;
+    background: linear-gradient(to right, rgb(0, 78, 146), rgb(0, 4, 40));
     border: none;
     padding: 1em 0;
     -webkit-transition: .5s all;
@@ -425,8 +425,13 @@ nav.navbar.navbar-default.navbar-fixed-top.top-nav-collapse {
     background: rgb(202, 201, 201);
 
 }
+.navbar-nav>.active-nav a, .navbar-nav>li:hover .dropdown-toggle{
+    color: #000000 !important;
+}
+.navbar-nav>li:hover {
+    background: rgb(202, 201, 201);
 
-
+}
 /* Effect 15: scale down, reveal */
 
 .navbar-right li span.fa.fa-home {
@@ -461,7 +466,7 @@ li.first-nav {
 }
 
 nav.navbar.navbar-default.navbar-fixed-top.top-nav-collapse {
-    background: #34c663;
+    background: linear-gradient(to right, rgb(0, 78, 146), rgb(0, 4, 40));
 }
 
 nav.navbar.navbar-default.navbar-fixed-top.top-nav-collapse h1 a.navbar-brand {
@@ -494,7 +499,7 @@ h5.sec-title {
 }
 
 .dropdown-menu {
-    background: #34c663;
+    background: linear-gradient(to right, rgb(0, 78, 146), rgb(0, 4, 40));
 }
 
 .navbar-default .navbar-nav>.open>a,
@@ -756,7 +761,7 @@ ul.banner-txt li:nth-child(2) {
 }
 
 ul.banner-txt li:nth-child(3) {
-    background: #34c663;
+    background: linear-gradient(to right, rgb(0, 78, 146), rgb(0, 4, 40));
     border-radius: 10px;
 }
 
@@ -1108,7 +1113,7 @@ h4.title-about.about.text-center span {
     display: inline-block;
     margin-bottom: 20px;
     padding: 20px 18px;
-    background: #34c663;
+    background: linear-gradient(to right, rgb(0, 78, 146), rgb(0, 4, 40));
     -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
     border-radius: 100%;
@@ -1223,7 +1228,7 @@ h4.title-about.about.text-center span {
 /* team */
 
 .team-mid-txt span {
-    color: #34c663;
+    color: linear-gradient(to right, rgb(0, 78, 146), rgb(0, 4, 40));
     text-transform: uppercase;
     font-size: 2.5em;
     font-weight: bold;
@@ -1310,11 +1315,11 @@ h4.title-about.about.text-center span {
 }
 
 .team-grid-left .team-grids :nth-child(2).team-text {
-    background: #34c663;
+    background: linear-gradient(to right, rgb(0, 78, 146), rgb(0, 4, 40));
 }
 
 .team-grid-right .team-grids :nth-child(2).team-text {
-    background: #34c663;
+    background: linear-gradient(to right, rgb(0, 78, 146), rgb(0, 4, 40));
 }
 
 .team-grid-right .team-grids :nth-child(1).team-text {
@@ -1551,7 +1556,7 @@ div#testimonials {
 /* testimonials */
 
 .team-w3ls-txt h5 {
-    color: #34c663;
+    color: linear-gradient(to right, rgb(0, 78, 146), rgb(0, 4, 40));
     font-size: 1.3em;
     margin: 10px 0;
 }
@@ -1618,7 +1623,7 @@ div#testimonials {
     left: auto;
     height: 25px;
     width: 25px;
-    background: none repeat scroll 0 0 #34c663;
+    background: none repeat scroll 0 0 linear-gradient(to right, rgb(0, 78, 146), rgb(0, 4, 40));
     /* border: 4px solid #ffffff; */
     line-height: 1.2;
     font-size: 19px;
@@ -1714,7 +1719,7 @@ a.right.carousel-control.test-right-control {
 }
 
 .address p a:hover {
-    color: #34c663;
+    color: linear-gradient(to right, rgb(0, 78, 146), rgb(0, 4, 40));
 }
 
 form.form_w3layouts {
@@ -1779,7 +1784,7 @@ form.form_w3layouts {
     font-size: 1em;
     margin: 2em 1em 0 0;
     -webkit-appearance: none;
-    background: #34c663;
+    background: linear-gradient(to right, rgb(0, 78, 146), rgb(0, 4, 40));
     transition: 0.5s all;
     -webkit-transition: 0.5s all;
     font-family: 'Merriweather Sans', sans-serif;
@@ -1883,12 +1888,12 @@ footer-social {
 
 .cpy-right {
     padding: 1em;
-    background: #34c663;
+    background: linear-gradient(to right, rgb(0, 78, 146), rgb(0, 4, 40));
     text-align: center;
 }
 
 .cpy-right p {
-    color: #000;
+    color: #fff;
     letter-spacing: 0.5px;
 }
 
@@ -1998,7 +2003,7 @@ footer-social {
     -webkit-transition: 0.5s all;
     -moz-transition: 0.5s all;
     -webkit-appearance: none;
-    background: #34c663;
+    background: linear-gradient(to right, rgb(0, 78, 146), rgb(0, 4, 40));
 }
 
 /*-- //subscribe --*/
@@ -2108,7 +2113,7 @@ span.icon_g_plus {
 /** The Spacing **/
 
 li.btn.btn2 {
-    background: #34c663;
+    background: linear-gradient(to right, rgb(0, 78, 146), rgb(0, 4, 40));
 }
 
 li.btn.btn3 {
@@ -2125,7 +2130,7 @@ li.btn.btn4 {
 
 .btn-breadcrumb .btn:first-child {
     padding: 6px 6px 6px 10px;
-    border: 1px solid #34c663;
+    border: 1px solid linear-gradient(to right, rgb(0, 78, 146), rgb(0, 4, 40));
 }
 
 ul.bc-list li a {
@@ -2137,8 +2142,8 @@ ul.bc-list li a {
 
 .btn-info {
     color: #fff;
-    background-color: #34c663;
-    border-color: #34c663;
+    background-color: linear-gradient(to right, rgb(0, 78, 146), rgb(0, 4, 40));
+    border-color: linear-gradient(to right, rgb(0, 78, 146), rgb(0, 4, 40));
 }
 
 ul.btn-group.btn-breadcrumb i {
@@ -2146,7 +2151,7 @@ ul.btn-group.btn-breadcrumb i {
 }
 
 li.btn.btn5 {
-    background: #34c663;
+    background: linear-gradient(to right, rgb(0, 78, 146), rgb(0, 4, 40));
 }
 
 ul.btn-breadcrumb li {
@@ -2170,7 +2175,7 @@ ul.btn-breadcrumb li {
 }
 
 .btn-breadcrumb .btn.btn2:before {
-    border-left: 10px solid #34c663;
+    border-left: 10px solid linear-gradient(to right, rgb(0, 78, 146), rgb(0, 4, 40));
 }
 
 .btn-breadcrumb .btn:not(:last-child):before {
@@ -2180,7 +2185,7 @@ ul.btn-breadcrumb li {
     height: 0;
     border-top: 17px solid transparent;
     border-bottom: 17px solid transparent;
-    border-left: 10px solid rgb(52, 198, 99);
+    border-left: 10px solid rgb(0, 4, 40);
     position: absolute;
     top: 50%;
     margin-top: -17px;
@@ -2243,8 +2248,8 @@ ul.btn-breadcrumb li {
 .btn-success.active,
 .open>.dropdown-toggle.btn-success {
     color: #fff;
-    background-color: #34c663;
-    border-color: #34c663;
+    background: linear-gradient(to right, rgb(0, 78, 146), rgb(0, 4, 40)) !important;
+    border-color: rgb(0, 4, 40) !important;
 }
 
 a#btn-login {
@@ -2253,7 +2258,7 @@ a#btn-login {
 
 button#btn-signup {
     width: 33%;
-    background: #34c663;
+    background: linear-gradient(to right, rgb(0, 78, 146), rgb(0, 4, 40));
 }
 
 .loginbox {
@@ -2286,8 +2291,8 @@ button#btn-signup {
 }
 
 .btn-success {
-    background-color: #34c663;
-    border-color: #34c663;
+    background: linear-gradient(to right, rgb(0, 78, 146), rgb(0, 4, 40)) !important;
+    border-color: rgb(0, 4, 40) !important;
 }
 
 /* //signin and signup form */

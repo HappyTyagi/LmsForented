@@ -209,7 +209,7 @@ $('input:radio[name=issuetype]').change(function() {
 	  };
 	
 	  const config = {
-		type: 'line',
+		type: 'bar',
 		data: data,
 		options: {}
 	  };
