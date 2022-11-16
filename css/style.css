@@ -425,9 +425,10 @@ nav.navbar.navbar-default.navbar-fixed-top.top-nav-collapse {
     background: rgb(202, 201, 201);
 
 }
-.navbar-nav>.active-nav a, .navbar-nav>li:hover .dropdown-toggle{
+.navbar-nav>.active-nav .dropdown-toggle, .navbar-nav>li:hover .dropdown-toggle{
     color: #000000 !important;
 }
+
 .navbar-nav>li:hover {
     background: rgb(202, 201, 201);
 
@@ -619,7 +620,7 @@ ul.dropdown-menu:hover a.s-menu {
 /* //banner */
 
 .section {
-    padding: 5em 0;
+    padding: 1em 0;
 }
 
 /*-- counter timer --*/
@@ -2030,7 +2031,7 @@ footer-social {
 /*-- //contact --*/
 
 .cpy-right p a {
-    color: #000;
+    color: #ffffff;
 }
 
 .footer-layouts-top {
@@ -2129,6 +2130,7 @@ li.btn.btn4 {
 }
 
 .btn-breadcrumb .btn:first-child {
+    background: #ffffff;
     padding: 6px 6px 6px 10px;
     border: 1px solid linear-gradient(to right, rgb(0, 78, 146), rgb(0, 4, 40));
 }
@@ -2158,8 +2160,7 @@ ul.btn-breadcrumb li {
     display: inline-block;
 }
 
-.btn-breadcrumb .btn.btn1:after,
-.btn-breadcrumb .btn.btn3:after {
+.btn-breadcrumb .btn.btn1:after {
     content: " ";
     display: block;
     width: 0;
@@ -2293,6 +2294,8 @@ button#btn-signup {
 .btn-success {
     background: linear-gradient(to right, rgb(0, 78, 146), rgb(0, 4, 40)) !important;
     border-color: rgb(0, 4, 40) !important;
+    height: 46px;
+    line-height: 32px;
 }
 
 /* //signin and signup form */

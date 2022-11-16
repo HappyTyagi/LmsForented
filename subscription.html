@@ -150,55 +150,52 @@ d<!DOCTYPE html>
             </div>
         </nav>
         <!-- //navbar ends here -->
-<div class="spacer"></div>
-        <!-- breadcrumbs -->
-        <div class="crumbs text-center">
-            <div class="container">
-                <div class="row">
-                    <ul class="btn-group btn-breadcrumb bc-list">
-                        <li class="btn btn1">
-                            <a href="index.html">
-                                <i class="glyphicon glyphicon-home"></i>
-                            </a>
-                        </li>
-                        <li class="btn btn2">
-                            <a href="#">Books</a>
-                        </li>
-                        <li class="btn btn3">
-                            <a href="subscription.html">Subscription</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <!--//breadcrumbs ends here-->
-
+        <div class="spacer"></div>
             <!-- add authors form -->
             <div class="login-form section text-center">
                 <div class="container">
-                    <h4 class="rad-txt">
-                        <span class="abtxt1">Book</span>
-                        <span class="abtext">Subscription</span>
-                    </h4>
+
                     <div id="loginbox" style="margin-top:30px;" class="mainbox">
                         <div class="panel panel-info">
                             <div class="panel-heading">
-                                <div class="panel-title">Get Subscription</div>
-                            </div>
+                                <div class="row">
+                                  <!-- breadcrumbs -->
+                
+                                <div class="col-md-9">
+                                      <ul class="btn-group btn-breadcrumb bc-list">
+                                        <li class="btn btn1">
+                                          <a href="index.html">
+                                            <i class="glyphicon glyphicon-home"></i>
+                                          </a>
+                                        </li>
+                                        <li class="btn btn2">
+                                            <a href="#">Books</a>
+                                        </li>
+                                        <li class="btn btn3">
+                                          <a href="subscription.html">Subscription</a>
+                                        </li>
+                                      </ul>
+                                </div>
+                                  <!--//breadcrumbs ends here-->
+                
+                                </div>
+                
+                              </div>
                             <div style="padding-top:30px" class="panel-body">
                                 <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
                                 <form id="loginform" class="form-horizontal" action="#" method="post">
-                                    <div class="input-group align-center radio-wrap mb-3">
-                                        <div class="checkbox">
-                                            <label>
-                                                <input id="Individual" type="radio" name="issuetype" value="001" checked="checked"> Individual
-                                            </label>
-                                            <label>
-                                                <input id="Department" type="radio" name="issuetype" value="002"> Department
-                                            </label>
+                                    <div class="col-md-4">
+                                        <div class="input-group">
+                                          <span class="input-group-addon">
+                                            <i class="glyphicon glyphicon-book"></i>
+                                          </span>
+                                          <select class="form-control select2" name="issueType" id="issueType">
+                                            <option>Select Issue Type</option>
+                                            <option value="001">Individual</option>
+                                            <option value="002">Department</option>
+                                          </select>
                                         </div>
-                                        
-                                    </div>
+                                        </div>
                                     <div class="col-md-4" id="bookName">
                                         <div style="margin-bottom: 25px" class="input-group">
                                             <span class="input-group-addon">
@@ -229,10 +226,8 @@ d<!DOCTYPE html>
                                             <input id="category-name" type="text" class="form-control" name="Book Id" value="" placeholder="Book Id" required="">
                                         </div>
                                         </div>
-                                        <div class="col-md-4">
-                                        <div style="margin-bottom: 25px" class="input-group">
-                                            <a id="btn-search" href="#" class="btn btn-success">Search </a>
-                                        </div>
+                                        <div class="col-md-12">
+                                            <a id="btn-search" href="#" class="btn btn-success float-right mb-2">Search </a>
                                         </div>
                                         <div class="col-md-12 toverflow theight">
                                             <table class="table table-bordered">
@@ -339,19 +334,10 @@ d<!DOCTYPE html>
                                     <div style="margin-top:10px" class="form-group">
                                         <!-- Button -->
                                         <div class="col-sm-12 controls">
-                                            <a id="btn-return" class="btn btn-success">Subcribe Now </a>
+                                            <a id="btn-return" class="btn btn-success float-right">Subcribe Now </a>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <div class="col-md-12 control">
-                                            <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%">
-                                                For Manage Return Books!
-                                                <a href="#">
-                                                    Click Here
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
+
                                 </form>
                                 <script>
                                     $('.select2').select2();

@@ -4,7 +4,8 @@ jQuery(document).ready(function($){
 	$('#studentId').show();
 	$('#bookName').show();
 	$('#departmentissueId').hide();
-$('input:radio[name=issuetype]').change(function() {
+$('#issueType').change(function() {
+	alert("gjh");
 	if (this.value == '001') {
 		$('#studentId').show();
 		$('#department').hide();
