@@ -193,19 +193,19 @@
                             <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
 
                             <form id="loginform" class="form-horizontal" action="#" method="post">
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <div class="input-group">
                                       <span class="input-group-addon">
                                         <i class="glyphicon glyphicon-book"></i>
                                       </span>
-                                      <select class="form-control select2" name="issueType" id="issueType">
+                                      <select class="form-control select2" name="issueType" >
                                         <option>Select Issue Type</option>
                                         <option value="001">Individual</option>
                                         <option value="002">Department</option>
                                       </select>
                                     </div>
                                     </div>
-                                <div class="col-md-4" id="bookName">
+                                <div class="col-md-3" id="bookName">
                                     <div style="margin-bottom: 25px" class="input-group">
                                         <span class="input-group-addon">
                                             <i class="glyphicon glyphicon-book"></i>
@@ -214,7 +214,7 @@
                                             value="" placeholder="Book Name" required=""/>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <div style="margin-bottom: 25px" class="input-group">
                                         <span class="input-group-addon">
                                             <i class="glyphicon glyphicon-book"></i>
@@ -223,8 +223,8 @@
                                             value="" placeholder="Book Id" required=""/>
                                     </div>
                                 </div>
-                                <div class="col-md-12">
-                                        <a id="btn-search" href="#" class="btn btn-success float-right mb-2" onclick="getBookByBookId()">Search </a>
+                                <div class="col-md-3">
+                                        <a id="btn-search" href="#" class="btn btn-success float-left mb-2" onclick="getBookByBookId()">Search </a>
                                 </div>
                                 <div class="col-md-12 toverflow theight">
                                     <table class="table table-bordered " id = "bookList">
@@ -243,7 +243,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <div class="col-md-4" id="studentId">
+                                <div class="col-md-3" id="studentId">
                                     <div style="margin-bottom: 25px" class="input-group">
                                         <span class="input-group-addon">
                                             <i class="glyphicon glyphicon-book"></i>
@@ -252,7 +252,7 @@
                                             value="" placeholder="Student Id" required="" onblur="getUserByUserId()">
                                     </div>
                                 </div>                                
-                                <div class="col-md-4" id="departmentissueId">
+                                <div class="col-md-3" id="departmentissueId">
                                     <div style="margin-bottom: 25px" class="input-group">
                                         <span class="input-group-addon">
                                             <i class="glyphicon glyphicon-book"></i>
@@ -265,7 +265,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <div style="margin-bottom: 25px" class="input-group">
                                         <span class="input-group-addon">
                                             <i class="glyphicon glyphicon-book"></i>
@@ -274,7 +274,7 @@
                                             value="" placeholder="Issued to" required="" maxlength="30">
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <div style="margin-bottom: 25px" class="input-group">
                                         <span class="input-group-addon">
                                             <i class="glyphicon glyphicon-book"></i>
@@ -285,8 +285,8 @@
                                     </div>
                                 </div>
                                     <!-- Button -->
-                                    <div class="col-sm-12 controls">
-                                        <a href="#" class="btn btn-success float-right" onclick="addIssuedBook()">Issue Book </a>
+                                    <div class="col-sm-13 controls">
+                                        <a href="#" class="btn btn-success float-left" onclick="addIssuedBook()">Issue Book </a>
                                     </div>
                             </form>
                             <script>
