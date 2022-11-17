@@ -446,18 +446,17 @@ li.first-nav {
 .navbar-default .navbar-nav>.active>a,
 .navbar-default .navbar-nav>.active>a:hover,
 .navbar-default .navbar-nav>.active>a:focus {
-    color: #fff;
     background: rgb(202, 201, 201);
 
 }
-
 .navbar-default .navbar-nav>li>a:hover,
 .navbar-default .navbar-nav>li>a:focus {
-    color: #fff;
     background: rgb(202, 201, 201);
+}
+.navbar-default .navbar-nav > .open >.dropdown-toggle:focus{
+    color: #fff;
 
 }
-
 .navbar-right {
     margin-top: 1em;
 }
