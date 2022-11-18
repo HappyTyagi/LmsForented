@@ -1,4 +1,4 @@
-d<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zxx">
 
 <head>
@@ -26,11 +26,15 @@ d<!DOCTYPE html>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+        <!-- js -->
+        <script src="js/jquery-2.2.3.min.js"></script>
+        <!-- //js -->
+        <!--search jQuery-->
+        <script src="js/main.js"></script>
+        <!--search jQuery-->
 </head>
-
-
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
-    <div id="home">
+        <div id="home">
         <!-- header -->
         <!-- navbar -->
         <nav class="navbar navbar-default navbar-fixed-top">
@@ -150,163 +154,200 @@ d<!DOCTYPE html>
             </div>
         </nav>
         <!-- //navbar ends here -->
-<div class="spacer"></div>
-        <!-- breadcrumbs -->
-        <div class="crumbs text-center">
-            <div class="container">
-                <div class="row">
-                    <ul class="btn-group btn-breadcrumb bc-list">
-                        <li class="btn btn1">
-                            <a href="index.html">
-                                <i class="glyphicon glyphicon-home"></i>
-                            </a>
-                        </li>
-                        <li class="btn btn2">
-                            <a href="#">Books</a>
-                        </li>
-                        <li class="btn btn3">
-                            <a href="subscription.html">Subscription</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <!--//breadcrumbs ends here-->
-
+        <div class="spacer"></div>
             <!-- add authors form -->
             <div class="login-form section text-center">
                 <div class="container">
-                    <h4 class="rad-txt">
-                        <span class="abtxt1">Book</span>
-                        <span class="abtext">Subscription</span>
-                    </h4>
+
                     <div id="loginbox" style="margin-top:30px;" class="mainbox">
                         <div class="panel panel-info">
                             <div class="panel-heading">
-                                <div class="panel-title">Get Subscription</div>
-                            </div>
+                                <div class="row">
+                                  <!-- breadcrumbs -->
+                
+                                <div class="col-md-9">
+                                      <ul class="btn-group btn-breadcrumb bc-list">
+                                        <li class="btn btn1">
+                                          <a href="index.html">
+                                            <i class="glyphicon glyphicon-home"></i>
+                                          </a>
+                                        </li>
+                                        <li class="btn btn2">
+                                            <a href="#">Books</a>
+                                        </li>
+                                        <li class="btn btn3">
+                                          <a href="subscription.html">Subscription</a>
+                                        </li>
+                                      </ul>
+                                </div>
+                                  <!--//breadcrumbs ends here-->
+                
+                                </div>
+                
+                              </div>
                             <div style="padding-top:30px" class="panel-body">
                                 <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
                                 <form id="loginform" class="form-horizontal" action="#" method="post">
-                                    <div class="input-group align-center radio-wrap mb-3">
-                                        <div class="checkbox">
-                                            <label>
-                                                <input id="Individual" type="radio" name="issuetype" value="001" checked="checked"> Individual
-                                            </label>
-                                            <label>
-                                                <input id="Department" type="radio" name="issuetype" value="002"> Department
-                                            </label>
+                                    <div class="col-md-4">
+                                        <div class="input-group">
+                                          <span class="input-group-addon">
+                                            <i class="glyphicon glyphicon-book"></i>
+                                          </span>
+                                          <select class="form-control select2" id="itemType">
+                                            <option>Select Item Type</option>
+                                            <option onchange="showCategoryOnselect(this.value)">Book</option>
+                                            <option onchange="showCategoryOnselect(this.value)">Journal</option>
+                                          </select>
                                         </div>
-                                        
-                                    </div>
-                                    <div class="col-md-4" id="bookName">
+                                        </div>
+                                    <div class="col-md-4">
                                         <div style="margin-bottom: 25px" class="input-group">
                                             <span class="input-group-addon">
                                                 <i class="glyphicon glyphicon-book"></i>
                                             </span>
-                                            <input id="category-name" type="text" class="form-control" name="Book Name"
-                                                value="" placeholder="Book Name" required="">
+                                            <input id="book-name" type="text" class="form-control"
+                                                name="book-name"   placeholder="Book/Journal Name"
+                                                required=""> 
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div style="margin-bottom: 25px" class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="glyphicon glyphicon-book"></i>
+                                            </span>
+                                            <input id="publication-name" maxlength="30" type="text" class="form-control"
+                                                name="publication-name"   placeholder="Publication"
+                                                required="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div style="margin-bottom: 25px" class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="glyphicon glyphicon-book"></i>
+                                            </span>
+                                            <input id="edition" maxlength="20" type="text" class="form-control"
+                                                name="edition"   placeholder="Edition"
+                                                required="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div style="margin-bottom: 25px" class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="glyphicon glyphicon-book"></i>
+                                            </span>
+                                            <input id="publish-date" type="text" class="form-control date"
+                                               placeholder="Publish Date" required="" >
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div style="margin-bottom: 25px" class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="glyphicon glyphicon-book"></i>
+                                            </span>
+                                            <select class="form-control select2" id="category">
+                                            </select>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div style="margin-bottom: 25px" class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="glyphicon glyphicon-book"></i>
+                                            </span>
+                                            <input id="local-number" maxlength="20" type="text" class="form-control"
+                                                name="local-number"   placeholder="Assigned local number/name"
+                                                required="">
+                                                
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div style="margin-bottom: 25px" class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="glyphicon glyphicon-book"></i>
+                                            </span>
+                                            <input id="no-pages"  type="number" class="form-control"
+                                                name="no-pages"   placeholder="Number of Pages"
+                                                required="" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==5) return false;" >
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div style="margin-bottom: 25px" class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="glyphicon glyphicon-book"></i>
+                                            </span>
+                                            <input id="quantity" type="number" class="form-control"
+                                                name="quantity"   placeholder="Quantity"
+                                                required="" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==4) return false;" >
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div style="margin-bottom: 25px" class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="glyphicon glyphicon-book"></i>
+                                            </span>
+                                            <input id="dateTime" type="text" class="form-control datetime"
+                                                name="dateTime"   placeholder="Adding Date and Time to Library"
+                                                required="" >
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div style="margin-bottom: 25px" class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="glyphicon glyphicon-book"></i>
+                                            </span>
+                                            <select class="form-control select2" id="itemType">
+                                                <option> Select Item Type</option>
+                                                <option>Book</option>
+                                                <option>Magazine</option>
+                                                <option>NewsPaper</option>
+                                                <option>Reports</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div style="margin-bottom: 25px" class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="glyphicon glyphicon-book"></i>
+                                            </span>
+                                            <select class="form-control select2" id="purchased">
+                                                <option> Purchased?</option>
+                                                <option>Purchased</option>
+                                                <option>Promotional</option>
+                                                <option>Donated</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div style="margin-bottom: 25px" class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="glyphicon glyphicon-book"></i>
+                                            </span>
+                                            <input id="sourceName" maxlength="30" type="text" class="form-control"
+                                                name="sourceName"   placeholder="Source Name"
+                                                required="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div style="margin-bottom: 25px" class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="glyphicon glyphicon-book"></i>
+                                            </span>
+                                            <input id="sourceAddress" type="text" class="form-control"
+                                                name="sourceAddress"   placeholder="Source Address"
+                                                required="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div style="margin-bottom: 25px" class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="glyphicon glyphicon-book"></i>
+                                            </span>
+                                            <input id="sourceContactNo" type="number" class="form-control"
+                                                name="sourceContactNo"   placeholder="Source Contact Number"
+                                                required="" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;">
                                         </div>
                                     </div>
 
-                                        <div class="col-md-4" id="department">
-                                            <div style="margin-bottom: 25px" class="input-group">
-                                                <span class="input-group-addon">
-                                                    <i class="glyphicon glyphicon-book"></i>
-                                                </span>
-                                                <select class="form-control select2" id="departmentSelect">
-                                                    <option> Select Department</option>
-                                                    <option>Adminstration</option>
-                                                    <option>Physics Lab</option>
-                                                    <option>Chemistry Lab</option>
-                                                </select>                                            </div>
-                                            </div>
-                                        <div class="col-md-4">
-                                        <div style="margin-bottom: 25px" class="input-group">
-                                            <span class="input-group-addon">
-                                                <i class="glyphicon glyphicon-book"></i>
-                                            </span>
-                                            <input id="category-name" type="text" class="form-control" name="Book Id" value="" placeholder="Book Id" required="">
-                                        </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                        <div style="margin-bottom: 25px" class="input-group">
-                                            <a id="btn-search" href="#" class="btn btn-success">Search </a>
-                                        </div>
-                                        </div>
-                                        <div class="col-md-12 toverflow theight">
-                                            <table class="table table-bordered">
-                                                <thead class="thead-dark">
-                                                    <tr>
-                                                        <th scope="col">S.No.</th>
-                                                        <th scope="col">Book Name</th>
-                                                        <th scope="col">Item Type</th>
-                                                        <th scope="col">Publication</th>
-                                                        <td scope="col"><input type="checkbox"></td>
-        
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <th scope="row">1</th>
-                                                        <td>Computer science</td>
-                                                        <td>Book</td>
-                                                        <td>Publication 1</td>
-                                                        <td><input type="checkbox"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">2</th>
-                                                        <td>Navbharat Times</td>
-                                                        <td>Newspaper</td>
-                                                        <td>Publication 2</td>
-                                                        <td><input type="checkbox"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">3</th>
-                                                        <td>Applied Chemistry</td>
-                                                        <td>Book</td>
-                                                        <td>Publication 3</td>
-                                                        <td><input type="checkbox"></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                      </div>
-                                      <div class="col-md-4" id="studentId">
-                                        <div style="margin-bottom: 25px" class="input-group">
-                                            <span class="input-group-addon">
-                                                <i class="glyphicon glyphicon-book"></i>
-                                            </span>
-                                            <input id="category-name" type="text" class="form-control" name="Student Id" value="" placeholder="Student Id" required="">
-                                        </div>
-                                        </div>
-                                        <div class="col-md-4" id="departmentissueId">
-                                            <div style="margin-bottom: 25px" class="input-group">
-                                                <span class="input-group-addon">
-                                                    <i class="glyphicon glyphicon-book"></i>
-                                                </span>
-                                                <select class="form-control select2" id="dprtSelect">
-                                                    <option> Select Department</option>
-                                                    <option>Adminstration</option>
-                                                    <option>Physics Lab</option>
-                                                    <option>Chemistry Lab</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    <div class="col-md-4">
-                                    <div style="margin-bottom: 25px" class="input-group">
-                                        <span class="input-group-addon">
-                                            <i class="glyphicon glyphicon-book"></i>
-                                        </span>
-                                        <select  class="form-control select2" id="period" required>
-                                        <option> Select Period</option>
-                                        <option> Yearly</option>
-                                        <option> Bi Yearly</option>
-                                        <option> Quaterly</option>
-                                        <option> Monthly</option>
-                                        <option> Bi Monthly</option>
-                                        </select>
-                                    </div>
-                                    </div>
                                     <div class="col-md-4">
                                     <div style="margin-bottom: 25px" class="input-group">
                                         <span class="input-group-addon">
@@ -339,19 +380,10 @@ d<!DOCTYPE html>
                                     <div style="margin-top:10px" class="form-group">
                                         <!-- Button -->
                                         <div class="col-sm-12 controls">
-                                            <a id="btn-return" class="btn btn-success">Subcribe Now </a>
+                                            <a href="#" class="btn btn-success float-right">Subcribe Now </a>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <div class="col-md-12 control">
-                                            <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%">
-                                                For Manage Return Books!
-                                                <a href="#">
-                                                    Click Here
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
+
                                 </form>
                                 <script>
                                     $('.select2').select2();
@@ -363,8 +395,6 @@ d<!DOCTYPE html>
             </div>
         </div>
         <!--//add authors form ends here-->
-
-    </div>
      <!-- footer -->
 
     <!-- //footer -->
@@ -374,14 +404,6 @@ d<!DOCTYPE html>
         </p>
     </div>
 <!-- //home -->
-    <!-- js -->
-    <script src="js/jquery-2.2.3.min.js"></script>
-    <!-- //js -->
-    <!--search jQuery-->
-    <script src="js/main.js"></script>
-    <!--search jQuery-->
-
-
     <!-- dropdown nav -->
     <script>
         $(document).ready(function () {

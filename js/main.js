@@ -4,7 +4,7 @@ jQuery(document).ready(function($){
 	$('#studentId').show();
 	$('#bookName').show();
 	$('#departmentissueId').hide();
-$('input:radio[name=issuetype]').change(function() {
+$('.issueType').change(function() {
 	if (this.value == '001') {
 		$('#studentId').show();
 		$('#department').hide();
@@ -196,14 +196,14 @@ $('input:radio[name=issuetype]').change(function() {
 		  label: 'Total Book Issued',
 		  backgroundColor: 'rgb(54, 162, 235)',
 		  borderColor: 'rgb(54, 162, 235)',
-		  data: [0, 30, 20, 40, 60, 70],
+		  data: [10, 30, 20, 40, 60, 70],
 		  cubicInterpolationMode: 'monotone',
 		},
 		{
 			label: 'Total Books Pending For Returned',
 			backgroundColor: 'rgb(255, 99, 132)',
 			borderColor: 'rgb(255, 99, 132)',
-			data: [0, 20, 20, 60, 50, 60,],
+			data: [10, 20, 20, 60, 50, 60,],
 			cubicInterpolationMode: 'monotone',
 		  }]
 	  };

@@ -42,6 +42,17 @@ const showCategory = (async() =>{
   document.getElementById("category").innerHTML = tab;
 });
 
+const showBookType = (async() =>{
+  var data = await getapi(BASE_URL+"/bookType/getAllBookType");
+  console.log(data);
+  let tab = `<option value = ""> Select Item Type</option>`;
+  let sr = 0; 
+  data.response.forEach(e => {
+    tab += `<option value ="${e.bookTypeId}">${e.bookTypeName}</option>`;
+  });
+  document.getElementById("bookJournelType").innerHTML = tab;
+});
+
 const showAuthorName = (async() =>{
   var data = await getapi(BASE_URL+"/author/authors");
   console.log(data);
@@ -55,7 +66,7 @@ const showAuthorName = (async() =>{
 
 showCategory();
 showAuthorName();
-
+showBookType();
 
 function addBook(){
     const bookName = document.getElementById("book-name").value;
@@ -135,7 +146,7 @@ function addBook(){
   }
 
 
-  const showCategoryOnselect = (async(bookOrJournel) =>{
+  const showCategorySelect = (async() =>{
     var data = await getapi(BASE_URL+"/category/getAllCategories");
     console.log(bookOrJournel)
     console.log(data);

@@ -233,6 +233,42 @@ cursor: pointer;
 .pt-6, .py-6 {
     padding-top: 4rem !important;
 }
+.mb-3, .my-3 {
+    margin-bottom: 1rem !important;
+}
+.mt-3, .my-3 {
+    margin-top: 1rem !important;
+}
+.mb-4, .my-4 {
+    margin-bottom: 2rem !important;
+}
+.mt-4, .my-4 {
+    margin-top: 2rem !important;
+}
+.mb-5, .my-5 {
+    margin-bottom: 3rem !important;
+}
+.mt-5, .my-5 {
+    margin-top: 3rem !important;
+}
+.mb-6, .my-6 {
+    margin-bottom: 4rem !important;
+}
+.mt-6, .my-6 {
+    margin-top: 4rem !important;
+}
+.mr-2{
+    margin-right: 10px;
+}
+.mr-3{
+    margin-right: 20px;
+}
+.ml-2{
+    margin-left: 10px;
+}
+.ml-3{
+    margin-left: 20px;
+}
 .card-header {
     padding: 0.75rem 1.25rem;
     margin-bottom: 0;
@@ -266,14 +302,7 @@ width: 100%;
 .checkbox label{
     font-weight: bold;
 }
-#btn-search{
-    padding-top: 11px !important;
-    padding-bottom: 11px !important;
-    padding-left: 15px !important;
-    padding-right: 15px !important;
 
-
-}
 
 
 .select2-container--default .select2-selection--single{
@@ -300,4 +329,10 @@ width: 100%;
     width: 46px;
     margin-top: 0px !important;
     
+}
+.typeDropdown{
+    height: 34px !important;
+}
+.bc-list{
+display: block !important;;
 }

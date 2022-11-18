@@ -55,7 +55,7 @@
                                 <a class="page-scroll" href="#page-top"></a>
                             </li>
                             <li>
-                                <a href="dashboard.html">Dashboard</a>
+                                <a href="dashboard.html" class="dropdown-toggle">Dashboard</a>
                             </li>
 
                             <li class="dropdown active-nav">
@@ -150,40 +150,35 @@
         </nav>
         <!-- //navbar ends here -->
         <div class="spacer"></div>
-        <!-- breadcrumbs -->
-        <div class="crumbs text-center">
-            <div class="container">
-                <div class="row">
-                    <ul class="btn-group btn-breadcrumb bc-list">
-                        <li class="btn btn1">
-                            <a href="index.html">
-                                <i class="glyphicon glyphicon-home"></i>
-                            </a>
-                        </li>
-                        <li class="btn btn2">
-                            <a href="#">Books</a>
-                        </li>
-                        <li class="btn btn3">
-                            <a href="add-categories.html">Books Maintenance</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <!--//breadcrumbs ends here-->
-
         <!-- add authors form -->
         <div class="login-form section text-center">
             <div class="container">
-                <h4 class="rad-txt">
-                    <span class="abtxt1">Books</span>
-                    <span class="abtext">Maintenance</span>
-                </h4>
                 <div id="loginbox" style="margin-top:30px;" class="mainbox">
                     <div class="panel panel-info">
                         <div class="panel-heading">
-                            <div class="panel-title">Book Info</div>
-                        </div>
+                            <div class="row">
+                              <!-- breadcrumbs -->
+            
+                            <div class="col-md-9">
+                                  <ul class="btn-group btn-breadcrumb bc-list">
+                                    <li class="btn btn1">
+                                      <a href="index.html">
+                                        <i class="glyphicon glyphicon-home"></i>
+                                      </a>
+                                    </li>
+                                    <li class="btn btn2">
+                                        <a href="#">Book</a>
+                                    </li>
+                                    <li class="btn btn3">
+                                      <a href="books-maintenance.html">Book Maintenance</a>
+                                    </li>
+                                  </ul>
+                            </div>
+                              <!--//breadcrumbs ends here-->
+            
+                            </div>
+            
+                          </div>
                         <div style="padding-top:30px" class="panel-body">
                             <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
                             <form id="loginform" class="form-horizontal" action="#" method="post">
@@ -213,7 +208,7 @@
                                         <span class="input-group-addon">
                                             <i class="glyphicon glyphicon-book"></i>
                                         </span>
-                                        <input id="category-name" type="text" class="form-control" name="Book Id" value="" placeholder="Book Id" required="">
+                                        <input id="category-name" type="text" class="form-control" name="Book Id" value="" placeholder="Search By Book Serial No." required="">
                                     </div>
                                     </div>
                                     <div class="col-md-4">
@@ -366,22 +361,11 @@
                                 </div>
 
 
-                                <div style="margin-top:10px" class="form-group">
                                     <!-- Button -->
-                                    <div class="col-sm-12 controls">
-                                        <a id="btn-login" href="#" class="btn btn-success">Add Book </a>
+                                    <div class="col-sm-4 controls">
+                                        <a href="#" class="btn btn-success float-left">Add Book </a>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-12 control">
-                                        <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%">
-                                            For Manage Books!
-                                            <a href="manage-books.html">
-                                                Click Here
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
+
                             </form>
                             <script>
                                 $('.select2').select2();

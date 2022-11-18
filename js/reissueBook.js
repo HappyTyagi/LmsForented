@@ -36,11 +36,11 @@ async function getapi(url) {
 
 async function getBookByBookId(){
   let bookSerialId = document.getElementById("bookId").value;
-  var data = await getapi(BASE_URL+"/book/findBookBySerialNo/"+bookSerialId);
+  var data = await getapi(BASE_URL+"/issuedBook/returnBookFindByBookId/"+bookSerialId);
   var tbl = document.getElementById("bookList").getElementsByTagName('tbody')[0];
-  if(!data.response.bookResponseList){
+  if(data.status != 200){
     Swal.fire({
-      text: data.response.message,
+      text: "Invalid Serial Number",
       icon: 'error',
       confirmButtonText: 'OK'
     }).then((result) => {
@@ -48,8 +48,9 @@ async function getBookByBookId(){
         document.getElementById("bookId").value = "";
       }
     });
+    return false;
   }
-  data.response.bookResponseList.forEach(e => {
+  var book = data.response;
     if(!BookSerialArray.includes(bookSerialId)){
       let row = tbl.insertRow();
       let cell1 = row.insertCell(0);
@@ -57,15 +58,20 @@ async function getBookByBookId(){
       let cell3 = row.insertCell(2);
       let cell4 = row.insertCell(3);
       let cell5 = row.insertCell(4);
+      let cell6 = row.insertCell(5);
+      let cell7 = row.insertCell(6);
       var rowIndex = tbl.rows.length;
       cell1.innerHTML = rowIndex;
       //cell1.setAttribute("id",tbl.rows.length);
-      cell2.innerHTML = e.addBook.bookName;
+      cell2.innerHTML = book.bookName;
       cell3.innerHTML = "Type not present in Book API";
-      cell4.innerHTML = "Publication not present in Book API";
-      cell5.innerHTML = "CheckBox";
+      cell4.innerHTML = book.publicationName;
+      cell5.innerHTML = book.bookIssueDate;
+      cell6.innerHTML = book.bookReturnDate;
+      cell7.innerHTML = "CheckBox";
       BookSerialArray[rowIndex-1] = bookSerialId;
-      
+      document.getElementById("delayDays").value = book.totalDueDay;
+      getUserByUserId(book.userId);
   }else{
     Swal.fire({
       text: 'Book already added in list',
@@ -73,34 +79,35 @@ async function getBookByBookId(){
       confirmButtonText: 'OK'
     });
   }
-});
 document.getElementById("bookId").value ="";
 };
 
-async function getUserByUserId(){
-  let userId = document.getElementById("user-id").value;
+async function getUserByUserId(userId){
+  //let userId = document.getElementById("user-id").value;
   var data = await getapi(BASE_URL+"/loginController/getAllUsersById/"+userId);
-    document.getElementById("issued-to").value = data.response.fullName;
+    document.getElementById("user-id").value = data.response.email;
+    document.getElementById("student-name").value = data.response.fullName;
 };
 
 
-function addIssuedBook(){
+function addReissuedBook(){
     const userId = document.getElementById("user-id").value;
     const departmentId = document.getElementById("departmentId").value;
-    const issuedTo = document.getElementById("issued-to").value;
-    const issueDateTime = document.getElementById("issueDateTime").value;
+    const reissuedTo = document.getElementById("student-name").value;
+    const reissueDateTime = document.getElementById("redatetime").value;
     const userType = document.getElementById("userType").value;
     
     const body = {
-        "userId": userId,
-        "issuedTo": issuedTo,
-        "departmentId": departmentId,
-        "returnDate": issueDateTime,
-        "bookSerialNo" : BookSerialArray,
-        "userType" : userType
+          "userOrDepartmentId":userId,
+          "reIssuedTo":reissuedTo,
+          "penaltyPerBook":"10",
+          "waveOff":"50",
+          "reIssueDateTime":reissueDateTime,
+          "bookSerialNo":bookSerialId
         }
+
     console.log(JSON.stringify(body));    
-    let url = BASE_URL+"/issuedBook/addIssuedBook";
+    let url = BASE_URL+"/issuedBook/reIssuedBook";
     const xhttp = new XMLHttpRequest();
     xhttp.open("POST", url);
     xhttp.setRequestHeader("Content-Type", "application/json");
@@ -114,12 +121,12 @@ function addIssuedBook(){
         console.log(response);
         if (objects['status'] == '200') {
           Swal.fire({
-            text: 'Book issued successfully',
+            text: 'Book reissued successfully',
             icon: 'success',
             confirmButtonText: 'OK'
           }).then((result) => {
             if (result.isConfirmed) {
-              window.location.href = './issue-book.html';
+              window.location.href = './reissue-book.html';
             }
           });
         } else {
@@ -147,4 +154,4 @@ const showDepartmentList = (async() =>{
   document.getElementById(" departmentId").innerHTML = tab;
  
 });
-showDepartmentList();
+//showDepartmentList();
