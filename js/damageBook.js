@@ -37,15 +37,16 @@ async function getBookByBookId(){
   let bookSerialId = document.getElementById("bookId").value;
   var data = await getapi(BASE_URL+"/book/findBookBySerialNo/"+bookSerialId);
   var tbl = document.getElementById("bookList").getElementsByTagName('tbody')[0];
-  
-  if(!data.response.addBooks){
+  console.log(data);
+
+  if(!data.response.bookResponseList){
     Swal.fire({
       text: data.response.message,
       icon: 'error',
       confirmButtonText: 'OK'
     });
   }
-  data.response.addBooks.forEach(e => {
+  data.response.bookResponseList.forEach(e => {
     if(!BookSerialArray.includes(bookSerialId)){
       let row = tbl.insertRow();
       let cell1 = row.insertCell(0);
@@ -56,7 +57,7 @@ async function getBookByBookId(){
       var rowIndex = tbl.rows.length;
       cell1.innerHTML = rowIndex;
       //cell1.setAttribute("id",tbl.rows.length);
-      cell2.innerHTML = e.bookName;
+      cell2.innerHTML = e.addBook.bookName;
       cell3.innerHTML = "Type not present in Book API";
       cell4.innerHTML = "Publication not present in Book API";
       cell5.innerHTML = "CheckBox";

@@ -147,7 +147,9 @@ function addBook(){
 
 
   const showCategorySelect = (async() =>{
-    var data = await getapi(BASE_URL+"/category/getAllCategories");
+    var bookOrJournel =  document.getElementById("bookJournelType").value 
+    console.log(bookOrJournel);
+    var data = await getapi(BASE_URL+"/category/findByBookType/"+bookOrJournel);
     console.log(bookOrJournel)
     console.log(data);
     let tab = `<option value = ""> Select Category</option>`;
