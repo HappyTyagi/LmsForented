@@ -340,3 +340,15 @@ display: block !important;;
     font-size: 20px !important;
     color: #e85342;
 }
+.avatar {
+    vertical-align: middle;
+    margin-right: 10px;
+    width: 60px;
+}
+.table-striped th, .table-striped td{
+text-align: left !important;
+}
+
+.table-striped{
+background: #fff;
+}
