@@ -336,3 +336,7 @@ width: 100%;
 .bc-list{
 display: block !important;;
 }
+.trash-icon{
+    font-size: 20px !important;
+    color: #e85342;
+}
