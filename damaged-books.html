@@ -26,6 +26,8 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script src="js/damageBook.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.all.min.js"></script>
 </head>
 
 
@@ -183,7 +185,7 @@
                               </div>
                             <div style="padding-top:30px" class="panel-body">
                                 <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
-                                <form id="loginform" class="form-horizontal" action="#" method="post">
+                                <form id="damageBookform" class="form-horizontal" action="#" method="post">
 
                                     <div class="col-md-4" id="bookName">
                                         <div style="margin-bottom: 25px" class="input-group">
@@ -211,16 +213,16 @@
                                             <span class="input-group-addon">
                                                 <i class="glyphicon glyphicon-book"></i>
                                             </span>
-                                            <input id="category-name" type="text" class="form-control" name="Book Id" value="" placeholder="Search By Book Serial No." required="">
+                                            <input id="category-name" type="text" class="form-control" name="Book Id" value="" placeholder="Book Id" required="">
                                         </div>
                                         </div>
                                         <div class="col-md-4">
                                         <div style="margin-bottom: 25px" class="input-group">
-                                            <a id="btn-search" href="#" class="btn btn-success">Search </a>
+                                            <a id="btn-search" href="#" class="btn btn-success" onclick="getBookByBookId()">Search </a>
                                         </div>
                                         </div>
                                         <div class="col-md-12 toverflow theight">
-                                            <table class="table table-bordered">
+                                            <table class="table table-bordered" id ="bookList">
                                                 <thead class="thead-dark">
                                                     <tr>
                                                         <th scope="col">S.No.</th>
@@ -232,27 +234,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <th scope="row">1</th>
-                                                        <td>Computer science</td>
-                                                        <td>Book</td>
-                                                        <td>Publication 1</td>
-                                                        <td><input type="checkbox"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">2</th>
-                                                        <td>Navbharat Times</td>
-                                                        <td>Newspaper</td>
-                                                        <td>Publication 2</td>
-                                                        <td><input type="checkbox"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">3</th>
-                                                        <td>Applied Chemistry</td>
-                                                        <td>Book</td>
-                                                        <td>Publication 3</td>
-                                                        <td><input type="checkbox"></td>
-                                                    </tr>
+                                                    
                                                 </tbody>
                                             </table>
                                       </div>
@@ -264,8 +246,8 @@
                                         </span>
                                         <select class="form-control select2" id="repairable">
                                             <option> Repairable/Exclude?</option>
-                                            <option>Yes</option>
-                                            <option>No</option>
+                                            <option value="0">Yes</option>
+                                            <option value="1">No</option>
                                         </select>                                            
                                     </div>
                                     </div>
@@ -276,15 +258,15 @@
                                         </span>
                                         <select class="form-control select2" id="replacement">
                                             <option> Replacement Required</option>
-                                            <option>Yes</option>
-                                            <option>No</option>
+                                            <option value ="0">Yes</option>
+                                            <option value = "1">No</option>
                                         </select> 
                                     </div>
                                     </div>
 
                                         <!-- Button -->
-                                        <div class="col-sm-4 controls">
-                                            <a id="btn-damage" class="btn btn-success float-left">Submit </a>
+                                        <div class="col-sm-12 controls">
+                                            <a id="btn-return" class="btn btn-success">Submit </a>
                                         </div>
                                     
 

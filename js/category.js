@@ -10,20 +10,21 @@ function logout() {
   window.location.href = './login.html';
 }
 
-function getSelectedValueforCheckboxRadio(elementName){
-  var ele = document.getElementsByName(elementName); 
-  for(i = 0; i < ele.length; i++) {
-      if(ele[i].type="radio") {
-          if(ele[i].checked)
-            return (ele[i].value);
-      }
-  }
-}
+// function not needed
+// function getSelectedValueforCheckboxRadio(elementName){
+//   var ele = document.getElementsByName(elementName); 
+//   for(i = 0; i < ele.length; i++) {
+//       if(ele[i].type="radio") {
+//           if(ele[i].checked)
+//             return (ele[i].value);
+//       }
+//   }
+// }
 
 function addCategory(){
     const category = document.getElementById("categoryName").value;
-    const isActive = getSelectedValueforCheckboxRadio("status");
-    const itemType = getSelectedValueforCheckboxRadio("itemtype")
+    const isActive = document.getElementById("status").value;
+    const itemType = document.getElementById("itemType").value;
     const penaltyRate = document.getElementById("penaltyRate").value;
     const body = {
                     "categories": category , 
@@ -51,7 +52,8 @@ function addCategory(){
             confirmButtonText: 'OK'
           }).then((result) => {
             if (result.isConfirmed) {
-              window.location.href = './manage-categories.html';
+             // window.location.href = './manage-categories.html';
+             document.getElementById("addCategoryForm").reset();
             }
           });
         } else {
@@ -92,3 +94,39 @@ function addCategory(){
     };
     return false;
   }
+
+  async function getapi(url) {
+    const response = await fetch(url,{
+            method : 'GET',
+            headers : {
+                        'Content-Type' : 'application/json',
+                        'token': localStorage.getItem("jwt")
+                     }
+        });
+    var data = await response.json();
+    if (response) {
+       if(!response.ok){
+            if(response.status=='401'){
+                //localStorage.removeItem('jwt');
+                //window.location.href = './login.html'
+                //console.log(localStorage.getItem("jwt"));
+            }
+            return false;
+       }
+    }
+    return data;
+  }
+  
+  const showBookType = (async() =>{
+    var data = await getapi(BASE_URL+"/bookType/getAllBookType");
+    console.log(data);
+    let tab = `<option value = ""> Select Category</option>`;
+    let sr = 0; 
+    data.response.forEach(e => {
+      tab += `<option value = ${e.bookTypeId}>${e.bookTypeName}</option>`;
+    });
+    document.getElementById("itemType").innerHTML = tab;
+  });
+
+
+  showBookType();

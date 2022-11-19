@@ -31,6 +31,8 @@
     <!-- //js -->
     <!--search jQuery-->
     <script src="js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.all.min.js"></script>
+    <script src="js/returnBook.js"></script>
     <!--search jQuery-->
 </head>
 
@@ -189,7 +191,7 @@
                           </div>
                         <div style="padding-top:30px" class="panel-body">
                             <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
-                            <form id="loginform" class="form-horizontal" action="#" method="post">
+                            <form id="returnBookform" class="form-horizontal" action="#" method="post">
                                 <div class="col-md-3">
                                     <div class="input-group">
                                       <span class="input-group-addon">
@@ -229,15 +231,15 @@
                                         <span class="input-group-addon">
                                             <i class="glyphicon glyphicon-book"></i>
                                         </span>
-                                        <input id="category-name" type="text" class="form-control" name="Search By Book Serial No."
+                                        <input id="bookId" type="text" class="form-control" name="Search By Book Serial No."
                                             value="" placeholder="Search By Book Serial No." required="">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                        <a id="btn-search" href="#" class="btn btn-success float-left mb-2">Search </a>
+                                        <a id="btn-search" href="#" class="btn btn-success float-left mb-2" onclick="getBookByBookId()">Search </a>
                                 </div>
                                 <div class="col-md-12 toverflow theight">
-                                    <table class="table table-bordered">
+                                    <table class="table table-bordered" id="bookList">
                                         <thead class="thead-dark">
                                             <tr>
                                                 <th scope="col">S.No.</th>
@@ -251,33 +253,8 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td>Computer science</td>
-                                                <td>Book</td>
-                                                <td>Publication 1</td>
-                                                <td>11/11/2022</td>
-                                                <td>22/11/2022</td>
-                                                <td><input type="checkbox"></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">2</th>
-                                                <td>Navbharat Times</td>
-                                                <td>Newspaper</td>
-                                                <td>Publication 2</td>
-                                                <td>11/11/2022</td>
-                                                <td>22/11/2022</td>
-                                                <td><input type="checkbox"></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">3</th>
-                                                <td>Applied Chemistry</td>
-                                                <td>Book</td>
-                                                <td>Publication 3</td>
-                                                <td>11/11/2022</td>
-                                                <td>22/11/2022</td>
-                                                <td><input type="checkbox"></td>
-                                            </tr>
+                                            
+                                            
                                         </tbody>
                                     </table>
                                 </div>
@@ -286,8 +263,8 @@
                                         <span class="input-group-addon">
                                             <i class="glyphicon glyphicon-book"></i>
                                         </span>
-                                        <input id="category-name" type="text" class="form-control" name="Student Id"
-                                            value="" placeholder="Student Id" required="">
+                                        <input id="user-id" type="text" class="form-control" name="Student Id"
+                                            value="" placeholder="Student Id" required="" onchange="getUserByUserId()">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -295,7 +272,7 @@
                                         <span class="input-group-addon">
                                             <i class="glyphicon glyphicon-book"></i>
                                         </span>
-                                        <input id="category-name" type="text" class="form-control" name="Returned from"
+                                        <input id="student-name" type="text" class="form-control" name="Returned from"
                                             value="" placeholder="Returned from" required>
                                     </div>
                                 </div>
@@ -304,7 +281,7 @@
                                         <span class="input-group-addon">
                                             <i class="glyphicon glyphicon-book"></i>
                                         </span>
-                                        <select class="form-control select2" id="dprtSelect">
+                                        <select class="form-control select2" id="departmentId">
                                             <option> Select Department</option>
                                             <option>Adminstration</option>
                                             <option>Physics Lab</option>
@@ -363,7 +340,7 @@
                                 </div>
                                     <!-- Button -->
                                     <div class="col-sm-12 controls">
-                                        <a id="btn-return" class="btn btn-success float-right">Return Book </a>
+                                        <a id="btn-return" class="btn btn-success float-right" onClick = "addReturnBook()">Return Book </a>
                                     </div>
 
                             </form>

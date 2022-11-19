@@ -1,7 +1,6 @@
 const BASE_URL = 'http://35.154.104.127:8080/LMS';
 const BookSerialArray = [];
 
-
 const jwt = localStorage.getItem("jwt");
 if (jwt == null) {
   window.location.href = './login.html'
@@ -38,18 +37,15 @@ async function getBookByBookId(){
   let bookSerialId = document.getElementById("bookId").value;
   var data = await getapi(BASE_URL+"/book/findBookBySerialNo/"+bookSerialId);
   var tbl = document.getElementById("bookList").getElementsByTagName('tbody')[0];
-  if(!data.response.bookResponseList){
+  
+  if(!data.response.addBooks){
     Swal.fire({
       text: data.response.message,
       icon: 'error',
       confirmButtonText: 'OK'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        document.getElementById("bookId").value = "";
-      }
     });
   }
-  data.response.bookResponseList.forEach(e => {
+  data.response.addBooks.forEach(e => {
     if(!BookSerialArray.includes(bookSerialId)){
       let row = tbl.insertRow();
       let cell1 = row.insertCell(0);
@@ -60,20 +56,16 @@ async function getBookByBookId(){
       var rowIndex = tbl.rows.length;
       cell1.innerHTML = rowIndex;
       //cell1.setAttribute("id",tbl.rows.length);
-      cell2.innerHTML = e.addBook.bookName;
+      cell2.innerHTML = e.bookName;
       cell3.innerHTML = "Type not present in Book API";
       cell4.innerHTML = "Publication not present in Book API";
       cell5.innerHTML = "CheckBox";
-      BookSerialArray[rowIndex-1] = bookSerialId;
-      
+      BookSerialArray[rowIndex-1] = bookSerialId;    
   }else{
-    Swal.fire({
-      text: 'Book already added in list',
-      icon: 'error',
-      confirmButtonText: 'OK'
-    });
+    alert("Book already added in list");
   }
 });
+
 document.getElementById("bookId").value ="";
 };
 
@@ -84,23 +76,25 @@ async function getUserByUserId(){
 };
 
 
-function addIssuedBook(){
-    const userId = document.getElementById("user-id").value;
-    const departmentId = document.getElementById("departmentId").value;
-    const issuedTo = document.getElementById("issued-to").value;
-    const issueDateTime = document.getElementById("issueDateTime").value;
-    const userType = document.getElementById("userType").value;
-    
+function getUserType(){
+  var ele = document.getElementsByName('issuetype');
+    for(i = 0; i < ele.length; i++) {
+        if(ele[i].checked) { return ele[i].value;}
+    }  
+    return "0";
+}
+
+function addDamageBook(){
+    const repairable = document.getElementById("repairable").value;
+    const replacement = document.getElementById("replacement").value;
+   
     const body = {
-        "userId": userId,
-        "issuedTo": issuedTo,
-        "departmentId": departmentId,
-        "returnDate": issueDateTime,
-        "bookSerialNo" : BookSerialArray,
-        "userType" : userType
+        "repairable": repairable,  
+        "replaceReq": replacement,
+        "bookSerialNo" : BookSerialArray
         }
     console.log(JSON.stringify(body));    
-    let url = BASE_URL+"/issuedBook/addIssuedBook";
+    let url = BASE_URL+"/damageOrMaintenance/addDamageOrMaintenance";
     const xhttp = new XMLHttpRequest();
     xhttp.open("POST", url);
     xhttp.setRequestHeader("Content-Type", "application/json");
@@ -109,9 +103,7 @@ function addIssuedBook(){
     xhttp.onreadystatechange = function () {
       if (this.readyState == 4) {
         const objects = JSON.parse(this.responseText);
-        console.log(objects)
         const response = objects['response'];
-        console.log(response);
         if (objects['status'] == '200') {
           Swal.fire({
             text: 'Book issued successfully',
@@ -119,7 +111,8 @@ function addIssuedBook(){
             confirmButtonText: 'OK'
           }).then((result) => {
             if (result.isConfirmed) {
-              window.location.href = './issue-book.html';
+              document.getElementById("damageBookform").reset();
+              window.location.href = './damaged-book.html';
             }
           });
         } else {
@@ -131,20 +124,6 @@ function addIssuedBook(){
         }
       }
     };
+    document.getElementById("damageBookform").reset();
     return false;
   }
-
-  
-const showDepartmentList = (async() =>{
-  var data = await getapi(BASE_URL+"/department/getAllActiveDepartment");
-  console.log(data);
-  let tab = `<option value = "" > Select Department</option>`;
-  let sr = 0; 
-  data.response.forEach(e => {
-    tab += `<option value = ${e.departmentId}>${e.departmentName}</option>`;
-  });
-  document.getElementById("departmentSelect").innerHTML = tab;
-  document.getElementById(" departmentId").innerHTML = tab;
- 
-});
-showDepartmentList();

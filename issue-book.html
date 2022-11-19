@@ -205,7 +205,7 @@
                                       <span class="input-group-addon">
                                         <i class="glyphicon glyphicon-book"></i>
                                       </span>
-                                      <select class="form-control select2 issueType" name="issueType">
+                                      <select class="form-control select2 issueType" name="userType" id = "userType">
                                         <option value="001">Individual</option>
                                         <option value="002">Department</option>
                                       </select>
@@ -227,10 +227,10 @@
                                                 <i class="glyphicon glyphicon-book"></i>
                                             </span>
                                             <select class="form-control select2" id="departmentSelect">
-                                                <option> Select Department</option>
+                                                <!-- <option > Select Department</option>
                                                 <option>Adminstration</option>
                                                 <option>Physics Lab</option>
-                                                <option>Chemistry Lab</option>
+                                                <option>Chemistry Lab</option> -->
                                             </select>
                                         </div>
                                     </div>
@@ -275,7 +275,7 @@
                                             <i class="glyphicon glyphicon-book"></i>
                                         </span>
                                         <input id="user-id" type="text" class="form-control" name="Student Id"
-                                            value="" placeholder="Student Id" required="" onblur="getUserByUserId()">
+                                            value="" placeholder="Student Id" required="" onchange="getUserByUserId()">
                                     </div>
                                 </div>                                
                                 <div class="col-md-3" id="departmentissueId">
@@ -284,10 +284,10 @@
                                             <i class="glyphicon glyphicon-book"></i>
                                         </span>
                                         <select class="form-control select2" id="departmentId">
-                                            <option value = ""> Select Department</option>
+                                            <!-- <option value = ""> Select Department</option>
                                             <option value = "Adminstration">Adminstration</option>
                                             <option value = "Physics">Physics Lab</option>
-                                            <option value = "Chemistry Lab">Chemistry Lab</option>
+                                            <option value = "Chemistry Lab">Chemistry Lab</option> -->
                                         </select>
                                     </div>
                                 </div>

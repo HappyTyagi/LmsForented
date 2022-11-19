@@ -8,6 +8,7 @@ function logout() {
   localStorage.removeItem("jwt");
   window.location.href = './login.html';
 }
+
 async function getapi(url) {
     const response = await fetch(url,{
             method : 'GET',
@@ -29,13 +30,15 @@ async function getapi(url) {
     }
     return data;
  
+}
+
 
 const showAuthorData = (async() =>{
-    var data = await getapi(BASE_URL+"/author/authors");
-    var author = data.response.    
-    const authorName = document.getElementById("author-name").value;
-    const edition = document.getElementById("edition").value;
-    const publishedDate = document.getElementById("publishedDate").value;
-    const publication = document.getElementById("publication").value;
+  var data = await getapi(BASE_URL+"/author/findAuthorById/LMS_KA_BK1668000484934");
+  var category = data.response;
+  document.getElementById("categoryName").value = category.categories;
+  document.getElementById("penaltyRate").value= category.penaltyRate;
+  document.getElementById("categoryId").value= category.categoryId; 
+
 });
-}
+showAuthorData();
