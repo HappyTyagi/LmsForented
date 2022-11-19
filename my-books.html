@@ -58,84 +58,18 @@
                                 <a class="page-scroll" href="#page-top"></a>
                             </li>
                             <li>
-                                <a href="dashboard.html" class="dropdown-toggle">Dashboard</a>
+                                <a href="index.html">Home</a>
                             </li>
-
-                            <li class="dropdown active-nav">
-                                <a href="Books.html" class="dropdown-toggle effect-3" data-toggle="dropdown">Books
-                                    <b class="caret"></b>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="add-book.html">Add Book</a>
-                                    </li>
-                                    <li class="active-subnav">
-                                        <a href="manage-books.html">Manage Books</a>
-                                    </li>
-                                    <li>
-                                        <a href="damaged-books.html">Damaged Books</a>
-                                    </li>
-                                    <li>
-                                        <a href="books-maintenance.html">Books Maintenance</a>
-                                    </li>
-                                    <li>
-                                        <a href="subscription.html">Subscription</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            
-                            <li class="dropdown ">
-                                <a href="Books.html" class="dropdown-toggle effect-3" data-toggle="dropdown">Issue Books
-                                    <b class="caret"></b>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="issue-book.html">Issue New Book</a>
-                                    </li>
-                                    <li>
-                                        <a href="reissue-books.html">Reissue Books</a>
-                                    </li>
-                                    <li >
-                                        <a href="return-book.html">Return Book</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle effect-3" data-toggle="dropdown">Categories
-                                    <b class="caret"></b>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="add-categories.html">Add Category</a>
-                                    </li>
-                                    <li>
-                                        <a href="manage-categories.html">Manage Categories</a>
-                                    </li>
-
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle effect-3" data-toggle="dropdown">Admin
-                                    <b class="caret"></b>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li >
-                                        <a href="add-authors.html">Add Author</a>
-                                    </li>
-                                    <li>
-                                        <a href="manage-authors.html">Manage Author</a>
-                                    </li>
-                                    <li>
-                                        <a href="reminder-services.html">Reminder Services</a>
-                                    </li>
-                                    <li>
-                                        <a href="generate-reports.html">Generate Reports</a>
-                                    </li>
-                                </ul>
+                            <li class="active-nav">
+                                <a href="my-books.html">My Books</a>
                             </li>
                             <li>
-                                <a href="login.html" class="dropdown-toggle">Reg. Student</a>
+                                <a href="books.html">Books
+                                </a>
+                            </li>
 
+                            <li>
+                                <a href="contact.html">Contact us</a>
                             </li>
                             <li>
                                 <a href="login.html" title="SignIn & SignUp">
@@ -144,6 +78,26 @@
                             </li>
 
                         </ul>
+                        <!-- search-bar -->
+                        <div class="search-bar-agileits">
+                            <div class="cd-main-header">
+                                <ul class="cd-header-buttons">
+                                    <li>
+                                        <a class="cd-search-trigger" href="#cd-search">
+                                            <span></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <!-- cd-header-buttons -->
+                            </div>
+                            <div id="cd-search" class="cd-search">
+                                <form action="#" method="post">
+                                    <input name="Search" type="search" placeholder="Type and Hit Enter...">
+                                </form>
+                            </div>
+                        </div>
+                        <!-- //search-bar ends here -->
+
                     </div>
                     <!-- /.navbar-collapse -->
                     <div class="clearfix"></div>
@@ -168,10 +122,7 @@
                                   </a>
                                 </li>
                                 <li class="btn btn2">
-                                    <a href="#">Books</a>
-                                </li>
-                                <li class="btn btn3">
-                                  <a href="manage-books.html">Manage Books</a>
+                                    <a href="#">My Books</a>
                                 </li>
                               </ul>
                         </div>
@@ -181,8 +132,52 @@
         
                       </div>
                     <div class="col-md-12 toverflow">
-                    <table class="table table-bordered" id="bookList">
-                    </table>
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>S.No.</th>
+                                    <th>Book/Journal</th>
+                                    <th>Item Type</th>
+                                    <th>Publication</th>
+                                    <th>Issued Date</th>
+                                    <th>Return Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td><a href="#"><img src="./images/lib8.jpg" class="avatar" alt="Avatar"> Applied Maths</a></td>
+                                    <td>Book</td>
+                                    <td>Arihant</td>
+                                    <td>18/11/2022</td>                        
+                                    <td>28/11/2022</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td><a href="#"><img src="./images/lib7.jpg" class="avatar" alt="Avatar"> Marketing</a></td>
+                                    <td>Book</td>
+                                    <td>Arihant</td>
+                                    <td>18/11/2022</td>                        
+                                    <td>28/11/2022</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td><a href="#"><img src="./images/lib6.jpg" class="avatar" alt="Avatar"> E-commerce</a></td>
+                                    <td>Book</td>
+                                    <td>Arihant</td>
+                                    <td>18/11/2022</td>                        
+                                    <td>28/11/2022</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td><a href="#"><img src="./images/lib3.jpg" class="avatar" alt="Avatar"> Work From Home</a></td>
+                                    <td>Book</td>
+                                    <td>Arihant</td>
+                                    <td>18/11/2022</td>                        
+                                    <td>28/11/2022</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     
                     <nav aria-label="..." class="float-right">
                         <ul class="pagination">
