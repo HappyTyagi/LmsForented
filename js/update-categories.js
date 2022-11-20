@@ -58,7 +58,7 @@ function updateCategory(){
                     "categoryId" : categoryId,
                     "categories": category , 
                     "isActive" : isActive ,
-                    "bookOrJournel" :  itemType,
+                    "bookJournel" :  itemType,
                     "penaltyRate" : penaltyRate
                   };
     let url = BASE_URL+"/category/updateCategory";
@@ -76,7 +76,7 @@ function updateCategory(){
         console.log(response);
         if (objects['status'] == '200') {
           Swal.fire({
-            text: response['categories']+' Category created successfully',
+            text: response['categories']+' Category update successfully',
             icon: 'success',
             confirmButtonText: 'OK'
           }).then((result) => {

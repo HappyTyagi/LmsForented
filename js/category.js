@@ -29,7 +29,7 @@ function addCategory(){
     const body = {
                     "categories": category , 
                     "isActive" : isActive ,
-                    "bookOrJournel" :  itemType,
+                    "bookJournel" :  itemType,
                     "penaltyRate" : penaltyRate
                   };
     let url = BASE_URL+"/category/addCategory";

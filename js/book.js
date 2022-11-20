@@ -68,6 +68,7 @@ const getPublication = (async() =>{
   var authorId =  document.getElementById("authorName").value;
   var data = await getapi(BASE_URL+"/author/findAuthorById/"+authorId);
     document.getElementById("publication-name").value = data.response.publication;
+    document.getElementById("edition").value = data.response.edition;
 });
 
 

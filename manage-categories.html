@@ -61,7 +61,7 @@ function show(data) {
         tab += `<tr> 
         <th scope="row">${sr}</th>
         <td>${e.categories}</td>
-        <td>${e.isActive == "0"? "Active" : "Inactive"}</td>
+        <td>${e.isActive == "1"? "Active" : "Inactive"}</td>
         <td> 
             <button type="button" class="btn btn-primary" onclick = "updateCategory('${e.categoryId}')"><i class="fa fa-edit"></i></button>
             <button type="button" class="btn btn-danger" onclick="deleteCategory('${e.categoryId}')"><i class="fa fa-trash"></i></button>
