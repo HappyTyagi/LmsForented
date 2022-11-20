@@ -274,6 +274,7 @@
                                         </span>
                                         <input id="student-name" type="text" class="form-control" name="Returned from"
                                             value="" placeholder="Returned from" required>
+                                        <input type ="hidden" id = "student-id" value=""/>
                                     </div>
                                 </div>
                                 <div class="col-md-4" id="departmentissueId">
@@ -294,7 +295,7 @@
                                         <span class="input-group-addon">
                                             <i class="glyphicon glyphicon-book"></i>
                                         </span>
-                                        <input id="datetime" type="text" class="form-control date"
+                                        <input id="redatetime" type="text" class="form-control date"
                                             name="Return date" value=""
                                             placeholder="Return Date" required>
                                     </div>
@@ -340,7 +341,7 @@
                                 </div>
                                     <!-- Button -->
                                     <div class="col-sm-12 controls">
-                                        <a id="btn-return" class="btn btn-success float-right" onClick = "addReturnBook()">Return Book </a>
+                                        <a class="btn btn-success float-right" onClick = "addReturnBook()">Return Book </a>
                                     </div>
 
                             </form>

@@ -46,8 +46,9 @@ async function getBookByBookId(){
       confirmButtonText: 'OK'
     });
   }
-  data.response.bookResponseList.forEach(e => {
-    if(!BookSerialArray.includes(bookSerialId)){
+  data.response.bookResponseList.forEach(async e => {
+    if(!BookSerialArray.includes()){
+      var itemType = showItemTypeByCategory(e.categories.categoryId);
       let row = tbl.insertRow();
       let cell1 = row.insertCell(0);
       let cell2 = row.insertCell(1);
@@ -58,34 +59,19 @@ async function getBookByBookId(){
       cell1.innerHTML = rowIndex;
       //cell1.setAttribute("id",tbl.rows.length);
       cell2.innerHTML = e.addBook.bookName;
-      cell3.innerHTML = "Type not present in Book API";
-      cell4.innerHTML = "Publication not present in Book API";
+      cell3.innerHTML = itemType;
+      cell4.innerHTML = e.author.publication;
       cell5.innerHTML = "CheckBox";
       BookSerialArray[rowIndex-1] = bookSerialId;    
   }else{
     alert("Book already added in list");
   }
 });
-
 document.getElementById("bookId").value ="";
 };
 
-async function getUserByUserId(){
-  let userId = document.getElementById("user-id").value;
-  var data = await getapi(BASE_URL+"/loginController/getAllUsersById/"+userId);
-    document.getElementById("issued-to").value = data.response.fullName;
-};
 
-
-function getUserType(){
-  var ele = document.getElementsByName('issuetype');
-    for(i = 0; i < ele.length; i++) {
-        if(ele[i].checked) { return ele[i].value;}
-    }  
-    return "0";
-}
-
-function addDamageBook(){
+function submitDamageBook(){
     const repairable = document.getElementById("repairable").value;
     const replacement = document.getElementById("replacement").value;
    
@@ -103,6 +89,7 @@ function addDamageBook(){
     xhttp.send(JSON.stringify(body));
     xhttp.onreadystatechange = function () {
       if (this.readyState == 4) {
+        console.log("hello " +this.response);
         const objects = JSON.parse(this.responseText);
         const response = objects['response'];
         if (objects['status'] == '200') {
@@ -112,8 +99,8 @@ function addDamageBook(){
             confirmButtonText: 'OK'
           }).then((result) => {
             if (result.isConfirmed) {
-              document.getElementById("damageBookform").reset();
-              window.location.href = './damaged-book.html';
+              
+              window.location.href = './damaged-books.html';
             }
           });
         } else {
@@ -125,6 +112,19 @@ function addDamageBook(){
         }
       }
     };
-    document.getElementById("damageBookform").reset();
+    
     return false;
   }
+
+
+function showItemTypeByCategory(categoryId){
+ var xmlHttp = new XMLHttpRequest();
+ xmlHttp.open( "GET", BASE_URL+"/category/findByCategoryId/"+categoryId, false ); // false for synchronous request
+ xmlHttp.setRequestHeader("Content-Type", "application/json");
+ xmlHttp.setRequestHeader("token",jwt);
+ xmlHttp.send( null );
+ console.log(xmlHttp.responseText);
+ const data = JSON.parse (xmlHttp.responseText);
+ console.log( data.response.bookOrJournel.bookTypeName);
+ return data.response.bookOrJournel.bookTypeName
+}

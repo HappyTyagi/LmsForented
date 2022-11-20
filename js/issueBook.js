@@ -51,19 +51,20 @@ async function getBookByBookId(){
   }
   data.response.bookResponseList.forEach(e => {
     if(!BookSerialArray.includes(bookSerialId)){
+      var itemType = showItemTypeByCategory(e.categories.categoryId);
       let row = tbl.insertRow();
-      let cell1 = row.insertCell(0);
-      let cell2 = row.insertCell(1);
-      let cell3 = row.insertCell(2);
-      let cell4 = row.insertCell(3);
-      let cell5 = row.insertCell(4);
+      //let cell1 = row.insertCell(0);
+      let cell2 = row.insertCell(0);
+      let cell3 = row.insertCell(1);
+      let cell4 = row.insertCell(2);
+      let cell5 = row.insertCell(3);
       var rowIndex = tbl.rows.length;
-      cell1.innerHTML = rowIndex;
+      //cell1.innerHTML = rowIndex;
       //cell1.setAttribute("id",tbl.rows.length);
       cell2.innerHTML = e.addBook.bookName;
       cell3.innerHTML = "Type not present in Book API";
-      cell4.innerHTML = "Publication not present in Book API";
-      cell5.innerHTML = "CheckBox";
+      cell4.innerHTML = e.author.fullName;
+      cell5.innerHTML = `<i class="fa fa-trash trash-icon" onclick="deleteRow(${rowIndex})"></i>`;
       BookSerialArray[rowIndex-1] = bookSerialId;
       
   }else{
@@ -77,26 +78,27 @@ async function getBookByBookId(){
 document.getElementById("bookId").value ="";
 };
 
-async function getUserByUserId(){
-  let userId = document.getElementById("user-id").value;
-  var data = await getapi(BASE_URL+"/loginController/getAllUsersById/"+userId);
+async function getUserByUserId(userId){
+  var data = await getapi(BASE_URL+"/loginController/getUsersByIdOrMail/"+userId);
     document.getElementById("issued-to").value = data.response.fullName;
+    document.getElementById("student-Id").value = data.response.loginId;
 };
 
 
 function addIssuedBook(){
-    const userId = document.getElementById("user-id").value;
+    const userId = document.getElementById("student-Id").value;
     const departmentId = document.getElementById("departmentId").value;
     const issuedTo = document.getElementById("issued-to").value;
-    const issueDateTime = document.getElementById("issueDateTime").value;
+    const issueDateTime = document.getElementById("returnDate").value;
     const userType = document.getElementById("userType").value;
-    
+    const newBookSerailIds = BookSerialArray.filter(ele => {return ele !== null});
+    console.log(userId);
     const body = {
         "userId": userId,
         "issuedTo": issuedTo,
         "departmentId": departmentId,
         "returnDate": issueDateTime,
-        "bookSerialNo" : BookSerialArray,
+        "bookSerialNo" : newBookSerailIds,
         "userType" : userType
         }
     console.log(JSON.stringify(body));    
@@ -144,7 +146,26 @@ const showDepartmentList = (async() =>{
     tab += `<option value = ${e.departmentId}>${e.departmentName}</option>`;
   });
   document.getElementById("departmentSelect").innerHTML = tab;
-  document.getElementById(" departmentId").innerHTML = tab;
+  document.getElementById("departmentId").innerHTML = tab;
  
 });
 showDepartmentList();
+
+
+function deleteRow(ele){
+  document.getElementById("bookList").deleteRow(ele);
+  BookSerialArray[ele-1] = null;
+}
+
+
+function showItemTypeByCategory(categoryId){
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.open( "GET", BASE_URL+"/category/findByCategoryId/"+categoryId, false ); // false for synchronous request
+  xmlHttp.setRequestHeader("Content-Type", "application/json");
+  xmlHttp.setRequestHeader("token",jwt);
+  xmlHttp.send( null );
+  console.log(xmlHttp.responseText);
+  const data = JSON.parse (xmlHttp.responseText);
+  console.log( data.response.bookOrJournel.bookTypeName);
+  return data.response.bookOrJournel.bookTypeName
+ }

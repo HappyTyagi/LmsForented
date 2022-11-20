@@ -51,19 +51,17 @@ async function getBooks(data) {
     // Loop to access all rows 
     let sr = 0;
     //for (let r of data.list) 
-    data.response.addBooks.forEach(e => {
+    data.response.bookResponseList.forEach(e => {
         sr++;
-        var categories = getCategoryName(e.categoriesId); 
-        console.log(categories);
         tab += `<tr>
         <th scope="row">${sr}</th>
-        <td>${e.bookName}</td>
-        <td>"Publication name not present in API response"</td>
-        <td>${categories}</td>
+        <td>${e.addBook.bookName}</td>
+        <td>${e.author.fullName}</td>
+        <td>${e.categories.categories}</td>
         <td><img src="./images/a1.jpg" class="manage-image"></td>
         <td> 
-            <button type="button" class="btn btn-primary" onClick ="updateBookShow('${e.bookId}')"><i class="fa fa-edit"></i></button>
-            <button type="button" class="btn btn-danger" onClick = "removeBook('${e.bookId}')"><i class="fa fa-trash"></i></button>
+            <button type="button" class="btn btn-primary" onClick ="updateBookShow('${e.addBook.bookId}')"><i class="fa fa-edit"></i></button>
+            <button type="button" class="btn btn-danger" onClick = "removeBook('${e.addBook.bookId}')"><i class="fa fa-trash"></i></button>
 
          </td>
       </tr>`;
@@ -73,33 +71,43 @@ async function getBooks(data) {
     }
 
 async function removeBook(bookId){
-  const url = BASE_URL+"/book/removeBook/"+bookId; 
-  const response = await fetch(url,{
-      method : 'GET',
-      headers : {
-                  'Content-Type' : 'application/json',
-                  'token': localStorage.getItem("jwt")
-               }
-  });
-    if (response.status == '200') {
-      Swal.fire({
-        text: 'Book deleted',
-        icon: 'success',
-        confirmButtonText: 'OK'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          window.location.href = './manage-book.html';       
-        }
+  Swal.fire({
+    text: 'Are you sure to delete the Book?',
+    icon: 'question',
+    confirmButtonText: 'OK',
+    showCancelButton: true,
+  }).then(async (result) => {
+    if (result.isConfirmed) {
+      const url = BASE_URL+"/book/removeBook/"+bookId; 
+      const response = await fetch(url,{
+          method : 'GET',
+          headers : {
+                      'Content-Type' : 'application/json',
+                      'token': localStorage.getItem("jwt")
+                   }
       });
-    } else {
-      Swal.fire({
-        text: objects['message'],
-        icon: 'error',
-        confirmButtonText: 'OK'
-      });
+        if (response.status == '200') {
+          Swal.fire({
+            text: 'Book deleted',
+            icon: 'success',
+            confirmButtonText: 'OK'
+
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.href = './manage-books.html';       
+            }
+          });
+        } else {
+          Swal.fire({
+            text: objects['message'],
+            icon: 'error',
+            confirmButtonText: 'OK'
+          });             
     }
-    return false;
   }
+});  
+    return false;
+}
 
   function updateBookShow(bookId){
     window.location.href = './update-book.html?bookId='+bookId;

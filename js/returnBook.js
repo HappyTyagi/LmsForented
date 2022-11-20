@@ -84,30 +84,32 @@ document.getElementById("bookId").value ="";
 
 async function getUserByUserId(userId){
   //let userId = document.getElementById("user-id").value;
-  var data = await getapi(BASE_URL+"/loginController/getAllUsersById/"+userId);
+  var data = await getapi(BASE_URL+"/loginController/getUsersByIdOrMail/"+userId);
     document.getElementById("user-id").value = data.response.email;
     document.getElementById("student-name").value = data.response.fullName;
+    document.getElementById("student-id").value = data.response.loginId;
 };
 
 
 function addReturnBook(){
-    const userId = document.getElementById("user-id").value;
+    const userId = document.getElementById("student-id").value;
     const departmentId = document.getElementById("departmentId").value;
     const reissuedTo = document.getElementById("student-name").value;
     const reissueDateTime = document.getElementById("redatetime").value;
-    const userType = document.getElementById("userType").value;
-    
+    const userType = document.getElementById("issueType").value;
+    const waveOff = document.getElementById("waveoffInput").value;
+
     const body = {
-          "userOrDepartmentId":userId,
+          "userOrDepartmentId":(userType == 1 ? userId : departmentId),
           "reIssuedTo":reissuedTo,
           "penaltyPerBook":"10",
-          "waveOff":"50",
-          "reIssueDateTime":reissueDateTime,
-          "bookSerialNo":bookSerialId
+          "waveOff":waveOff,
+          "returnDateTime":reissueDateTime,
+          "bookSerialNo":BookSerialArray
         }
 
     console.log(JSON.stringify(body));    
-    let url = BASE_URL+"/issuedBook/reIssuedBook";
+    let url = BASE_URL+"/issuedBook/returnIssuedBook";
     const xhttp = new XMLHttpRequest();
     xhttp.open("POST", url);
     xhttp.setRequestHeader("Content-Type", "application/json");
@@ -126,7 +128,7 @@ function addReturnBook(){
             confirmButtonText: 'OK'
           }).then((result) => {
             if (result.isConfirmed) {
-              window.location.href = './reissue-book.html';
+              window.location.href = './return-book.html';
             }
           });
         } else {

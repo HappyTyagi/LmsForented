@@ -34,11 +34,65 @@ async function getapi(url) {
 
 
 const showAuthorData = (async() =>{
-  var data = await getapi(BASE_URL+"/author/findAuthorById/LMS_KA_BK1668000484934");
-  var category = data.response;
-  document.getElementById("categoryName").value = category.categories;
-  document.getElementById("penaltyRate").value= category.penaltyRate;
-  document.getElementById("categoryId").value= category.categoryId; 
-
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const authId = urlParams.get('authId');
+  var data = await getapi(BASE_URL+"/author/findAuthorById/"+authId);
+  var author = data.response;
+  document.getElementById("author-id").value = author.autherId;
+  document.getElementById("author-name").value = author.fullName;
+  document.getElementById("edition").value = author.edition;
+  document.getElementById("publishedDate").value = author.publistionDate;
+  document.getElementById("publication").value = author.publication;
 });
 showAuthorData();
+
+
+function updateAuthor(){
+  const authorId =  document.getElementById("author-id").value;
+  const authorName = document.getElementById("author-name").value;
+  const edition = document.getElementById("edition").value;
+  const publishedDate = document.getElementById("publishedDate").value;
+  const publication = document.getElementById("publication").value;
+
+  const body = {  
+                  "autherId" : authorId,
+                  "fullName": authorName,
+                  "edition": edition,
+                  "publistionDate": publishedDate,
+                  "publication": publication  
+               }; 
+
+  let url = BASE_URL+"/author/updateAuthor";
+  console.log(JSON.stringify(body));
+  const xhttp = new XMLHttpRequest();
+  xhttp.open("POST", url);
+  xhttp.setRequestHeader("Content-Type", "application/json");
+  xhttp.setRequestHeader("token",jwt);
+  xhttp.send(JSON.stringify(body));
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4) {
+      const objects = JSON.parse(this.responseText);
+      const response = objects['response'];
+      if (objects['status'] == '200') {
+        Swal.fire({
+          text: 'Author added successfully',
+          icon: 'success',
+          confirmButtonText: 'OK'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.href = './manage-authors.html';
+          }
+        });
+      } else {
+        Swal.fire({
+          text: objects['message'],
+          icon: 'error',
+          confirmButtonText: 'OK'
+        });
+      }
+    }
+  };
+  return false;
+}
+

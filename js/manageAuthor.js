@@ -57,7 +57,7 @@ function show(data) {
         <td>Active</td>
         <td> 
             <button type="button" class="btn btn-primary" onClick="updateauthorShow('${e.autherId}')"><i class="fa fa-edit"></i></button>
-            <button type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+            <button type="button" class="btn btn-danger" onClick="removeAuthor('${e.autherId}')"><i class="fa fa-trash"></i></button>
 
          </td>
       </tr>`;
@@ -68,4 +68,44 @@ function show(data) {
 
     function updateauthorShow(authorId){
       window.location.href = './update-authors.html?authId='+authorId;
+    }
+
+
+    async function removeAuthor(authorId){
+      Swal.fire({
+        text: 'Are you sure to delete the Book?',
+        icon: 'question',
+        confirmButtonText: 'OK',
+        showCancelButton: true,
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          const url = BASE_URL+"/author/removeAuthor/"+authorId; 
+          const response = await fetch(url,{
+              method : 'GET',
+              headers : {
+                          'Content-Type' : 'application/json',
+                          'token': localStorage.getItem("jwt")
+                       }
+          });
+            if (response.status == '200') {
+              Swal.fire({
+                text: 'Book deleted',
+                icon: 'success',
+                confirmButtonText: 'OK'
+    
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  window.location.href = './manage-books.html';       
+                }
+              });
+            } else {
+              Swal.fire({
+                text: objects['message'],
+                icon: 'error',
+                confirmButtonText: 'OK'
+              });             
+        }
+      }
+    });  
+        return false;
     }

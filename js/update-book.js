@@ -28,31 +28,66 @@ async function getapi(url) {
        }
     }
     return data;
- 
 }
 
+const showBookType = (async() =>{
+  var data = await getapi(BASE_URL+"/bookType/getAllBookType");
+  console.log(data);
+  let tab = `<option value = ""> Select Item Type</option>`;
+  let sr = 0; 
+  data.response.forEach(e => {
+    tab += `<option value ="${e.bookTypeId}">${e.bookTypeName}</option>`;
+  });
+  document.getElementById("bookJournelType").innerHTML = tab;
+});
+
+const showAuthorName = (async() =>{
+  var data = await getapi(BASE_URL+"/author/authors");
+  console.log(data);
+  let tab = `<option value = ""> Select Author</option>`;
+  let sr = 0; 
+  data.response.forEach(e => {
+    tab += `<option value = ${e.autherId}>${e.fullName}</option>`;
+  });
+  document.getElementById("authorName").innerHTML = tab;
+});
+
+const getPublication = (async() =>{
+  var authorId =  document.getElementById("authorName").value;
+  var data = await getapi(BASE_URL+"/author/findAuthorById/"+authorId);
+    document.getElementById("publication-name").value = data.response.publication;
+});
+
+
+//showCategory();
+showAuthorName();
+showBookType();
+
+
+
 const showBookData = (async() =>{
-    var data = await getapi(BASE_URL+"book/searchBookById/LMS_KA_BK1668140975648");
-    var book = data.response.addBooks;
-    document.getElementById("book-name").value = book.bookName;
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const bookId = urlParams.get('bookId');
+    var data = await getapi(BASE_URL+"/book/searchBookById/"+bookId);
+    data.response.bookResponseList.forEach(e => {
+    document.getElementById("book-name").value = e.addBook.bookName;
     document.getElementById("publication-name").value = "not available"; 
-    document.getElementById("edition").value = book.edition;
+    document.getElementById("edition").value = e.addBook.edition;
     document.getElementById("publish-date").value = "not available";
-    document.getElementById("local-number").value = book.assignLocalNo;
-    document.getElementById("no-pages").value = book.noOfPages;
-    document.getElementById("quantity").value = book.quantity;
-    document.getElementById("purchased").value = book.purchased;
-    document.getElementById("sourceName").value = book.sourceName;
-    document.getElementById("sourceAddress").value = book.sourceAddress;
-    document.getElementById("sourceContactNo").value = book.sourceContactNo;
-    document.getElementById("billNum").value = book.billNo;
-    document.getElementById("cost").value = book.cost;
-    document.getElementById("purchasedBy").value = book.purchasedBy;
-    document.getElementById("bookcondition").value = book.bookCondition;
-    document.getElementById("withBinding").value = book.enableBinding;
-    showCategory(book.categoriesId);
-    showAuthorName(book.authorsId);
-  
+    document.getElementById("local-number").value =e.addBook.assignLocalNo;
+    document.getElementById("no-pages").value = e.addBook.noOfPages;
+    document.getElementById("quantity").value = e.addBook.quantity;
+    document.getElementById("purchased").value = e.addBook.purchased;
+    document.getElementById("sourceName").value = e.addBook.sourceName;
+    document.getElementById("sourceAddress").value = e.addBook.sourceAddress;
+    document.getElementById("sourceContactNo").value =e.addBook.sourceContactNo;
+    document.getElementById("billNum").value =e.addBook.billNo;
+    document.getElementById("cost").value = e.addBook.cost;
+    document.getElementById("purchasedBy").value = e.addBook.purchasedBy;
+    document.getElementById("bookcondition").value = e.addBook.bookCondition;
+    document.getElementById("withBinding").value = e.addBook.enableBinding;
+  });
 });
 
   
@@ -68,15 +103,16 @@ const showBookData = (async() =>{
     document.getElementById("category").innerHTML = tab;
   });
   
-  const showAuthorName = (async() =>{
-    var data = await getapi(BASE_URL+"/author/authors");
-    console.log(data);
-    let tab = `<option value = ""> Select Author</option>`;
+  const showCategorySelect = (async() =>{
+    var bookOrJournel =  document.getElementById("bookJournelType").value 
+    var data = await getapi(BASE_URL+"/category/findByBookType/"+bookOrJournel);
+    let tab = `<option value = ""> Select Category</option>`;
     let sr = 0; 
     data.response.forEach(e => {
-      tab += `<option value = ${e.autherId}>${e.fullName}</option>`;
+      tab += `<option value = ${e.categoryId}>${e.categories}</option>`;
     });
-    document.getElementById("authorName").innerHTML = tab;
+    document.getElementById("category").innerHTML = tab;
   });
-  
+
+
   showBookData();

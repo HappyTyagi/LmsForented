@@ -64,7 +64,14 @@ const showAuthorName = (async() =>{
   document.getElementById("authorName").innerHTML = tab;
 });
 
-showCategory();
+const getPublication = (async() =>{
+  var authorId =  document.getElementById("authorName").value;
+  var data = await getapi(BASE_URL+"/author/findAuthorById/"+authorId);
+    document.getElementById("publication-name").value = data.response.publication;
+});
+
+
+//showCategory();
 showAuthorName();
 showBookType();
 
@@ -148,14 +155,10 @@ function addBook(){
 
   const showCategorySelect = (async() =>{
     var bookOrJournel =  document.getElementById("bookJournelType").value 
-    console.log(bookOrJournel);
     var data = await getapi(BASE_URL+"/category/findByBookType/"+bookOrJournel);
-    console.log(bookOrJournel)
-    console.log(data);
     let tab = `<option value = ""> Select Category</option>`;
     let sr = 0; 
     data.response.forEach(e => {
-      if(e.bookOrJournel==bookOrJournel)
       tab += `<option value = ${e.categoryId}>${e.categories}</option>`;
     });
     document.getElementById("category").innerHTML = tab;

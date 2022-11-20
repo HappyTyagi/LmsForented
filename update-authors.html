@@ -23,7 +23,7 @@
     
     <!-- font-awesome icons -->
     <link href="css/font-awesome.css" rel="stylesheet">
-    <script src="js/author.js"></script>
+    <script src="js/update-author.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.all.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -192,6 +192,7 @@
                                         <span class="input-group-addon">
                                             <i class="glyphicon glyphicon-user"></i>
                                         </span>
+                                        <input type="hidden" id="author-id" value=""/>
                                         <input id="author-name"  type="text" class="form-control" name="author name" value="" placeholder="Author Name" required="">
                                     </div>
                                 </div>
@@ -223,7 +224,7 @@
                                     <div style="margin-top:10px" class="form-group">
                                         <!-- Button -->
                                         <div class="col-sm-12 controls">
-                                            <a id="btn-login" href="#" class="btn btn-success" onclick="return addAuthor()">Add Author </a>
+                                            <a id="btn-login" href="#" class="btn btn-success" onclick="return updateAuthor()">Update Author </a>
                                         </div>
                                     </div>
                                     <div class="form-group">

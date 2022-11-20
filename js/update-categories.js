@@ -9,16 +9,6 @@ function logout() {
   window.location.href = './login.html';
 }
 
-function getSelectedValueforCheckboxRadio(elementName){
-    var ele = document.getElementsByName(elementName); 
-    for(i = 0; i < ele.length; i++) {
-        if(ele[i].type="radio") {
-            if(ele[i].checked)
-              return (ele[i].value);
-        }
-    }
-  }
-
 
 async function getapi(url) {
     const response = await fetch(url,{
@@ -42,9 +32,11 @@ async function getapi(url) {
     return data;
   }
 
-
   const showCategoryData = (async() =>{
-    var data = await getapi(BASE_URL+"/category/findByCategoryId/LMS_KA_CA1668090852699");
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const categoryId = urlParams.get('catId');
+    var data = await getapi(BASE_URL+"/category/findByCategoryId/"+categoryId);
     var category = data.response;
     document.getElementById("categoryName").value = category.categories;
     document.getElementById("penaltyRate").value= category.penaltyRate;
@@ -59,8 +51,8 @@ showCategoryData();
 function updateCategory(){
     const categoryId =  document.getElementById("categoryId").value;
     const category = document.getElementById("categoryName").value;
-    const isActive = getSelectedValueforCheckboxRadio("status");
-    const itemType = getSelectedValueforCheckboxRadio("itemtype")
+    const isActive = document.getElementById("status").value;
+    const itemType = document.getElementById("itemType").value;
     const penaltyRate = document.getElementById("penaltyRate").value;
     const body = {
                     "categoryId" : categoryId,
@@ -103,3 +95,18 @@ function updateCategory(){
     };
     return false;
   }
+
+  
+  const showBookType = (async() =>{
+    var data = await getapi(BASE_URL+"/bookType/getAllBookType");
+    console.log(data);
+    let tab = `<option value = ""> Select Category</option>`;
+    let sr = 0; 
+    data.response.forEach(e => {
+      tab += `<option value = ${e.bookTypeId}>${e.bookTypeName}</option>`;
+    });
+    document.getElementById("itemType").innerHTML = tab;
+  });
+
+
+  showBookType();

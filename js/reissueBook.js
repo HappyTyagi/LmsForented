@@ -60,6 +60,9 @@ async function getBookByBookId(){
       let cell5 = row.insertCell(4);
       let cell6 = row.insertCell(5);
       let cell7 = row.insertCell(6);
+      let cell8 = row.insertCell(7);
+      let cell9 = row.insertCell(8);
+
       var rowIndex = tbl.rows.length;
       cell1.innerHTML = rowIndex;
       //cell1.setAttribute("id",tbl.rows.length);
@@ -68,7 +71,9 @@ async function getBookByBookId(){
       cell4.innerHTML = book.publicationName;
       cell5.innerHTML = book.bookIssueDate;
       cell6.innerHTML = book.bookReturnDate;
-      cell7.innerHTML = "CheckBox";
+      cell7.innerHTML = book.totalDueDay;
+      cell8.innerHTML = book.totalPenalty;
+      cell9.innerHTML = `<i class="fa fa-trash trash-icon" onclick="deleteRow(${rowIndex})"></i>`;
       BookSerialArray[rowIndex-1] = bookSerialId;
       document.getElementById("delayDays").value = book.totalDueDay;
       getUserByUserId(book.userId);
@@ -84,26 +89,28 @@ document.getElementById("bookId").value ="";
 
 async function getUserByUserId(userId){
   //let userId = document.getElementById("user-id").value;
-  var data = await getapi(BASE_URL+"/loginController/getAllUsersById/"+userId);
+  var data = await getapi(BASE_URL+"/loginController/getUsersByIdOrMail/"+userId);
     document.getElementById("user-id").value = data.response.email;
     document.getElementById("student-name").value = data.response.fullName;
+    document.getElementById("student-id").value = data.response.loginId;
 };
 
 
 function addReissuedBook(){
-    const userId = document.getElementById("user-id").value;
-    const departmentId = document.getElementById("departmentId").value;
+    const userId = document.getElementById("student-id").value;
+    //const departmentId = document.getElementById("departmentId").value;
     const reissuedTo = document.getElementById("student-name").value;
     const reissueDateTime = document.getElementById("redatetime").value;
-    const userType = document.getElementById("userType").value;
+    //const userType = document.getElementById("userType").value;
+    const waveOff = document.getElementById("waveoffInput").value;
     
     const body = {
           "userOrDepartmentId":userId,
           "reIssuedTo":reissuedTo,
           "penaltyPerBook":"10",
-          "waveOff":"50",
+          "waveOff":waveOff,
           "reIssueDateTime":reissueDateTime,
-          "bookSerialNo":bookSerialId
+          "bookSerialNo":BookSerialArray
         }
 
     console.log(JSON.stringify(body));    
