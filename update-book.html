@@ -125,6 +125,12 @@
                                         <a href="manage-authors.html">Manage Author</a>
                                     </li>
                                     <li>
+                                        <a href="add-department.html">Add Department</a>
+                                    </li>
+                                    <li>
+                                        <a href="manage-department.html">Manage Department</a>
+                                    </li>
+                                    <li>
                                         <a href="reminder-services.html">Reminder Services</a>
                                     </li>
                                     <li>
@@ -175,6 +181,19 @@
                                     <li class="btn btn3">
                                       <a href="add-book.html">Add Book</a>
                                     </li>
+                                    <li>
+                                        <a
+                                          href="#modalError"
+                                          class="dropdown-toggle effect-3 btn-logout"
+                                          data-toggle="modal"
+                                          data-target="#modalError"
+                                        >
+                                          <span
+                                            class="fa fa-user fa-sign-out"
+                                            aria-hidden="true"
+                                          ></span>
+                                        </a>
+                                      </li>
                                   </ul>
                             </div>
                               <!--//breadcrumbs ends here-->
@@ -219,7 +238,7 @@
                                         </span>
                                         <input id="book-name" type="text" class="form-control"
                                             name="book-name"   placeholder="Book/Journal Name"
-                                            required=""> 
+                                            required> 
                                     </div>
                                 </div>
 
@@ -230,7 +249,7 @@
                                         </span>
                                         <input id="publication-name" maxlength="30" type="text" class="form-control"
                                             name="publication-name"   placeholder="Publication"
-                                            required="">
+                                            required>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -240,7 +259,7 @@
                                         </span>
                                         <input id="edition" maxlength="20" type="text" class="form-control"
                                             name="edition"   placeholder="Edition"
-                                            required="">
+                                            required>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -249,7 +268,7 @@
                                             <i class="glyphicon glyphicon-book"></i>
                                         </span>
                                         <input id="publish-date" type="text" class="form-control date"
-                                           placeholder="Publish Date" required="" >
+                                           placeholder="Publish Date" required >
                                     </div>
                                 </div>
 
@@ -260,7 +279,7 @@
                                         </span>
                                         <input id="local-number" maxlength="20" type="text" class="form-control"
                                             name="local-number"   placeholder="Assigned local number/name"
-                                            required="">
+                                            required>
                                             
                                     </div>
                                 </div>
@@ -271,7 +290,7 @@
                                         </span>
                                         <input id="no-pages"  type="number" class="form-control"
                                             name="no-pages"   placeholder="Number of Pages"
-                                            required="" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==5) return false;" >
+                                            required pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==5) return false;" >
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -281,7 +300,7 @@
                                         </span>
                                         <input id="quantity" type="number" class="form-control"
                                             name="quantity"   placeholder="Quantity"
-                                            required="" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==4) return false;" >
+                                            required pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==4) return false;" >
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -291,7 +310,7 @@
                                         </span>
                                         <input id="dateTime" type="text" class="form-control datetime"
                                             name="dateTime"   placeholder="Adding Date and Time to Library"
-                                            required="" >
+                                            required >
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -328,7 +347,7 @@
                                         </span>
                                         <input id="sourceName" maxlength="30" type="text" class="form-control"
                                             name="sourceName"   placeholder="Source Name"
-                                            required="">
+                                            required>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -338,7 +357,7 @@
                                         </span>
                                         <input id="sourceAddress" type="text" class="form-control"
                                             name="sourceAddress"   placeholder="Source Address"
-                                            required="">
+                                            required>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -348,7 +367,7 @@
                                         </span>
                                         <input id="sourceContactNo" type="number" class="form-control"
                                             name="sourceContactNo"   placeholder="Source Contact Number"
-                                            required="" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;">
+                                            required pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -358,7 +377,7 @@
                                         </span>
                                         <input id="billNum" type="text" class="form-control"
                                             name="billNum"   placeholder="Bill Number"
-                                            required="" maxlength="30">
+                                            required maxlength="30">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -388,7 +407,7 @@
                                         </span>
                                         <input id="bookcondition" type="text" class="form-control"
                                             name="bookcondition"   placeholder="Book Condition"
-                                            required="">
+                                            required>
                                     </div>
                                 </div>
                                 <div class="col-md-4">

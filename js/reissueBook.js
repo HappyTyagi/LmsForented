@@ -62,6 +62,7 @@ async function getBookByBookId(){
       let cell7 = row.insertCell(6);
       let cell8 = row.insertCell(7);
       let cell9 = row.insertCell(8);
+      let cell10 = row.insertCell(9);
 
       var rowIndex = tbl.rows.length;
       cell1.innerHTML = rowIndex;
@@ -73,7 +74,8 @@ async function getBookByBookId(){
       cell6.innerHTML = book.bookReturnDate;
       cell7.innerHTML = book.totalDueDay;
       cell8.innerHTML = book.totalPenalty;
-      cell9.innerHTML = `<i class="fa fa-trash trash-icon" onclick="deleteRow(${rowIndex})"></i>`;
+      cell9.innerHTML = `<input id="waveOff" type="text" class="form-control" name="wave off" value="" placeholder="Enter Amount" >`;
+      cell10.innerHTML = `<i class="fa fa-trash trash-icon" onclick="deleteRow(${rowIndex})"></i>`;
       BookSerialArray[rowIndex-1] = bookSerialId;
       document.getElementById("delayDays").value = book.totalDueDay;
       getUserByUserId(book.userId);

@@ -127,6 +127,12 @@
                                         <a href="manage-authors.html">Manage Author</a>
                                     </li>
                                     <li>
+                                        <a href="add-department.html">Add Department</a>
+                                    </li>
+                                    <li>
+                                        <a href="manage-department.html">Manage Department</a>
+                                    </li>
+                                    <li>
                                         <a href="reminder-services.html">Reminder Services</a>
                                     </li>
                                     <li>
@@ -143,7 +149,19 @@
                                     <span class="fa fa-user nav-icon" aria-hidden="true"></span>
                                 </a>
                             </li>
-
+                            <li>
+                                <a
+                                  href="#modalError"
+                                  class="dropdown-toggle effect-3 btn-logout"
+                                  data-toggle="modal"
+                                  data-target="#modalError"
+                                >
+                                  <span
+                                    class="fa fa-user fa-sign-out"
+                                    aria-hidden="true"
+                                  ></span>
+                                </a>
+                              </li>
                         </ul>
                     </div>
                     <!-- /.navbar-collapse -->
@@ -203,7 +221,7 @@
                                         <span class="input-group-addon">
                                             <i class="glyphicon glyphicon-list"></i>
                                         </span>
-                                        <input id="categoryName" type="text" class="form-control" name="category name" value="" placeholder="Category Name" required="">
+                                        <input id="categoryName" type="text" class="form-control" name="category name" value="" placeholder="Category Name" required>
                                     </div>
                                     </div>
                                     <div class="col-md-6">
@@ -211,7 +229,7 @@
                                             <span class="input-group-addon">
                                                 <i class="glyphicon glyphicon-book"></i>
                                             </span>
-                                            <input id="penaltyRate" type="number" class="form-control" name="Penalty Rate" value="" placeholder="Penalty Rate" required="" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==4) return false;">
+                                            <input id="penaltyRate" type="number" class="form-control" name="Penalty Rate" value="" placeholder="Penalty Rate" required pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==4) return false;">
                                         </div>
                                         </div>
                                         <div class="col-md-6">

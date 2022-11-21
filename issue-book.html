@@ -140,6 +140,12 @@
                                         <a href="manage-authors.html">Manage Author</a>
                                     </li>
                                     <li>
+                                        <a href="add-department.html">Add Department</a>
+                                    </li>
+                                    <li>
+                                        <a href="manage-department.html">Manage Department</a>
+                                    </li>
+                                    <li>
                                         <a href="reminder-services.html">Reminder Services</a>
                                     </li>
                                     <li>
@@ -156,7 +162,19 @@
                                     <span class="fa fa-user nav-icon" aria-hidden="true"></span>
                                 </a>
                             </li>
-
+                            <li>
+                                <a
+                                  href="#modalError"
+                                  class="dropdown-toggle effect-3 btn-logout"
+                                  data-toggle="modal"
+                                  data-target="#modalError"
+                                >
+                                  <span
+                                    class="fa fa-user fa-sign-out"
+                                    aria-hidden="true"
+                                  ></span>
+                                </a>
+                              </li>
                         </ul>
                     </div>
                     <!-- /.navbar-collapse -->
@@ -217,7 +235,7 @@
                                                 <i class="glyphicon glyphicon-book"></i>
                                             </span>
                                             <input id="category-name" type="text" class="form-control" name="Book Name"
-                                                value="" placeholder="Book Name" required="">
+                                                value="" placeholder="Book Name" required>
                                         </div>
                                     </div>
     
@@ -240,7 +258,7 @@
                                             <i class="glyphicon glyphicon-book"></i>
                                         </span>
                                         <input id="bookId" type="text" class="form-control" name="Search By Book Serial No."
-                                            value="" placeholder="Search By Book Serial No." required=""/>
+                                            value="" placeholder="Search By Book Serial No." required/>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
@@ -269,7 +287,7 @@
                                             <i class="glyphicon glyphicon-book"></i>
                                         </span>
                                         <input id="user-id" type="text" class="form-control" name="Student email"
-                                            value="" placeholder="User Email" required="" onchange="getUserByUserId(this.value)">
+                                            value="" placeholder="User Email" required onchange="getUserByUserId(this.value)">
                                         <input id="student-Id" type="hidden" value="" >
                                     </div>
                                 </div>                                
@@ -292,7 +310,7 @@
                                             <i class="glyphicon glyphicon-book"></i>
                                         </span>
                                         <input id="issued-to" type="text" class="form-control" name="Issued to"
-                                            value="" placeholder="Issued to" required="" maxlength="30">
+                                            value="" placeholder="Issued to" required maxlength="30">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
@@ -302,7 +320,7 @@
                                         </span>
                                         <input id="returnDate" type="text" class="form-control date"
                                             name="" value="" placeholder="Return Date"
-                                            required="">
+                                            required>
                                     </div>
                                 </div>
                                     <!-- Button -->
