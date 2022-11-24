@@ -123,7 +123,7 @@ function addReturnBook(){
         console.log(response);
         if (objects['status'] == '200') {
           Swal.fire({
-            text: 'Book reissued successfully',
+            text: 'Book return successfully',
             icon: 'success',
             confirmButtonText: 'OK'
           }).then((result) => {

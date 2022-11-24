@@ -68,7 +68,6 @@ $('.issueType').change(function() {
 		this.type='date';
 	});
 	$(".date").focusout("input",function(){
-		console.log(this.value + "jkhkj");
 		if(this.value=="" && this.type=='date'){
 			this.type='text';
 

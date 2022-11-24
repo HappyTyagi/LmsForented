@@ -8,6 +8,8 @@
 
     <!-- Custom Theme files -->
     <link href="css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker3.min.css" >
+
     <!-- shop css -->
     <link href="css/shop.css" type="text/css" rel="stylesheet" media="all">
     <link href="css/style.css" type="text/css" rel="stylesheet" media="all">
@@ -15,7 +17,9 @@
     <!-- font-awesome icons -->
     <link href="css/font-awesome.css" rel="stylesheet">
     <!-- //Custom Theme files -->
+    
     <script src="js/book.js"></script>
+    
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.all.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -218,6 +222,7 @@
                                                 <i class="glyphicon glyphicon-book"></i>
                                             </span>
                                             <select class="form-control select2" id="category">
+                                                <option value="">Select Category</option>
                                             </select>
                                             
                                         </div>
@@ -266,6 +271,7 @@
                                         <span class="input-group-addon">
                                             <i class="glyphicon glyphicon-book"></i>
                                         </span>
+                                        
                                         <input id="publish-date" type="text" class="form-control date"
                                            placeholder="Publish Date" required="" >
                                     </div>
@@ -288,7 +294,7 @@
                                             <i class="glyphicon glyphicon-book"></i>
                                         </span>
                                         <input id="no-pages"  type="number" class="form-control"
-                                            name="no-pages"   placeholder="Number of Pages"
+                                            name="no-pages"   placeholder="Number of Pages" min=1
                                             required="" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==5) return false;" >
                                     </div>
                                 </div>
@@ -298,7 +304,7 @@
                                             <i class="glyphicon glyphicon-book"></i>
                                         </span>
                                         <input id="quantity" type="number" class="form-control"
-                                            name="quantity"   placeholder="Quantity"
+                                            name="quantity"   placeholder="Quantity" min=1
                                             required="" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==4) return false;" >
                                     </div>
                                 </div>
@@ -308,7 +314,7 @@
                                             <i class="glyphicon glyphicon-book"></i>
                                         </span>
                                         <input id="dateTime" type="text" class="form-control date"
-                                            name="dateTime"   placeholder="Adding Date and Time to Library"
+                                            name="dateTime"  placeholder="Adding Date and Time to Library"
                                             required="" >
                                     </div>
                                 </div>
@@ -352,7 +358,7 @@
                                             <i class="glyphicon glyphicon-book"></i>
                                         </span>
                                         <input id="sourceContactNo" type="number" class="form-control"
-                                            name="sourceContactNo"   placeholder="Source Contact Number"
+                                            name="sourceContactNo"   placeholder="Source Contact Number" min=0
                                             required="" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;">
                                     </div>
                                 </div>
@@ -372,7 +378,7 @@
                                             <i class="glyphicon glyphicon-book"></i>
                                         </span>
                                         <input id="cost" type="number" class="form-control"
-                                            name="cost"   placeholder="Cost"
+                                            name="cost"   placeholder="Cost" min=1
                                             required="text" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==5) return false;">
                                     </div>
                                 </div>
@@ -435,6 +441,17 @@
     </div>
     <!-- //home -->
     <!-- js -->
+    <script type="text/javascript">
+        $(function () {
+            var date=new Date();
+            $('#datetime').datepicker({
+                autoclose: true,
+                format : 'dd/mm/yyyy'
+        });
+        });
+     </script>
+
+
     <script src="js/jquery-2.2.3.min.js"></script>
     <!-- //js -->
     <!--search jQuery-->
@@ -510,6 +527,7 @@
  ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="js/bootstrap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
 </body>
 
 </html>

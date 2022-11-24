@@ -94,7 +94,7 @@ function submitDamageBook(){
         const response = objects['response'];
         if (objects['status'] == '200') {
           Swal.fire({
-            text: 'Book issued successfully',
+            text: 'Book added to Damage/Maintenance',
             icon: 'success',
             confirmButtonText: 'OK'
           }).then((result) => {

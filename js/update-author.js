@@ -76,7 +76,7 @@ function updateAuthor(){
       const response = objects['response'];
       if (objects['status'] == '200') {
         Swal.fire({
-          text: 'Author added successfully',
+          text: 'Author update successfully',
           icon: 'success',
           confirmButtonText: 'OK'
         }).then((result) => {
