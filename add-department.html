@@ -22,7 +22,7 @@
     <link href="css/common.css" type="text/css" rel="stylesheet" media="all">
     <!-- font-awesome icons -->
     <link href="css/font-awesome.css" rel="stylesheet">
-    <script src="js/category.js"></script>
+    <script src="js/department.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.all.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -207,7 +207,7 @@
                                         <span class="input-group-addon">
                                             <i class="glyphicon glyphicon-list"></i>
                                         </span>
-                                        <input id="addDepartment" type="text" class="form-control" name="Department" value="" placeholder="Department Name" required>
+                                        <input id="departmentName" type="text" class="form-control" name="Department" value="" placeholder="Department Name" required>
                                     </div>
                                     </div>
                                         <div class="col-md-6">
@@ -224,7 +224,7 @@
                                             </div>
                                         <!-- Button -->
                                         <div class="col-sm-12 controls">
-                                            <a href="#" class="btn btn-success float-right">Add Department </a>
+                                            <a href="#" class="btn btn-success float-right" onclick="addDepartment()">Add Department </a>
                                         </div>
 
                                 </form>

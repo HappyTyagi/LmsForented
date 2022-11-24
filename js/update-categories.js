@@ -41,6 +41,11 @@ async function getapi(url) {
     document.getElementById("categoryName").value = category.categories;
     document.getElementById("penaltyRate").value= category.penaltyRate;
     document.getElementById("categoryId").value= category.categoryId; 
+    showBookType(category.bookOrJournel.bookTypeId);
+    if (category.isActive==1)
+      document.getElementById("status").options.selectedIndex = 1;
+    else 
+      document.getElementById("status").options.selectedIndex = 2; 
 
 });
 showCategoryData();
@@ -97,16 +102,19 @@ function updateCategory(){
   }
 
   
-  const showBookType = (async() =>{
+  const showBookType = (async(bookJournelId) =>{
     var data = await getapi(BASE_URL+"/bookType/getAllBookType");
     console.log(data);
     let tab = `<option value = ""> Select Category</option>`;
     let sr = 0; 
     data.response.forEach(e => {
+      if(bookJournelId == e.bookTypeId)
+      tab += `<option value = ${e.bookTypeId} selected>${e.bookTypeName}</option>`;
+      else 
       tab += `<option value = ${e.bookTypeId}>${e.bookTypeName}</option>`;
     });
     document.getElementById("itemType").innerHTML = tab;
   });
 
 
-  showBookType();
+  

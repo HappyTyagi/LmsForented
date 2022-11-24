@@ -47,21 +47,21 @@ async function getBookByBookId(){
     });
   }
   data.response.bookResponseList.forEach(async e => {
-    if(!BookSerialArray.includes()){
+    if(!BookSerialArray.includes(bookSerialId)){
       var itemType = showItemTypeByCategory(e.categories.categoryId);
       let row = tbl.insertRow();
-      let cell1 = row.insertCell(0);
-      let cell2 = row.insertCell(1);
-      let cell3 = row.insertCell(2);
-      let cell4 = row.insertCell(3);
-      let cell5 = row.insertCell(4);
+      //let cell1 = row.insertCell(0);
+      let cell2 = row.insertCell(0);
+      let cell3 = row.insertCell(1);
+      let cell4 = row.insertCell(2);
+      let cell5 = row.insertCell(3);
       var rowIndex = tbl.rows.length;
-      cell1.innerHTML = rowIndex;
+      //cell1.innerHTML = rowIndex;
       //cell1.setAttribute("id",tbl.rows.length);
       cell2.innerHTML = e.addBook.bookName;
       cell3.innerHTML = itemType;
       cell4.innerHTML = e.author.publication;
-      cell5.innerHTML = "CheckBox";
+      cell5.innerHTML = `<i class="fa fa-trash trash-icon" onclick="deleteRow(${rowIndex})"></i>`;
       BookSerialArray[rowIndex-1] = bookSerialId;    
   }else{
     alert("Book already added in list");
@@ -70,6 +70,11 @@ async function getBookByBookId(){
 document.getElementById("bookId").value ="";
 };
 
+
+function deleteRow(ele){
+  document.getElementById("bookList").deleteRow(ele);
+  BookSerialArray.removeItem
+}
 
 function submitDamageBook(){
     const repairable = document.getElementById("repairable").value;

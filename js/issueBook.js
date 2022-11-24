@@ -1,6 +1,6 @@
 const BASE_URL = 'http://35.154.104.127:8080/LMS';
 const BookSerialArray = [];
-
+const BookIDs = [];
 
 const jwt = localStorage.getItem("jwt");
 if (jwt == null) {
@@ -50,7 +50,7 @@ async function getBookByBookId(){
     });
   }
   data.response.bookResponseList.forEach(e => {
-    if(!BookSerialArray.includes(bookSerialId)){
+    if(!BookSerialArray.includes(bookSerialId) && !BookIDs.includes(e.addBook.bookId)){
       var itemType = showItemTypeByCategory(e.categories.categoryId);
       let row = tbl.insertRow();
       //let cell1 = row.insertCell(0);
@@ -62,11 +62,11 @@ async function getBookByBookId(){
       //cell1.innerHTML = rowIndex;
       //cell1.setAttribute("id",tbl.rows.length);
       cell2.innerHTML = e.addBook.bookName;
-      cell3.innerHTML = "Type not present in Book API";
-      cell4.innerHTML = e.author.fullName;
+      cell3.innerHTML = itemType;
+      cell4.innerHTML = e.author.publication;
       cell5.innerHTML = `<i class="fa fa-trash trash-icon" onclick="deleteRow(${rowIndex})"></i>`;
       BookSerialArray[rowIndex-1] = bookSerialId;
-      
+      BookIDs[rowIndex-1] = e.addBook.bookId;
   }else{
     Swal.fire({
       text: 'Book already added in list',
