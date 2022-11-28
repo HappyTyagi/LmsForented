@@ -59,7 +59,7 @@ async function getDashboardData() {
            }
         }
         showDashboardData(data);
-       
+        showGraphChart(data);
       }
 
 function showDashboardData(data){
@@ -73,7 +73,6 @@ function showDashboardData(data){
       document.getElementById("maintn_books").innerHTML = dashboard.maintenanceBook;
       document.getElementById("damaged-books").innerHTML = dashboard.damageBook;
       document.getElementById("return-overdue").innerHTML = dashboard.overDueBook;
-      showGraphChart(data);
 }
 
 function showGraphChart(dashboardData){
@@ -203,8 +202,8 @@ async function refreshDashboardData() {
   const itemType = document.getElementById("itemType").value;
   const body = {
       toDate:toDate,
-      typeId:fromDate,
-      fromDate:itemType
+      fromDate:fromDate,
+      typeId:itemType,
   };
   console.log(JSON.stringify(body));
       const response = await fetch(url,{

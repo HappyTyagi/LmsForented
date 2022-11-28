@@ -23,6 +23,7 @@ function login() {
       if (objects['status'] == '200') {
         localStorage.setItem("jwt", response['tokenNo']);
         localStorage.setItem("userRole", response['userRole']);
+        console.log( response['userRole']);
         Swal.fire({
           text: objects['message'],
           icon: 'success',

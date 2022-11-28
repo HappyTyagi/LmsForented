@@ -165,3 +165,23 @@ const showDepartmentList = (async() =>{
  
 });
 //showDepartmentList();
+
+
+function checkforPastDate(id){
+  var date = new Date(document.getElementById(id).value);
+  var today = new Date();
+  today.setHours(0, 0, 0, 0);
+  date.setHours(0, 0, 0, 0);
+  if (date <= today) {
+    Swal.fire({
+      text: 'Only future date is allowed',
+      icon: 'error',
+      confirmButtonText: 'OK',
+      showCancelButton: true,
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+          document.getElementById(id).value="";
+        }
+      }); 
+  }
+}
