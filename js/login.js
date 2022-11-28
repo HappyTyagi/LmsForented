@@ -22,13 +22,17 @@ function login() {
       const response = objects['response'];
       if (objects['status'] == '200') {
         localStorage.setItem("jwt", response['tokenNo']);
+        localStorage.setItem("userRole", response['userRole']);
         Swal.fire({
           text: objects['message'],
           icon: 'success',
           confirmButtonText: 'OK'
         }).then((result) => {
           if (result.isConfirmed) {
-            window.location.href = 'dashboard.html';
+            response['userRole'] == "Admin" ?
+            window.location.href = './dashboard.html' :
+            window.location.href = './my-books.html'; 
+
           }
         });
       } else {

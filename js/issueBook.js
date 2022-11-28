@@ -91,14 +91,12 @@ function addIssuedBook(){
     const issuedTo = document.getElementById("issued-to").value;
     const issueDateTime = document.getElementById("returnDate").value;
     const userType = document.getElementById("userType").value;
-    const newBookSerailIds = BookSerialArray.filter(ele => {return ele !== null});
-    console.log(userId);
     const body = {
         "userId": userId,
         "issuedTo": issuedTo,
         "departmentId": departmentId,
         "returnDate": issueDateTime,
-        "bookSerialNo" : newBookSerailIds,
+        "bookSerialNo" : BookSerialArray,
         "userType" : userType
         }
     console.log(JSON.stringify(body));    
@@ -154,7 +152,8 @@ showDepartmentList();
 
 function deleteRow(ele){
   document.getElementById("bookList").deleteRow(ele);
-  BookSerialArray[ele-1] = null;
+  BookSerialArray.splice(ele-1,1);
+  BookIDs.splice(ele-1,1);
 }
 
 

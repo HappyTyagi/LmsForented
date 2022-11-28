@@ -37,8 +37,6 @@ async function getBookByBookId(){
   let bookSerialId = document.getElementById("bookId").value;
   var data = await getapi(BASE_URL+"/book/findBookBySerialNo/"+bookSerialId);
   var tbl = document.getElementById("bookList").getElementsByTagName('tbody')[0];
-  console.log(data);
-
   if(!data.response.bookResponseList){
     Swal.fire({
       text: data.response.message,
@@ -62,9 +60,13 @@ async function getBookByBookId(){
       cell3.innerHTML = itemType;
       cell4.innerHTML = e.author.publication;
       cell5.innerHTML = `<i class="fa fa-trash trash-icon" onclick="deleteRow(${rowIndex})"></i>`;
-      BookSerialArray[rowIndex-1] = bookSerialId;    
+      BookSerialArray[rowIndex-1] = bookSerialId;  
   }else{
-    alert("Book already added in list");
+    Swal.fire({
+      text: 'Book already added in list',
+      icon: 'error',
+      confirmButtonText: 'OK'
+    });
   }
 });
 document.getElementById("bookId").value ="";
@@ -73,7 +75,7 @@ document.getElementById("bookId").value ="";
 
 function deleteRow(ele){
   document.getElementById("bookList").deleteRow(ele);
-  BookSerialArray.removeItem
+  BookSerialArray.splice(ele-1,1);
 }
 
 function submitDamageBook(){
@@ -130,6 +132,5 @@ function showItemTypeByCategory(categoryId){
  xmlHttp.send( null );
  console.log(xmlHttp.responseText);
  const data = JSON.parse (xmlHttp.responseText);
- console.log( data.response.bookOrJournel.bookTypeName);
  return data.response.bookOrJournel.bookTypeName
 }
