@@ -281,6 +281,7 @@
                         value=""
                         placeholder="From Date"
                         required
+                        onchange="checkForFutureDate(this.value)"
                       />
                     </div>
                   </div>
@@ -290,19 +291,20 @@
                         <i class="glyphicon glyphicon-book"></i>
                       </span>
                       <input
-                        id="fromDate"
+                        id="toDate"
                         type="text"
                         class="form-control date"
                         name="To Date"
                         value=""
                         placeholder="To Date"
                         required
+                        onchange="checkForPastDate(this.value)"
                       />
                     </div>
                   </div>
                     <!-- Button -->
                     <div class="col-sm-12 controls">
-                        <a id="btnRefresh" href="#" class="btn btn-success float-right">Refresh Data </a>
+                        <a id="btnRefresh" href="#" class="btn btn-success float-right" onclick="refreshDashboardData()">Refresh Data </a>
                         <a id="btnRefresh" href="#" class="btn btn-success float-right mr-2">Reset </a>
                     </div>
                 </form>

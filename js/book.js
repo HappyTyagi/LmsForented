@@ -1,14 +1,19 @@
 const BASE_URL = 'http://35.154.104.127:8080/LMS';
 const jwt = localStorage.getItem("jwt");
-if (jwt == null) {
+const userRole = localStorage.getItem("userRole");
+if (jwt == null || userRole != "Admin"){
   window.location.href = './login.html'
 }
 
 function logout() {
   localStorage.removeItem("jwt");
+  localStorage.removeItem("userRole");
   window.location.href = './login.html';
 }
 
+// function checkforUpdate(){
+
+// }
 async function getapi(url) {
   const response = await fetch(url,{
           method : 'GET',
@@ -96,7 +101,7 @@ function addBook(){
     const bookcondition = document.getElementById("bookcondition").value;
     const withBinding = document.getElementById("withBinding").value;
     const authorName = document.getElementById("authorName").value;
-
+    const purchasedDate = document.getElementById("adddateTime").value;
     const body = {
         "bookName": bookName,
         //"serialName": "ASDE987654df45",
@@ -115,7 +120,8 @@ function addBook(){
         "purchased": purchased,
         "enableBinding": withBinding,
         "authorsId": authorName,
-        "categoriesId": category
+        "categoriesId": category,
+        "purchasedDate" : purchasedDate
         }
 
     console.log(JSON.stringify(body));    
@@ -165,3 +171,42 @@ function addBook(){
     });
     document.getElementById("category").innerHTML = tab;
   });
+
+
+  function checkForPasteDate(id){
+    var date = new Date(document.getElementById(id).value);
+    var today = new Date();
+    today.setHours(0, 0, 0, 0);
+    date.setHours(0, 0, 0, 0);
+    if (date >= today) {
+      Swal.fire({
+        text: 'Only past date is allowed',
+        icon: 'error',
+        confirmButtonText: 'OK',
+        showCancelButton: true,
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+            document.getElementById(id).value="";
+          }
+        }); 
+    }
+}
+
+function checkForFutureDate(id){
+  var date = new Date(document.getElementById(id).value);
+  var today = new Date();
+  today.setHours(0, 0, 0, 0);
+  date.setHours(0, 0, 0, 0);
+  if (date > today) {
+    Swal.fire({
+      text: 'Future date is not allowed',
+      icon: 'error',
+      confirmButtonText: 'OK',
+      showCancelButton: true,
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+          document.getElementById(id).value="";
+        }
+      }); 
+  }
+}

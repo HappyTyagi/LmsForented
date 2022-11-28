@@ -2,12 +2,14 @@ const BASE_URL = 'http://35.154.104.127:8080/LMS';
 const BookSerialArray = [];
 
 const jwt = localStorage.getItem("jwt");
-if (jwt == null) {
+const userRole = localStorage.getItem("userRole");
+if (jwt == null || userRole != "Admin"){
   window.location.href = './login.html'
 }
 
 function logout() {
   localStorage.removeItem("jwt");
+  localStorage.removeItem("UserRole");
   window.location.href = './login.html';
 }
 

@@ -1,6 +1,7 @@
 const BASE_URL = 'http://35.154.104.127:8080/LMS';
 const jwt = localStorage.getItem("jwt");
-if (jwt == null) {
+const userRole = localStorage.getItem("userRole");
+if (jwt == null || userRole != "Admin"){
   window.location.href = './login.html'
 }
 
@@ -78,7 +79,7 @@ async function removeBook(bookId){
     showCancelButton: true,
   }).then(async (result) => {
     if (result.isConfirmed) {
-      const url = BASE_URL+"/book/removeBook/"+bookId; 
+      const url = BASE_URL+"/book/activeOrInactive/"+bookId; 
       const response = await fetch(url,{
           method : 'GET',
           headers : {

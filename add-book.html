@@ -267,7 +267,7 @@
                                         </span>
                                         
                                         <input id="publish-date" type="text" class="form-control date"
-                                           placeholder="Publish Date" required="" >
+                                           placeholder="Publish Date" required="" onchange="checkForFutureDate(this.id)">
                                     </div>
                                 </div>
 
@@ -307,9 +307,9 @@
                                         <span class="input-group-addon">
                                             <i class="glyphicon glyphicon-book"></i>
                                         </span>
-                                        <input id="dateTime" type="text" class="form-control date"
+                                        <input id="adddateTime" type="text" class="form-control date"
                                             name="dateTime"  placeholder="Adding Date and Time to Library"
-                                            required="" >
+                                            required="" onchange="checkForFutureDate(this.id)">
                                     </div>
                                 </div>
 

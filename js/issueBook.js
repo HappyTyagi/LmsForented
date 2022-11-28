@@ -3,12 +3,14 @@ const BookSerialArray = [];
 const BookIDs = [];
 
 const jwt = localStorage.getItem("jwt");
-if (jwt == null) {
+const userRole = localStorage.getItem("userRole");
+if (jwt == null || userRole != "Admin"){
   window.location.href = './login.html'
 }
 
 function logout() {
   localStorage.removeItem("jwt");
+  localStorage.removeItem("userRole");
   window.location.href = './login.html';
 }
 
@@ -28,7 +30,6 @@ async function getapi(url) {
               //window.location.href = './login.html'
               //console.log(localStorage.getItem("jwt"));
           }
-          return false;
      }
   }
   return data;
@@ -36,8 +37,10 @@ async function getapi(url) {
 
 async function getBookByBookId(){
   let bookSerialId = document.getElementById("bookId").value;
+  if(bookSerialId =="") return false;
   var data = await getapi(BASE_URL+"/book/findBookBySerialNo/"+bookSerialId);
   var tbl = document.getElementById("bookList").getElementsByTagName('tbody')[0];
+  console.log(data);
   if(!data.response.bookResponseList){
     Swal.fire({
       text: data.response.message,
@@ -51,7 +54,6 @@ async function getBookByBookId(){
   }
   data.response.bookResponseList.forEach(e => {
     if(!BookSerialArray.includes(bookSerialId) && !BookIDs.includes(e.addBook.bookId)){
-      var itemType = showItemTypeByCategory(e.categories.categoryId);
       let row = tbl.insertRow();
       //let cell1 = row.insertCell(0);
       let cell2 = row.insertCell(0);
@@ -62,7 +64,7 @@ async function getBookByBookId(){
       //cell1.innerHTML = rowIndex;
       //cell1.setAttribute("id",tbl.rows.length);
       cell2.innerHTML = e.addBook.bookName;
-      cell3.innerHTML = itemType;
+      cell3.innerHTML = e.categories.bookJournel;
       cell4.innerHTML = e.author.publication;
       cell5.innerHTML = `<i class="fa fa-trash trash-icon" onclick="deleteRow(${rowIndex})"></i>`;
       BookSerialArray[rowIndex-1] = bookSerialId;

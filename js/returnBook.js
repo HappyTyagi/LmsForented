@@ -3,7 +3,8 @@ const BookSerialArray = [];
 
 
 const jwt = localStorage.getItem("jwt");
-if (jwt == null) {
+const userRole = localStorage.getItem("userRole");
+if (jwt == null || userRole != "Admin"){
   window.location.href = './login.html'
 }
 
