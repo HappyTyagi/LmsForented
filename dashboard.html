@@ -317,9 +317,9 @@
               <div class="card dashboard-product">
                 <span class="card-title">Total Books</span>
                 <h2 class="dashboard-total-products" id ="total-books"></h2>
-                <span class="label label-warning">Total</span> Books
+                <span class="label label-info">Total</span> Books
                 <div class="side-box">
-                  <i class="fa fa-bar-chart f-28 icon-warning"></i>
+                  <i class="fa fa-bar-chart f-28 icon-info"></i>
                 </div>
               </div>
             </div>
@@ -327,9 +327,9 @@
               <div class="card dashboard-product">
                 <span class="card-title">Issued Books</span>
                 <h2 class="dashboard-total-products" id = "issued-books"></h2>
-                <span class="label label-primary">Total</span> Issued Books
+                <span class="label label-success">Total</span> Issued Books
                 <div class="side-box">
-                  <i class="fa fa-calendar-check-o f-28 icon-primary"></i>
+                  <i class="fa fa-calendar-check-o f-28 icon-success"></i>
                 </div>
               </div>
             </div>
@@ -337,9 +337,9 @@
               <div class="card dashboard-product">
                 <span class="card-title">Return Books</span>
                 <h2 class="dashboard-total-products" id = "returned-books"></h2>
-                <span class="label label-success">Total</span> Return Books
+                <span class="label label-primary">Total</span> Return Books
                 <div class="side-box">
-                  <i class="fa fa-retweet f-28 icon-success"></i>
+                  <i class="fa fa-retweet f-28 icon-primary"></i>
                 </div>
               </div>
             </div>
@@ -347,9 +347,9 @@
               <div class="card dashboard-product">
                 <span class="card-title">Maintenance Books</span>
                 <h2 class="dashboard-total-products" id = "maintn_books"></h2>
-                <span class="label label-primary">Total</span> Maintenance Books
+                <span class="label label-secondary">Total</span> Maintenance Books
                 <div class="side-box">
-                  <i class="fa fa-wrench f-28 icon-primary"></i>
+                  <i class="fa fa-wrench f-28 icon-secondary"></i>
                 </div>
               </div>
             </div>
@@ -376,12 +376,12 @@
           </div>
           <!-- 4-blocks row end -->
           <div class="row">
-            <div class="col-xl-8 col-md-8">
+            <div class="col-md-4">
               <!-- Line Chart -->
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
                   <h3 class="m-0 font-weight-bold text-primary">
-                    Monthly Comparison
+                    Total Books
                   </h3>
                 </div>
                 <div class="card-body">
@@ -391,7 +391,84 @@
                 </div>
               </div>
             </div>
-            <div class="col-xl-4 col-md-4">
+            <div class="col-md-4">
+              <!-- Line Chart -->
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h3 class="m-0 font-weight-bold text-primary">
+                    Issued Books
+                  </h3>
+                </div>
+                <div class="card-body">
+                  <div class="chart-container">
+                    <canvas id="lineChartissued"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <!-- Line Chart -->
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h3 class="m-0 font-weight-bold text-primary">
+                    Returned Books
+                  </h3>
+                </div>
+                <div class="card-body">
+                  <div class="chart-container">
+                    <canvas id="lineChartReturn"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <!-- Line Chart -->
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h3 class="m-0 font-weight-bold text-primary">
+                    Maintenance Books
+                  </h3>
+                </div>
+                <div class="card-body">
+                  <div class="chart-container">
+                    <canvas id="lineChartMaintenance"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <!-- Line Chart -->
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h3 class="m-0 font-weight-bold text-primary">
+                    Damaged Books
+                  </h3>
+                </div>
+                <div class="card-body">
+                  <div class="chart-container">
+                    <canvas id="lineChartDamaged"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <!-- Line Chart -->
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h3 class="m-0 font-weight-bold text-primary">
+                    Overdue Books
+                  </h3>
+                </div>
+                <div class="card-body">
+                  <div class="chart-container">
+                    <canvas id="lineChartOverdue"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col-md-4">
               <!-- Line Chart -->
               <div class="card shadow mb-4">
                 <div class="card-header py-3">

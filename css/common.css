@@ -355,3 +355,15 @@ background: #fff;
 .inner-about2 p{
     color:#fff;
 }
+.label-secondary{
+    background:#343a40 ;
+  }
+  .icon-secondary{
+  color: #343a40;
+  }
+  .label-info{
+   background: #17a2b8;
+  }
+  .icon-info{
+      color: #17a2b8;
+     }
