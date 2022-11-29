@@ -27,14 +27,12 @@ function login() {
         Swal.fire({
           text: objects['message'],
           icon: 'success',
-          confirmButtonText: 'OK'
+          timer : 2000,
+          showConfirmButton: false
         }).then((result) => {
-          if (result.isConfirmed) {
             response['userRole'] == "Admin" ?
             window.location.href = './dashboard.html' :
-            window.location.href = './my-books.html'; 
-
-          }
+            window.location.href = './my-books.html';
         });
       } else {
         Swal.fire({

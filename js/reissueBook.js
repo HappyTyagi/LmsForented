@@ -1,5 +1,6 @@
 const BASE_URL = 'http://35.154.104.127:8080/LMS';
 const BookSerialArray = [];
+const lateFees = 0; 
 
 
 const jwt = localStorage.getItem("jwt");
@@ -38,6 +39,8 @@ async function getapi(url) {
 async function getBookByBookId(){
   let bookSerialId = document.getElementById("bookId").value;
   var data = await getapi(BASE_URL+"/issuedBook/returnBookFindByBookId/"+bookSerialId);
+  var userId = document.getElementById("student-id").value;
+  alert(userId);
   var tbl = document.getElementById("bookList").getElementsByTagName('tbody')[0];
   if(data.status != 200){
     Swal.fire({
@@ -52,6 +55,18 @@ async function getBookByBookId(){
     return false;
   }
   var book = data.response;
+  if(userId != ""  && book.userId != userId ){
+    Swal.fire({
+      text: "Book is issued to different user",
+      icon: 'error',
+      confirmButtonText: 'OK'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        document.getElementById("bookId").value = "";
+      }
+    });
+    return false;
+  }
     if(!BookSerialArray.includes(bookSerialId)){
       let row = tbl.insertRow();
       let cell1 = row.insertCell(0);
@@ -71,11 +86,11 @@ async function getBookByBookId(){
       cell2.innerHTML = book.bookName;
       cell3.innerHTML = "Type not present in Book API";
       cell4.innerHTML = book.publicationName;
-      cell5.innerHTML = book.bookIssueDate;
+      cell5.innerHTML = new Date(book.bookIssueDate).toISOString().slice(0, 10);
       cell6.innerHTML = book.bookReturnDate;
       cell7.innerHTML = book.totalDueDay;
       cell8.innerHTML = book.totalPenalty;
-      cell9.innerHTML = `<input id="waveOff" type="text" class="form-control" name="wave off" value="" placeholder="Enter Amount" >`;
+      cell9.innerHTML = `<input id="waveOff" type="text" class="form-control" name="wave off" value="" placeholder="Enter Amount" onchange="addWaveoff(this.value)">`;
       cell10.innerHTML = `<i class="fa fa-trash trash-icon" onclick="deleteRow(${rowIndex})"></i>`;
       BookSerialArray[rowIndex-1] = bookSerialId;
       document.getElementById("delayDays").value = book.totalDueDay;
@@ -136,7 +151,7 @@ function addReissuedBook(){
             confirmButtonText: 'OK'
           }).then((result) => {
             if (result.isConfirmed) {
-              window.location.href = './reissue-book.html';
+              window.open(response.filePath, "_blank");
             }
           });
         } else {
@@ -184,4 +199,9 @@ function checkforPastDate(id){
         }
       }); 
   }
+}
+
+function addWaveoff(amount){
+  lateFees = lateFees + amount;
+  document.getElementById("late-fee").value = lateFees;
 }
