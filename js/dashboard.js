@@ -95,19 +95,13 @@ function showGraphChart(dashboardData){
   const data = {
 		labels: months,
 		datasets: [{
-		  label: 'Total Book Issued',
-		  backgroundColor: 'rgb(54, 162, 235)',
-		  borderColor: 'rgb(54, 162, 235)',
-		  data: totalBookIssuedMonth,
+		  label: 'Total Books',
+		  backgroundColor: '#17a2b8',
+		  borderColor: '#17a2b8',
+		  data: [50,70,80,100,120,140],
 		  cubicInterpolationMode: 'monotone',
 		},
-		{
-			label: 'Total Books Pending For Returned',
-			backgroundColor: 'rgb(255, 99, 132)',
-			borderColor: 'rgb(255, 99, 132)',
-			data: totalPendingforReturned,
-			cubicInterpolationMode: 'monotone',
-		  }]
+    ]
 	  };
 	
 	  const config = {
@@ -122,20 +116,151 @@ function showGraphChart(dashboardData){
 		config
 	  );
 
+    /*--Total issued Books--*/
+    const dataissued = {
+      labels: months,
+      datasets: [{
+        label: 'Issued Books',
+        backgroundColor: '#5CB85C',
+        borderColor: '#5CB85C',
+        data: [20,25,30,40,50,70],
+        cubicInterpolationMode: 'monotone',
+      },
+    ]
+      };
+    
+      const configissued = {
+      type: 'bar',
+      data: dataissued,
+      options: {}
+      };
+      
+  
+      const lineChartissued = new Chart(
+      document.getElementById('lineChartissued'),
+      configissued
+      );
+  
+      /*--Total Return Books--*/
+      const dataReturn = {
+        labels: months,
+        datasets: [{
+          label: 'Returned Books',
+          backgroundColor: '#337AB7',
+          borderColor: '#337AB7',
+          data: [20,25,30,40,50,70],
+          cubicInterpolationMode: 'monotone',
+        },
+      ]
+        };
+      
+        const configReturn = {
+        type: 'bar',
+        data: dataReturn,
+        options: {}
+        };
+        
+    
+        const lineChartReturn = new Chart(
+        document.getElementById('lineChartReturn'),
+        configReturn
+        );
+    
+    
+ /*--Total Maintenance Books--*/
+ const dataMaintenance = {
+  labels: months,
+  datasets: [{
+    label: 'Maintenance Books',
+    backgroundColor: '#343A40',
+    borderColor: '#343A40',
+    data: [20,25,30,40,50,70],
+    cubicInterpolationMode: 'monotone',
+  },
+]
+  };
+
+  const configMaintenance = {
+  type: 'bar',
+  data: dataMaintenance,
+  options: {}
+  };
+  
+
+  const lineChartMaintenance = new Chart(
+  document.getElementById('lineChartMaintenance'),
+  configMaintenance
+  );
+/*--Total damages Books--*/
+const dataDamaged = {
+  labels: months,
+  datasets: [{
+    label: 'Damaged Books',
+    backgroundColor: '#F0AD4E',
+    borderColor: '#F0AD4E',
+    data: [20,25,30,40,50,70],
+    cubicInterpolationMode: 'monotone',
+  },
+]
+  };
+
+  const configDamaged = {
+  type: 'bar',
+  data: dataDamaged,
+  options: {}
+  };
+  
+
+  const lineChartDamaged = new Chart(
+  document.getElementById('lineChartDamaged'),
+  configDamaged
+  );
+
+/*--Total damages Books--*/
+const dataOverdue = {
+  labels: months,
+  datasets: [{
+    label: 'Damaged Books',
+    backgroundColor: '#D9534F',
+    borderColor: '#D9534F',
+    data: [20,25,30,40,50,70],
+    cubicInterpolationMode: 'monotone',
+  },
+]
+  };
+
+  const configOverdue = {
+  type: 'bar',
+  data: dataOverdue,
+  options: {}
+  };
+  
+
+  const lineChartOverdue = new Chart(
+  document.getElementById('lineChartOverdue'),
+  configOverdue
+  );
+
 
 	  /*--polarchart--*/
 	  const dataPolar = {
 		labels: [
-		  'Total User',
-		  'Total Issued',
-		  'Total Overdue for Returned',
+		  'Total Books',
+      'Issued',
+      'Returned',
+		  'Overdue',
+      'Maintenance',
+		  'Damaged',
 		],
 		datasets: [{
-		  data: [users, totalIssued, totalOverdue],
+		  data: [30, 40, 30, 50,70,50],
 		  backgroundColor: [
-			'rgb(75, 192, 192)',
-			'rgb(54, 162, 235)',
-			'rgb(255, 99, 132)',
+			'#17A2B8',
+			'#5CB85C',
+			'#337AB7',
+			'#343A40',
+			'#F0AD4E',
+			'#D9534F',
 
 		  ]
 		}]
