@@ -208,7 +208,14 @@ cursor: pointer;
 .f-28{
     font-size: 60px !important;
 }
+.pl-0,.py-0{
+    padding-left: 0rem !important;
 
+}
+.pr-0,.py-0{
+    padding-right: 0rem !important;
+
+}
 .pb-3, .py-3 {
     padding-bottom: 1rem !important;
 }

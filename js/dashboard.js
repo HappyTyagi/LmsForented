@@ -252,6 +252,7 @@ const dataOverdue = {
       'Maintenance',
 		  'Damaged',
 		],
+    labelDisplay:'rotate',
 		datasets: [{
 		  data: [30, 40, 30, 50,70,50],
 		  backgroundColor: [
