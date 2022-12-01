@@ -90,7 +90,7 @@ function submitDamageBook(){
         "bookSerialNo" : BookSerialArray
         }
     console.log(JSON.stringify(body));    
-    let url = BASE_URL+"/damageOrMaintenance/addDamageOrMaintenance";
+    let url = BASE_URL+"/damageOrMaintenance/addDamage";
     const xhttp = new XMLHttpRequest();
     xhttp.open("POST", url);
     xhttp.setRequestHeader("Content-Type", "application/json");

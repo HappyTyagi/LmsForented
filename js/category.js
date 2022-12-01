@@ -53,8 +53,8 @@ function addCategory(){
             confirmButtonText: 'OK'
           }).then((result) => {
             if (result.isConfirmed) {
-             // window.location.href = './manage-categories.html';
-             document.getElementById("addCategoryForm").reset();
+              window.location.href = './manage-categories.html';
+              document.getElementById("addCategoryForm").reset();
             }
           });
         } else {

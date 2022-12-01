@@ -28,6 +28,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
     <script src="js/damageBook.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.all.min.js"></script>
+    <script src="js/header.js"></script>
 </head>
 
 
@@ -35,136 +36,7 @@
     <div id="home">
         <!-- header -->
         <!-- navbar -->
-        <nav class="navbar navbar-default navbar-fixed-top">
-            <div class="main-nav">
-                <div class="container">
-
-                    <div class="navbar-header page-scroll">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                            <span class="sr-only">Library</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <h1>
-                            <a class="navbar-brand" href="index.html"><img src="images/lms-logo.png"></a>
-                        </h1>
-                    </div>
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse navbar-ex1-collapse nav-right">
-                        <ul class="nav navbar-nav navbar-left cl-effect-15">
-                            <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
-                            <li class="hidden">
-                                <a class="page-scroll" href="#page-top"></a>
-                            </li>
-                            <li>
-                                <a href="dashboard.html" class="dropdown-toggle">Dashboard</a>
-                            </li>
-
-                            <li class="dropdown active-nav">
-                                <a href="Books.html" class="dropdown-toggle effect-3" data-toggle="dropdown">Books
-                                    <b class="caret"></b>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="add-book.html">Add Book</a>
-                                    </li>
-                                    <li>
-                                        <a href="manage-books.html">Manage Books</a>
-                                    </li>
-                                    <li class="active-subnav">
-                                        <a href="manage-books.html">Damaged Books</a>
-                                    </li>
-                                    <li>
-                                        <a href="books-maintenance.html">Books Maintenance</a>
-                                    </li>
-                                    <li>
-                                        <a href="subscription.html">Subscription</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            
-                            <li class="dropdown ">
-                                <a href="Books.html" class="dropdown-toggle effect-3" data-toggle="dropdown">Issue Books
-                                    <b class="caret"></b>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="issue-book.html">Issue New Book</a>
-                                    </li>
-                                    <li>
-                                        <a href="reissue-books.html">Reissue Books</a>
-                                    </li>
-                                    <li >
-                                        <a href="return-book.html">Return Book</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle effect-3" data-toggle="dropdown">Categories
-                                    <b class="caret"></b>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="add-categories.html">Add Category</a>
-                                    </li>
-                                    <li>
-                                        <a href="manage-categories.html">Manage Categories</a>
-                                    </li>
-
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle effect-3" data-toggle="dropdown">Admin
-                                    <b class="caret"></b>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li >
-                                        <a href="add-authors.html">Add Author</a>
-                                    </li>
-                                    <li>
-                                        <a href="manage-authors.html">Manage Author</a>
-                                    </li>
-                                    <li>
-                                        <a href="add-department.html">Add Department</a>
-                                    </li>
-                                    <li>
-                                        <a href="manage-department.html">Manage Department</a>
-                                    </li>
-                                    <li>
-                                        <a href="reminder-services.html">Reminder Services</a>
-                                    </li>
-                                    <li>
-                                        <a href="generate-reports.html">Generate Reports</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="login.html" class="dropdown-toggle">Reg. Student</a>
-
-                            </li>
-
-                            <li>
-                                <a
-                                  href="#modalError"
-                                  class="dropdown-toggle effect-3 btn-logout"
-                                  data-toggle="modal"
-                                  data-target="#modalError"
-                                >
-                                  <span
-                                    class="fa fa-user fa-sign-out"
-                                    aria-hidden="true"
-                                  ></span>
-                                </a>
-                              </li>
-                        </ul>
-                    </div>
-                    <!-- /.navbar-collapse -->
-                    <div class="clearfix"></div>
-                </div>
-                <!-- /.container -->
-            </div>
-        </nav>
+        <div id="header"></div>
         <!-- //navbar ends here -->
 <div class="spacer"></div>
             <!-- add authors form -->
