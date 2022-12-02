@@ -5,11 +5,11 @@ if (jwt == null || userRole != "Admin"){
   window.location.href = './login.html'
 }
 
-function logout() {
-  localStorage.removeItem("jwt");
-  localStorage.removeItem("userRole");
-  window.location.href = './login.html';
-}
+// function logout() {
+//   localStorage.removeItem("jwt");
+//   localStorage.removeItem("userRole");
+//   window.location.href = './login.html';
+// }
 
 // function checkforUpdate(){
 

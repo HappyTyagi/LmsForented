@@ -1,15 +1,11 @@
 const BASE_URL = 'http://35.154.104.127:8080/LMS';
 const jwt = localStorage.getItem("jwt");
 const userRole = localStorage.getItem("userRole");
+
 if (jwt == null || userRole != "Admin"){
   window.location.href = './login.html'
 }
 
-function logout() {
-  localStorage.removeItem("jwt");
-  localStorage.removeItem("userRole");
-  window.location.href = './login.html';
-}
 
 function addAuthor(){
     const authorName = document.getElementById("author-name").value;

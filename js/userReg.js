@@ -1,51 +1,9 @@
-
-var jwt = localStorage.getItem("jwt");
-//if (jwt != null) {
-  //window.location.href = './.html'
-//}
 const BASE_URL = 'http://35.154.104.127:8080/LMS';
-
-function login() {
-  const username = document.getElementById("login-username").value;
-  const password = document.getElementById("login-password").value;
-  let url = BASE_URL+"/loginController/login";
-  const xhttp = new XMLHttpRequest();
-  xhttp.open("POST", url);
-  xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-  xhttp.send(JSON.stringify({
-    "emailId" : username,
-    "password": password
-  }));
-  xhttp.onreadystatechange = function () {
-    if (this.readyState == 4) {
-      const objects = JSON.parse(this.responseText);
-      const response = objects['response'];
-      if (objects['status'] == '200') {
-        localStorage.setItem("jwt", response['tokenNo']);
-        localStorage.setItem("userRole", response['userRole']);
-        console.log( response['userRole']);
-        Swal.fire({
-          text: "Welcome",
-          icon: 'success',
-          timer : 1000,
-          showConfirmButton: false
-        }).then((result) => {
-            response['userRole'] == "Admin" ?
-            window.location.href = './dashboard.html' :
-            window.location.href = './my-books.html';
-        });
-      } else {
-        Swal.fire({
-          text: objects['message'],
-          icon: 'error',
-          confirmButtonText: 'OK'
-        });
-      }
-    }
-  };
-  return false;
+const jwt = localStorage.getItem("jwt");
+const userRole = localStorage.getItem("userRole");
+if (jwt == null || userRole != "Admin"){
+  window.location.href = './login.html'
 }
-
 
 function addUser(){
   const email = document.getElementById("email").value;

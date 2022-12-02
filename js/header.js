@@ -1,3 +1,4 @@
+
 $(function(){
   if(window.localStorage.getItem('userRole') === 'Admin'){
     $("#header").load("headerAdmin.html");
@@ -7,3 +8,12 @@ $(function(){
     $("#header").load("header.html");
   } 
 });
+
+
+
+
+function logout() {
+  localStorage.removeItem("jwt");
+  localStorage.removeItem("userRole");
+  window.location.href = './index.html';
+}

@@ -5,10 +5,10 @@ if (jwt == null || userRole != "Admin"){
   window.location.href = './login.html'
 }
 
-function logout() {
-  localStorage.removeItem("jwt");
-  window.location.href = './login.html';
-}
+// function logout() {
+//   localStorage.removeItem("jwt");
+//   window.location.href = './login.html';
+// }
 
 async function getapi(url) {
   const response = await fetch(url,{
@@ -43,7 +43,7 @@ async function getBooks(data) {
           <th scope="col">Book/Journal Name</th>
           <th scope="col">Publication</th>
           <th scope="col">Category</th>
-          <th scope="col">Photos</th>
+          <th scope="col">Status</th>
           <th scope="col">Action</th>
         </tr>
       </thead>
@@ -54,12 +54,14 @@ async function getBooks(data) {
     //for (let r of data.list) 
     data.response.bookResponseList.forEach(e => {
         sr++;
+        //alert();
+        //var isActive = (e.addBook.isActive == 1 ? 'Active' : 'Inactive');
         tab += `<tr>
         <th scope="row">${sr}</th>
         <td>${e.addBook.bookName}</td>
         <td>${e.author.fullName}</td>
         <td>${e.categories.categories}</td>
-        <td><img src="./images/a1.jpg" class="manage-image"></td>
+        <td>${e.addBook.isActive}</td>
         <td> 
             <button type="button" class="btn btn-primary" onClick ="updateBookShow('${e.addBook.bookId}')"><i class="fa fa-edit"></i></button>
             <button type="button" class="btn btn-danger" onClick = "removeBook('${e.addBook.bookId}')"><i class="fa fa-trash"></i></button>
