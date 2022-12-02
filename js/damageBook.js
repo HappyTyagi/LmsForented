@@ -29,7 +29,6 @@ async function getapi(url) {
               //window.location.href = './login.html'
               //console.log(localStorage.getItem("jwt"));
           }
-          return false;
      }
   }
   return data;
@@ -39,12 +38,13 @@ async function getBookByBookId(){
   let bookSerialId = document.getElementById("bookId").value;
   var data = await getapi(BASE_URL+"/book/findBookBySerialNo/"+bookSerialId);
   var tbl = document.getElementById("bookList").getElementsByTagName('tbody')[0];
-  if(!data.response.bookResponseList){
+  if(!data.response.status != 200){
     Swal.fire({
       text: data.response.message,
       icon: 'error',
       confirmButtonText: 'OK'
     });
+    return false;
   }
   data.response.bookResponseList.forEach(async e => {
     if(!BookSerialArray.includes(bookSerialId)){

@@ -145,7 +145,7 @@ const showDepartmentList = (async() =>{
   data.response.forEach(e => {
     tab += `<option value = ${e.departmentId}>${e.departmentName}</option>`;
   });
-  document.getElementById("departmentSelect").innerHTML = tab;
+  //document.getElementById("departmentSelect").innerHTML = tab;
   document.getElementById("departmentId").innerHTML = tab;
  
 });

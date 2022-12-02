@@ -12,6 +12,7 @@ if (jwt == null || userRole != "Admin"){
 
 function logout() {
   localStorage.removeItem("jwt");
+  localStorage.clear("userRole");
   window.location.href = './login.html';
 }
 
@@ -171,13 +172,13 @@ function addReturnBook(){
         console.log(response);
         if (objects['status'] == '200') {
           Swal.fire({
-            text: 'Book reissued successfully',
+            text: 'Book return successfully',
             icon: 'success',
             confirmButtonText: 'OK'
           }).then((result) => {
             if (result.isConfirmed) {
               document.getElementById("returnBookform").reset();
-              window.location.href = './return-books.html';
+              window.location.href = './return-book.html';
             }
           });
         } else {
