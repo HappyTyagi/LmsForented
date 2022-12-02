@@ -39,58 +39,274 @@
         <div id="header"></div>
         <!-- //navbar ends here -->
          <div class="spacer"></div>
-            <!-- add authors form -->
-            <div class="login-form section text-center">
-                <div class="container">
-                    <div class="panel-heading">
-                        <div class="row">
-                          <!-- breadcrumbs -->
-        
-                        <div class="col-md-9">
-                              <ul class="btn-group btn-breadcrumb bc-list">
-                                <li class="btn btn1">
-                                  <a href="index.html">
-                                    <i class="glyphicon glyphicon-home"></i>
-                                  </a>
-                                </li>
-                                <li class="btn btn2">
-                                    <a href="#">Books</a>
-                                </li>
-                                <li class="btn btn3">
-                                  <a href="manage-books.html">Manage Books</a>
-                                </li>
 
-                              </ul>
+            <!-- manage book form -->
+            <div class="login-form section text-center">
+                <div class="container-fluid">
+                      <div style="margin-top: 30px" class="mainbox">
+                        <div class="panel panel-info">
+                          <div class="panel-heading">
+                            <div class="row">
+                              <!-- breadcrumbs -->
+            
+                            <div class="col-md-9">
+                                <ul class="btn-group btn-breadcrumb bc-list">
+                                    <li class="btn btn1">
+                                      <a href="index.html">
+                                        <i class="glyphicon glyphicon-home"></i>
+                                      </a>
+                                    </li>
+                                    <li class="btn btn2">
+                                        <a href="#">Books</a>
+                                    </li>
+                                    <li class="btn btn3">
+                                      <a href="manage-books.html">Manage Books</a>
+                                    </li>
+    
+                                  </ul>
+                            </div>
+                              <!--//breadcrumbs ends here-->
+            
+                            </div>
+            
+                          </div>
+                          <div style="padding-top: 30px" class="panel-body">
+                            <div
+                              style="display: none"
+                              id="login-alert"
+                              class="alert alert-danger col-sm-12"
+                            ></div>
+                            <form
+                              id="loginform"
+                              class="form-horizontal"
+                              action="#"
+                              method="post"
+                            >
+                            <div class="col-md-4">
+                              <div class="input-group">
+                                <span class="input-group-addon">
+                                  <i class="glyphicon glyphicon-book"></i>
+                                </span>
+                                <select class="form-control select2" id="itemType">
+                                  <option>Select Item Type</option>
+                                  <option>Book</option>
+                                  <option>Journal</option>
+                                </select>
+                              </div>
+                              </div>
+                              <div class="col-md-4">
+                                <div style="margin-bottom: 25px" class="input-group">
+                                  <span class="input-group-addon">
+                                    <i class="glyphicon glyphicon-book"></i>
+                                  </span>
+                                  <input
+                                    id="fromDate"
+                                    type="text"
+                                    class="form-control date"
+                                    name="From Date"
+                                    value=""
+                                    placeholder="From Date"
+                                    required
+                                    onchange="checkForFutureDate(this.value)"
+                                  />
+                                </div>
+                              </div>
+                              <div class="col-md-4">
+                                <div style="margin-bottom: 25px" class="input-group">
+                                  <span class="input-group-addon">
+                                    <i class="glyphicon glyphicon-book"></i>
+                                  </span>
+                                  <input
+                                    id="toDate"
+                                    type="text"
+                                    class="form-control date"
+                                    name="To Date"
+                                    value=""
+                                    placeholder="To Date"
+                                    required
+                                    onchange="checkForPastDate(this.value)"
+                                  />
+                                </div>
+                              </div>
+                                <!-- Button -->
+                                <div class="col-sm-12 controls">
+                                    <a id="btnRefresh" href="#" class="btn btn-success float-right" onclick="refreshDashboardData()">Refresh Data </a>
+                                    <a id="btnRefresh" href="#" class="btn btn-success float-right mr-2">Reset </a>
+                                </div>
+                            </form>
+                            <div class="col-md-12 toverflow mt-5">
+                                <table class="table table-bordered" id="bookList">
+                                </table>
+                                
+                                <nav aria-label="..." class="float-right">
+                                    <ul class="pagination">
+                                      <li class="page-item disabled">
+                                        <a class="page-link" href="#" tabindex="-1">Previous</a>
+                                      </li>
+                                      <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                      <li class="page-item active">
+                                        <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                                      </li>
+                                      <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                      <li class="page-item">
+                                        <a class="page-link" href="#">Next</a>
+                                      </li>
+                                    </ul>
+                                  </nav>
+                                  <!-- Modal -->
+                                  <div class="modal fade" id="myModal" role="dialog">
+                                    <div class="modal-dialog modal-lg">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                          <h3 class="modal-title"><strong>Book Details</strong></h3>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form id="loginform" class="form-horizontal" action="#" method="post">
+            
+                                                <div class="col-md-4">
+                                                    <div class="input-group">
+                                                      <span class="input-group-addon">
+                                                        <i class="glyphicon glyphicon-book"></i>
+                                                      </span>
+                                                      <select class="form-control select2" id="bookJournelType" disabled>
+                                    
+                                                      </select>
+                                                    </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div style="margin-bottom: 25px" class="input-group">
+                                                            <span class="input-group-addon">
+                                                                <i class="glyphicon glyphicon-book"></i>
+                                                            </span>
+                                                            <select class="form-control select2" id="category" disabled>
+                                                            </select>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div style="margin-bottom: 25px" class="input-group">
+                                                            <span class="input-group-addon">
+                                                                <i class="glyphicon glyphicon-book"></i>
+                                                            </span>
+                                                            <select class="form-control" id="authorName" disabled></select>
+                                                        </div>
+                                                    </div>
+                                            <div class="col-md-4">
+                                                <div style="margin-bottom: 25px" class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <i class="glyphicon glyphicon-book"></i>
+                                                    </span>
+                                                    <input id="book-name" type="text" class="form-control"
+                                                        name="book-name"   placeholder="Book/Journal Name"
+                                                        required disabled> 
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div style="margin-bottom: 25px" class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <i class="glyphicon glyphicon-book"></i>
+                                                    </span>
+                                                    <input id="publication-name" maxlength="30" type="text" class="form-control"
+                                                        name="publication-name"   placeholder="Publication"
+                                                        required disabled>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div style="margin-bottom: 25px" class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <i class="glyphicon glyphicon-book"></i>
+                                                    </span>
+                                                    <input id="edition" maxlength="20" type="text" class="form-control"
+                                                        name="edition"   placeholder="Edition"
+                                                        required disabled>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div style="margin-bottom: 25px" class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <i class="glyphicon glyphicon-book"></i>
+                                                    </span>
+                                                    <input id="publish-date" type="text" class="form-control date"
+                                                       placeholder="Publish Date" required disabled>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div style="margin-bottom: 25px" class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <i class="glyphicon glyphicon-book"></i>
+                                                    </span>
+                                                    <select class="form-control select2" id="category" disabled>
+                                                    </select>
+                                                    
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div style="margin-bottom: 25px" class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <i class="glyphicon glyphicon-book"></i>
+                                                    </span>
+                                                    <input id="local-number" maxlength="20" type="text" class="form-control"
+                                                        name="local-number"   placeholder="Assigned local number/name"
+                                                        required disabled>
+                                                        
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div style="margin-bottom: 25px" class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <i class="glyphicon glyphicon-book"></i>
+                                                    </span>
+                                                    <input id="no-pages"  type="number" class="form-control"
+                                                        name="no-pages"   placeholder="Number of Pages"
+                                                        required pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==5) return false;" disabled>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div style="margin-bottom: 25px" class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <i class="glyphicon glyphicon-book"></i>
+                                                    </span>
+                                                    <input id="dateTime" type="text" class="form-control date"
+                                                        name="dateTime"   placeholder="Adding Date and Time to Library"
+                                                        required disabled>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div style="margin-bottom: 25px" class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <i class="glyphicon glyphicon-book"></i>
+                                                    </span>
+                                                    <select class="form-control" id="status">
+                                                        <option value="001">Active</option>
+                                                        <option value="002">Inactive</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div style="margin-top:10px" class="form-group">
+                                                <!-- Button -->
+                                                <div class="col-sm-12 controls">
+                                                </div>
+                                            </div>
+            
+                                        </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-success" onClick = "removeBook('${e.addBook.bookId}')" data-dismiss="modal">Change Status</button>
+                                          <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  </div>
+                          </div>
                         </div>
-                          <!--//breadcrumbs ends here-->
-        
-                        </div>
-        
                       </div>
-                    <div class="col-md-12 toverflow">
-                    <table class="table table-bordered" id="bookList">
-                    </table>
-                    
-                    <nav aria-label="..." class="float-right">
-                        <ul class="pagination">
-                          <li class="page-item disabled">
-                            <a class="page-link" href="#" tabindex="-1">Previous</a>
-                          </li>
-                          <li class="page-item"><a class="page-link" href="#">1</a></li>
-                          <li class="page-item active">
-                            <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                          </li>
-                          <li class="page-item"><a class="page-link" href="#">3</a></li>
-                          <li class="page-item">
-                            <a class="page-link" href="#">Next</a>
-                          </li>
-                        </ul>
-                      </nav>
-                      </div>
+
                 </div>
             </div>
         </div>
-        <!--//add authors form ends here-->
+        <!--// manage book form ends here-->
 
     </div>
      <!-- footer -->
@@ -150,8 +366,8 @@
         $(document).ready(function () {
             /*
             var defaults = {
-                containerID: 'toTop', // fading element id
-                containerHoverID: 'toTopHover', // fading element hover id
+                container-fluidID: 'toTop', // fading element id
+                container-fluidHoverID: 'toTopHover', // fading element hover id
                 scrollSpeed: 1200,
                 easingType: 'linear' 
             };

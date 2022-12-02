@@ -42,49 +42,104 @@
 
             <!-- add authors form -->
             <div class="login-form section text-center">
-                <div class="container">
-                    <div class="panel-heading">
-                        <div class="row">
-                          <!-- breadcrumbs -->
-        
-                        <div class="col-md-9">
-                              <ul class="btn-group btn-breadcrumb bc-list">
-                                <li class="btn btn1">
-                                  <a href="index.html">
-                                    <i class="glyphicon glyphicon-home"></i>
-                                  </a>
-                                </li>
-                                <li class="btn btn2">
-                                    <a href="#">Admin</a>
-                                </li>
-                                <li class="btn btn3">
-                                  <a href="manage-authors.html">Manage Authors</a>
-                                </li>
-                              </ul>
+                <div class="container-fluid">
+                    <div style="margin-top: 30px" class="mainbox">
+                        <div class="panel panel-info">
+                          <div class="panel-heading">
+                            <div class="row">
+                              <!-- breadcrumbs -->
+            
+                              <div class="col-md-9">
+                                <ul class="btn-group btn-breadcrumb bc-list">
+                                    <li class="btn btn1">
+                                      <a href="index.html">
+                                        <i class="glyphicon glyphicon-home"></i>
+                                      </a>
+                                    </li>
+                                    <li class="btn btn2">
+                                        <a href="#">Admin</a>
+                                    </li>
+                                    <li class="btn btn3">
+                                      <a href="manage-authors.html">Manage Authors</a>
+                                    </li>
+                                  </ul>
+                          </div>
+                              <!--//breadcrumbs ends here-->
+            
+                            </div>
+            
+                          </div>
+                          <div style="padding-top: 30px" class="panel-body">
+                            <div
+                              style="display: none"
+                              id="login-alert"
+                              class="alert alert-danger col-sm-12"
+                            ></div>
+                            <form
+                              id="loginform"
+                              class="form-horizontal"
+                              action="#"
+                              method="post"
+                            >
+
+                              <div class="col-md-4">
+                                <div style="margin-bottom: 25px" class="input-group">
+                                  <span class="input-group-addon">
+                                    <i class="glyphicon glyphicon-book"></i>
+                                  </span>
+                                  <input
+                                    id="searchbyCategory"
+                                    type="text"
+                                    class="form-control"
+                                    name="From Date"
+                                    value=""
+                                    placeholder="Search Author"
+                                    required
+                                  />
+                                </div>
+                              </div>
+                              <div class="col-md-4">
+                                <div class="input-group">
+                                  <span class="input-group-addon">
+                                    <i class="glyphicon glyphicon-book"></i>
+                                  </span>
+                                  <select class="form-control select2" id="itemType">
+                                    <option>All</option>
+                                    <option>Active</option>
+                                    <option>Inactive</option>
+                                  </select>
+                                </div>
+                                </div>
+                                <!-- Button -->
+                                <div class="col-sm-12 controls">
+                                    <a id="btnRefresh" href="#" class="btn btn-success float-right" onclick="refreshDashboardData()">Refresh Data </a>
+                                    <a id="btnRefresh" href="#" class="btn btn-success float-right mr-2">Reset </a>
+                                </div>
+                            </form>
+
+                            <div class="col-md-12 toverflow mt-5">
+                                <table class="table table-bordered" id = "authorList"></table>
+                                <nav aria-label="..." class="float-right">
+                                    <ul class="pagination">
+                                      <li class="page-item disabled">
+                                        <a class="page-link" href="#" tabindex="-1">Previous</a>
+                                      </li>
+                                      <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                      <li class="page-item active">
+                                        <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                                      </li>
+                                      <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                      <li class="page-item">
+                                        <a class="page-link" href="#">Next</a>
+                                      </li>
+                                    </ul>
+                                  </nav>
+                                  </div>
+                          </div>
                         </div>
-                          <!--//breadcrumbs ends here-->
-        
-                        </div>
-        
                       </div>
-                    <div class="col-md-12 toverflow">
-                    <table class="table table-bordered" id = "authorList"></table>
-                      <nav aria-label="..." class="float-right">
-                        <ul class="pagination">
-                          <li class="page-item disabled">
-                            <a class="page-link" href="#" tabindex="-1">Previous</a>
-                          </li>
-                          <li class="page-item"><a class="page-link" href="#">1</a></li>
-                          <li class="page-item active">
-                            <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                          </li>
-                          <li class="page-item"><a class="page-link" href="#">3</a></li>
-                          <li class="page-item">
-                            <a class="page-link" href="#">Next</a>
-                          </li>
-                        </ul>
-                      </nav>
-                </div>
+
+
                 </div>
             </div>
         </div>
@@ -147,8 +202,8 @@
         $(document).ready(function () {
             /*
             var defaults = {
-                containerID: 'toTop', // fading element id
-                containerHoverID: 'toTopHover', // fading element hover id
+                container-fluidID: 'toTop', // fading element id
+                container-fluidHoverID: 'toTopHover', // fading element hover id
                 scrollSpeed: 1200,
                 easingType: 'linear' 
             };
