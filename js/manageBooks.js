@@ -43,7 +43,7 @@ async function getBooks(data) {
           <th scope="col">Book/Journal Name</th>
           <th scope="col">Publication</th>
           <th scope="col">Category</th>
-          <th scope="col">Photos</th>
+          <th scope="col">Status</th>
           <th scope="col">Action</th>
         </tr>
       </thead>
@@ -59,11 +59,10 @@ async function getBooks(data) {
         <td>${e.addBook.bookName}</td>
         <td>${e.author.fullName}</td>
         <td>${e.categories.categories}</td>
-        <td><img src="./images/a1.jpg" class="manage-image"></td>
+        <td>Active</td>
         <td> 
             <button type="button" class="btn btn-primary" onClick ="updateBookShow('${e.addBook.bookId}')"><i class="fa fa-edit"></i></button>
-            <button type="button" class="btn btn-danger" onClick = "removeBook('${e.addBook.bookId}')"><i class="fa fa-trash"></i></button>
-
+            <button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#myModal"><i class="fa fa-eye"></i></button>
          </td>
       </tr>`;
     });
