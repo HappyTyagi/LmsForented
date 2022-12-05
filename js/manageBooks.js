@@ -64,7 +64,7 @@ async function getBooks(data) {
         <td><img src="./images/a1.jpg" class="manage-image"></td>
         <td> 
             <button type="button" class="btn btn-primary" onClick ="updateBookShow('${e.addBook.bookId}')"><i class="fa fa-edit"></i></button>
-            <button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#myModal"><i class="fa fa-eye"></i></button>
+            <button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#myModal" onclick="loadBookDataModal('${e.addBook.bookId}')"><i class="fa fa-eye"></i></button>
          </td>
       </tr>`;
     });
@@ -133,4 +133,21 @@ async function removeBook(bookId){
         return (response['categories']);
       }
     }; 
+  }
+
+  async function loadBookDataModal(bookId){
+    var data = await getapi(BASE_URL+"/book/searchBookById/"+bookId);
+    data.response.bookResponseList.forEach(e => {
+    document.getElementById("book-id").value = e.addBook.bookId;
+    document.getElementById("book-name").value = e.addBook.bookName;
+    document.getElementById("publication-name").value = e.author.publication; 
+    document.getElementById("edition").value = e.addBook.edition;
+    document.getElementById("publish-date").value = e.author.publistionDate;
+    document.getElementById("local-number").value =e.addBook.assignLocalNo;
+    document.getElementById("no-pages").value = e.addBook.noOfPages;
+    document.getElementById("categoryM").value = e.categories.categories;
+    document.getElementById("dateTime").value = e.addBook.purchasedDate;
+    document.getElementById("bookJournelType").value = e.bookType.bookTypeName;
+    document.getElementById("authorM").value = e.author.fullName;
+    });
   }

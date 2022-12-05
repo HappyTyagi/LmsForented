@@ -34,10 +34,17 @@ async function getapi(url) {
   return data;
 }
 
-async function getBookByBookId(){
-  let bookSerialId = document.getElementById("bookId").value;
-  var data = await getapi(BASE_URL+"/book/findBookBySerialNo/"+bookSerialId);
-  var tbl = document.getElementById("bookList").getElementsByTagName('tbody')[0];
+async function loadBookDetail(bookSerialId){
+    if(bookSerialId===""){
+        Swal.fire({
+            text: "Please Enter Book Serial Number",
+            icon: 'error',
+            confirmButtonText: 'OK'
+          });
+          return false;    
+    }
+   var data = await getapi(BASE_URL+"/book/findBookBySerialNo/"+bookSerialId);
+   
   if(!data.response.bookResponseList){
     Swal.fire({
       text: data.response.message,
@@ -47,31 +54,15 @@ async function getBookByBookId(){
     return false;
   }
   data.response.bookResponseList.forEach(async e => {
-    if(!BookSerialArray.includes(bookSerialId)){
-      var itemType = showItemTypeByCategory(e.categories.categoryId);
-      let row = tbl.insertRow();
-      //let cell1 = row.insertCell(0);
-      let cell2 = row.insertCell(0);
-      let cell3 = row.insertCell(1);
-      let cell4 = row.insertCell(2);
-      let cell5 = row.insertCell(3);
-      var rowIndex = tbl.rows.length;
-      //cell1.innerHTML = rowIndex;
-      //cell1.setAttribute("id",tbl.rows.length);
-      cell2.innerHTML = e.addBook.bookName;
-      cell3.innerHTML = itemType;
-      cell4.innerHTML = e.author.publication;
-      cell5.innerHTML = `<i class="fa fa-trash trash-icon" onclick="deleteRow(${rowIndex})"></i>`;
-      BookSerialArray[rowIndex-1] = bookSerialId;  
-  }else{
-    Swal.fire({
-      text: 'Book already added in list',
-      icon: 'error',
-      confirmButtonText: 'OK'
-    });
-  }
-});
-document.getElementById("bookId").value ="";
+      document.getElementById("book-name").value = e.addBook.bookName;  
+      document.getElementById("publication").value = e.author.publication;  
+      document.getElementById("edition").value = e.author.edition;  
+      document.getElementById("publishDate").value = e.author.publistionDate;  
+      document.getElementById("category").value = e.categories.categories;  
+      document.getElementById("localNo").value = e.addBook.assignLocalNo; 
+      document.getElementById("itemType").value = e.bookType.bookTypeName;  
+  });
+    document.getElementById("bookId").value ="";
 };
 
 
@@ -81,16 +72,23 @@ function deleteRow(ele){
 }
 
 function submitDamageBook(){
-    const bookSerialId = document.getElementById("repairable").value;
-    const replacement = document.getElementById("replacement").value;
-   
+const bookSerialId = document.getElementById("bookSerialNo").value;
+    if(bookSerialId===""){
+        Swal.fire({
+            text: "Please Enter Book Serial Number",
+            icon: 'error',
+            confirmButtonText: 'OK'
+          });
+          return false;    
+    }
+    const vendorName = document.getElementById("vendor-name").value;
+    const returnDate = document.getElementById("returnDate").value;
+    const maintenanceCost = document.getElementById("maintenance-cost").value;
+    const remarks = document.getElementById("remark").value;
     const body = {
-        "repairable": repairable,  
-        "replaceReq": replacement,
-        "bookSerialNo" : BookSerialArray
         }
     console.log(JSON.stringify(body));    
-    let url = BASE_URL+"/damageOrMaintenance/addDamage";
+    let url = BASE_URL+"/damageOrMaintenance/addMaintenance";
     const xhttp = new XMLHttpRequest();
     xhttp.open("POST", url);
     xhttp.setRequestHeader("Content-Type", "application/json");
@@ -103,13 +101,13 @@ function submitDamageBook(){
         const response = objects['response'];
         if (objects['status'] == '200') {
           Swal.fire({
-            text: 'Book added to Damage/Maintenance',
+            text: 'Book added to Maintenance',
             icon: 'success',
             confirmButtonText: 'OK'
           }).then((result) => {
             if (result.isConfirmed) {
               
-              window.location.href = './damaged-books.html';
+              window.location.href = './books-maintenance.html';
             }
           });
         } else {

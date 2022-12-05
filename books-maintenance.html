@@ -19,6 +19,8 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script src="js/bookMaintainance.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.all.min.js"></script>
     <style>
         .loginbox {
             width: 100%;
@@ -86,7 +88,7 @@
                                         <span class="input-group-addon">
                                             <i class="glyphicon glyphicon-book"></i>
                                         </span>
-                                        <input id="category-name" type="text" class="form-control" name="Book Id" value="" placeholder="Search By Book Serial No." required>
+                                        <input id="bookSerialNo" onchange="loadBookDetail(this.value)" type="text" class="form-control" name="Book Id" value="" placeholder="Search By Book Serial No." required>
                                     </div>
                                     </div>
 
@@ -95,8 +97,8 @@
                                         <span class="input-group-addon">
                                             <i class="glyphicon glyphicon-book"></i>
                                         </span>
-                                        <input id="category-name" type="text" class="form-control"
-                                            name=" "   placeholder="Book/Journal Name"
+                                        <input id="book-name" type="text" class="form-control"
+                                            name="book-name"   placeholder="Book/Journal Name"
                                             required> 
                                     </div>
                                 </div>
@@ -105,8 +107,8 @@
                                         <span class="input-group-addon">
                                             <i class="glyphicon glyphicon-book"></i>
                                         </span>
-                                        <input id="category-name" type="text" class="form-control"
-                                            name="  "   placeholder="Publication"
+                                        <input id="publication" type="text" class="form-control"
+                                            name="publication"   placeholder="Publication"
                                             required>
                                     </div>
                                 </div>
@@ -115,8 +117,8 @@
                                         <span class="input-group-addon">
                                             <i class="glyphicon glyphicon-book"></i>
                                         </span>
-                                        <input id="category-name" type="text" class="form-control"
-                                            name="  "   placeholder="Edition"
+                                        <input id="edition" type="text" class="form-control"
+                                            name="edition"  placeholder="Edition"
                                             required>
                                     </div>
                                 </div>
@@ -125,7 +127,7 @@
                                         <span class="input-group-addon">
                                             <i class="glyphicon glyphicon-book"></i>
                                         </span>
-                                        <input id="category-name" type="text" class="form-control date"
+                                        <input id="publishDate" type="text" class="form-control date"
                                            placeholder="Publish Date" required >
                                     </div>
                                 </div>
@@ -134,12 +136,8 @@
                                         <span class="input-group-addon">
                                             <i class="glyphicon glyphicon-book"></i>
                                         </span>
-                                        <select class="form-control select2" id="category">
-                                            <option> Select Category</option>
-                                            <option>Technology</option>
-                                            <option>Science</option>
-                                            <option>Maths</option>
-                                        </select>
+                                        <input id="category" type="text" class="form-control date"
+                                        placeholder="Category" required >        
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -147,8 +145,8 @@
                                         <span class="input-group-addon">
                                             <i class="glyphicon glyphicon-book"></i>
                                         </span>
-                                        <input id="category-name" type="text" class="form-control"
-                                            name="  "   placeholder="Assigned local number/name"
+                                        <input id="localNo" type="text" class="form-control"
+                                            name="localNo"   placeholder="Assigned local number/name"
                                             required>
                                     </div>
                                 </div>
@@ -157,22 +155,8 @@
                                         <span class="input-group-addon">
                                             <i class="glyphicon glyphicon-book"></i>
                                         </span>
-                                        <select class="form-control select2" id="itemtype">
-                                            <option> Select Item Type</option>
-                                            <option>Book</option>
-                                            <option>Magazine</option>
-                                            <option>NewsPaper</option>
-                                            <option>Reports</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div style="margin-bottom: 25px" class="input-group">
-                                        <span class="input-group-addon">
-                                            <i class="glyphicon glyphicon-book"></i>
-                                        </span>
-                                        <input id="category-name" type="text" class="form-control"
-                                            name="  "   placeholder="Vendor name whom book/journal is given"
+                                        <input id="itemType" type="text" class="form-control"
+                                            name="itemType"   placeholder="Item Type"
                                             required>
                                     </div>
                                 </div>
@@ -181,8 +165,18 @@
                                         <span class="input-group-addon">
                                             <i class="glyphicon glyphicon-book"></i>
                                         </span>
-                                        <input id="category-name" type="text" class="form-control datetime"
-                                            name="  "   placeholder="Expected date to return back"
+                                        <input id="vendor-name" type="text" class="form-control"
+                                            name="vendor-name"   placeholder="Vendor name whom book/journal is given"
+                                            required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="glyphicon glyphicon-book"></i>
+                                        </span>
+                                        <input id="returnDate" type="text" class="form-control datetime"
+                                            name="returnDate"   placeholder="Expected date to return back"
                                             required >
                                     </div>
                                 </div>
@@ -191,8 +185,8 @@
                                         <span class="input-group-addon">
                                             <i class="glyphicon glyphicon-book"></i>
                                         </span>
-                                        <input id="category-name" type="text" class="form-control"
-                                            name="  "   placeholder="Maintenance cost"
+                                        <input id="maintenance-cost" type="text" class="form-control"
+                                            name="maintenance-cost"   placeholder="Maintenance cost"
                                             required>
                                     </div>
                                 </div>
@@ -202,13 +196,13 @@
                                         <span class="input-group-addon">
                                             <i class="glyphicon glyphicon-book"></i>
                                         </span>
-                                        <input id="remark" type="text" class="form-control" name="Book Id" value="" placeholder="Remarks" required>
+                                        <input id="remark" type="text" class="form-control" name="remark" value="" placeholder="Remarks" required>
                                     </div>
                                     </div>
 
                                     <!-- Button -->
                                     <div class="col-sm-12 controls">
-                                        <a href="#" class="btn btn-success float-right">Submit </a>
+                                        <a href="#" class="btn btn-success float-right" onclick="submitBookMaintainance()">Submit </a>
                                     </div>
 
                             </form>

@@ -188,7 +188,9 @@
             $().UItoTop({
                 easingType: 'easeOutQuart'
             });
-
+        });
+        $(window).on('load', function() {
+            $('#adminPage').addClass('active-nav');
         });
     </script>
     <script src="js/SmoothScroll.min.js"></script>
