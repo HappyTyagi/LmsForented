@@ -144,10 +144,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li>
-                                <a href="login.html" class="dropdown-toggle">Reg. Student</a>
-
-                            </li>
+                            <li><a href='student-reg.html' class='dropdown-toggle'>Reg. Student</a></li>
 
                             <li>
                                 <a
@@ -381,6 +378,10 @@
                 easingType: 'easeOutQuart'
             });
 
+        });
+        $(window).on('load', function() {
+            $('#adminPage').addClass('active-nav');
+            $('#reminderServices').addClass('active-subnav');
         });
     </script>
     <script src="js/SmoothScroll.min.js"></script>

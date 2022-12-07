@@ -88,7 +88,7 @@
                   method="post"
                 >
                 <div class="col-md-4">
-                  <div class="input-group">
+                  <div style="margin-bottom: 25px" class="input-group">
                     <span class="input-group-addon">
                       <i class="glyphicon glyphicon-book"></i>
                     </span>
@@ -388,10 +388,9 @@
           easingType: "easeOutQuart",
         });
       });
-       function setActiveMenu() {
-            alert("hi in function");
-            document.getElementById("dashboardPage").className  = "active-nav";
-        };
+      $(window).on('load', function() {
+            $('#dashboardPage').addClass('active-nav');
+        });
        
     </script>
     <script src="js/SmoothScroll.min.js"></script>
