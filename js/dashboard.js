@@ -5,8 +5,6 @@ if (jwt == null || userRole != "Admin"){
   window.location.href = './login.html'
 }
 
-
-
 async function getapi(url) {
   const response = await fetch(url,{
           method : 'GET',
@@ -73,29 +71,23 @@ function showDashboardData(data){
 }
 
 function showGraphChart(dashboardData){
-  const dashboardGraphyData = dashboardData.response.dashBoardGraph;
-  //chart--line--
-  var users = dashboardData.response.allUserData;
-  var totalIssued = dashboardData.response.allIssuedBookListData;
-  var totalOverdue = dashboardData.response.overDueBook;
+  const dashboardTotalBook = dashboardData.response.totalBooksList;
   var months=[];
-  var totalBookIssuedMonth = [];
-  var totalPendingforReturned = [];
+  var totalBookRecords = [];
   var i = 0;
-  dashboardGraphyData.forEach(e => {
+  dashboardTotalBook.forEach(e => {
     months[i] = e.monthName;
-    totalBookIssuedMonth[i] = e.totalIssueBook;
-    totalPendingforReturned[i] = e.totalReturnBook;
+    totalBookRecords[i] = e.books;
     i++;
   });
 	  
-  const data = {
+  const totalBookdata = {
 		labels: months,
 		datasets: [{
 		  label: 'Total Books',
 		  backgroundColor: '#17a2b8',
 		  borderColor: '#17a2b8',
-		  data: [50,70,80,100,120,140],
+		  data: totalBookRecords,
 		  cubicInterpolationMode: 'monotone',
 		},
     ]
@@ -103,24 +95,34 @@ function showGraphChart(dashboardData){
 	
 	  const config = {
 		type: 'bar',
-		data: data,
+		data: totalBookdata,
 		options: {}
 	  };
 	  
-
 	  const lineChart = new Chart(
 		document.getElementById('lineChart'),
 		config
 	  );
 
+
     /*--Total issued Books--*/
+    const dashboardIssuedBook = dashboardData.response.issuedBooksList;
+    var months=[];
+    var totalIssuedRecords = [];
+    var i = 0;
+    dashboardIssuedBook.forEach(e => {
+      months[i] = e.monthName;
+      totalIssuedRecords[i] = e.books;
+      i++;
+    });
+    
     const dataissued = {
       labels: months,
       datasets: [{
         label: 'Issued Books',
         backgroundColor: '#5CB85C',
         borderColor: '#5CB85C',
-        data: [20,25,30,40,50,70],
+        data: totalIssuedRecords,
         cubicInterpolationMode: 'monotone',
       },
     ]
@@ -139,13 +141,23 @@ function showGraphChart(dashboardData){
       );
   
       /*--Total Return Books--*/
+      const dashboardReturndBook = dashboardData.response.returnedBooksList;
+      var months=[];
+      var totalReturnRecords = [];
+      var i = 0;
+      dashboardReturndBook.forEach(e => {
+        months[i] = e.monthName;
+        totalReturnRecords[i] = e.books;
+        i++;
+      });
+
       const dataReturn = {
         labels: months,
         datasets: [{
           label: 'Returned Books',
           backgroundColor: '#337AB7',
           borderColor: '#337AB7',
-          data: [20,25,30,40,50,70],
+          data: totalReturnRecords,
           cubicInterpolationMode: 'monotone',
         },
       ]

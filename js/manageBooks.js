@@ -43,7 +43,7 @@ async function getBooks(data) {
           <th scope="col">Book/Journal Name</th>
           <th scope="col">Publication</th>
           <th scope="col">Category</th>
-          <th scope="col">Photos</th>
+          <th scope="col">Status</th>
           <th scope="col">Action</th>
         </tr>
       </thead>
@@ -61,7 +61,7 @@ async function getBooks(data) {
         <td>${e.addBook.bookName}</td>
         <td>${e.author.fullName}</td>
         <td>${e.categories.categories}</td>
-        <td><img src="./images/a1.jpg" class="manage-image"></td>
+        <td>${e.addBook.isActive === 1? 'Active' : 'Inactive'}</td>
         <td> 
             <button type="button" class="btn btn-primary" onClick ="updateBookShow('${e.addBook.bookId}')"><i class="fa fa-edit"></i></button>
             <button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#myModal" onclick="loadBookDataModal('${e.addBook.bookId}')"><i class="fa fa-eye"></i></button>
@@ -72,14 +72,16 @@ async function getBooks(data) {
         document.getElementById("bookList").innerHTML = tab;
     }
 
-async function removeBook(bookId){
+async function changeActiveInactiveBook(){
   Swal.fire({
-    text: 'Are you sure to delete the Book?',
+    text: 'Are you sure to change status of the Book?',
     icon: 'question',
     confirmButtonText: 'OK',
     showCancelButton: true,
   }).then(async (result) => {
     if (result.isConfirmed) {
+      var bookId = document.getElementById("book-id").value;
+      alert(bookId);
       const url = BASE_URL+"/book/activeOrInactive/"+bookId; 
       const response = await fetch(url,{
           method : 'GET',
@@ -149,5 +151,12 @@ async function removeBook(bookId){
     document.getElementById("dateTime").value = e.addBook.purchasedDate;
     document.getElementById("bookJournelType").value = e.bookType.bookTypeName;
     document.getElementById("authorM").value = e.author.fullName;
+    if (e.addBook.isActive==1){
+        document.getElementById("status").options.selectedIndex = 0;
+    }
+    else{ 
+        document.getElementById("status").options.selectedIndex = 1; 
+    }
     });
   }
+

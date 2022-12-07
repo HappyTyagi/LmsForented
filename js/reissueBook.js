@@ -39,7 +39,13 @@ async function getapi(url) {
 
 async function getBookByBookId(){
   let bookSerialId = document.getElementById("bookId").value;
-  var data = await getapi(BASE_URL+"/issuedBook/returnBookFindByBookId/"+bookSerialId);
+  let issueType = document.getElementById("issueType").value;
+  if(issueType=="001")
+    var url = BASE_URL+"/issuedBook/returnBookFindByBookId";
+  else 
+    var url = BASE_URL+"/issuedBook/returnBookFindByDepartmentId";
+
+  var data = await getapi(url+"/"+bookSerialId);
   var userId = document.getElementById("student-id").value;
   var tbl = document.getElementById("bookList").getElementsByTagName('tbody')[0];
   if(data.status != 200){
@@ -55,7 +61,7 @@ async function getBookByBookId(){
     return false;
   }
   var book = data.response;
-  if(userId != ""  && book.userId != userId ){
+  if(userId != ""  &&  userId != (book.issuedType === 'Department' ? book.departmentId : book.userId)){
     Swal.fire({
       text: "Book is issued to different user",
       icon: 'error',
@@ -98,7 +104,13 @@ async function getBookByBookId(){
       cell10.innerHTML = `<i class="fa fa-trash trash-icon" onclick="deleteRow(${rowIndex})"></i>`;
       BookSerialArray[rowIndex-1] = {bookSerialNo: bookSerialId , waveOffAmount : 0 };
       feesDayArray[rowIndex-1] = {lateFees : book.totalPenalty , delayDays : parseInt(book.totalDueDay)};
-      getUserOrDepartment(book.issuedType,book.userId);
+      if(book.issuedType === 'Department'){
+        document.getElementById("user-id").value = book.departmentId;
+        document.getElementById("student-name").value =  book.departmentName;
+        document.getElementById("student-id").value =  book.departmentId;
+      }else {
+        getUserByUserId(book.userId);
+      }
       lateFees +=book.totalPenalty;
       noDays += parseInt(book.totalDueDay);
       document.getElementById("late-fee").value = lateFees;

@@ -32,20 +32,12 @@ async function getapi(url) {
   show(data.response);
 }
 
-getapi(BASE_URL+"/author/authors");
+getapi(BASE_URL+"/department/getAllDepartment");
 
 
 function show(data) {
     let tab = 
-        ` <thead class="thead-dark">
-        <tr>
-          <th scope="col">S.No.</th>
-          <th scope="col">Authors Name</th>
-          <th scope="col">Status</th>
-          <th scope="col">Action</th>
-        </tr>
-      </thead>
-      <tbody>`;
+        ` `;
     
     // Loop to access all rows 
     let sr = 0;
@@ -54,17 +46,16 @@ function show(data) {
         sr++;
         tab += `<tr>
         <th scope="row">${sr}</th>
-        <td>${e.fullName}</td>
+        <td>${e.departmentName}</td>
         <td>${e.isActive === 1? 'Active' : 'Inactive'}</td>
         <td> 
-            <button type="button" class="btn btn-primary" onClick="updateauthorShow('${e.autherId}')"><i class="fa fa-edit"></i></button>
-            <button type="button" class="btn btn-danger" onClick="removeAuthor('${e.autherId}')"><i class="fa fa-trash"></i></button>
+            <button type="button" class="btn btn-primary" onClick="updateDepartmentShow('${e.departmentId}')"><i class="fa fa-edit"></i></button>
+            <button type="button" class="btn btn-danger" onClick="removeDepartment('${e.departmentId}')"><i class="fa fa-trash"></i></button>
 
          </td>
       </tr>`;
     });
-    tab += `</tbody>`;
-        document.getElementById("authorList").innerHTML = tab;
+         document.getElementById("departmentList").getElementsByTagName('tbody')[0].innerHTML = tab;
     }
 
     function updateauthorShow(authorId){
@@ -96,7 +87,7 @@ function show(data) {
     
               }).then((result) => {
                 if (result.isConfirmed) {
-                  window.location.href = './manage-authors.html';       
+                  window.location.href = './manage-department.html';       
                 }
               });
             } else {

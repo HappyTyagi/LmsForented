@@ -80,7 +80,7 @@ const showBookData = (async() =>{
     document.getElementById("local-number").value =e.addBook.assignLocalNo;
     document.getElementById("no-pages").value = e.addBook.noOfPages;
     document.getElementById("quantity").value = e.addBook.quantity;
-    document.getElementById("purchased").value = e.addBook.purchased;
+    //document.getElementById("purchased").value = e.addBook.purchased;
     document.getElementById("sourceName").value = e.addBook.sourceName;
     document.getElementById("sourceAddress").value = e.addBook.sourceAddress;
     document.getElementById("sourceContactNo").value =e.addBook.sourceContactNo;
@@ -88,21 +88,23 @@ const showBookData = (async() =>{
     document.getElementById("cost").value = e.addBook.cost;
     document.getElementById("purchasedBy").value = e.addBook.purchasedBy;
     document.getElementById("bookcondition").value = e.addBook.bookCondition;
-    document.getElementById("withBinding").value = e.addBook.enableBinding;
+    //document.getElementById("withBinding").value = e.addBook.enableBinding;
+    document.getElementById("dateTime").value = e.addBook.purchasedDate;
+    dateTime
     showAuthorName(e.author.autherId);
     showBookType(e.categories.bookJournel);
     showCategory(e.categories.categoryId,e.categories.bookJournel)
-    if(e.addBook.enableBinding == "Yes") 
-      document.getElementById("withBinding").options.selectedIndex = 1;
-    else
-    document.getElementById("withBinding").options.selectedIndex = 2;
+    if(e.addBook.enableBinding === "Yes"){ 
+      document.getElementById("withBinding").options.selectedIndex = 0;}
+    else{
+      document.getElementById("withBinding").options.selectedIndex = 1;}
 
-    if(e.addBook.purchased == "Purchased") 
+    if(e.addBook.purchased === "Purchased") 
+      document.getElementById("purchased").options.selectedIndex = 0;
+    if(e.addBook.purchased === "Promotional") 
       document.getElementById("purchased").options.selectedIndex = 1;
-    if(e.addBook.purchased == "Promotional") 
-      document.getElementById("purchased").options.selectedIndex = 2;
-    if(e.addBook.purchased == "Donated") 
-      document.getElementById("purchased").options.selectedIndex = 3; 
+    if(e.addBook.purchased === "Donated") 
+      document.getElementById("purchased").options.selectedIndex = 2; 
    
   });
 });
@@ -152,6 +154,7 @@ const showBookData = (async() =>{
     const withBinding = document.getElementById("withBinding").value;
     const authorName = document.getElementById("authorName").value;
     const bookId = document.getElementById("book-id").value;
+    const purchasedDate = document.getElementById("dateTime").value;
     const body = {
       "bookId" :   bookId,
       "bookName": bookName,
@@ -171,6 +174,7 @@ const showBookData = (async() =>{
         "purchased": purchased,
         "enableBinding": withBinding,
         "authorsId": authorName,
+        "purchasedDate" : purchasedDate,
         "categoriesId": category
         }
 

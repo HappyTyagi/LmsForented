@@ -273,8 +273,8 @@
                                                         <i class="glyphicon glyphicon-book"></i>
                                                     </span>
                                                     <select class="form-control" id="status">
-                                                        <option value="001">Active</option>
-                                                        <option value="002">Inactive</option>
+                                                        <option value="1">Active</option>
+                                                        <option value="0">Inactive</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -287,7 +287,7 @@
                                         </form>
                                         </div>
                                         <div class="modal-footer">
-                                          <button type="button" class="btn btn-success" onClick = "removeBook('${e.addBook.bookId}')" data-dismiss="modal">Change Status</button>
+                                          <button type="button" class="btn btn-success" onClick = "changeActiveInactiveBook()" data-dismiss="modal">Change Status</button>
                                           <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
                                         </div>
                                       </div>
