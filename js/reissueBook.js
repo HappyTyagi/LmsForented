@@ -73,7 +73,7 @@ async function getBookByBookId(){
     });
     return false;
   }
-    if(!BookSerialArray.includes(bookSerialId)){
+    if(!bookSerialNoExist(bookSerialId)){
       let row = tbl.insertRow();
       let cell1 = row.insertCell(0);
       let cell2 = row.insertCell(1);
@@ -254,3 +254,11 @@ function deleteRow(ele){
   document.getElementById("delayDays").value = noDays;
   feesDayArray.splice(ele-1,1);
 }
+
+function bookSerialNoExist(bookSerialNo){
+  BookSerialArray.forEach(e =>{
+    if(e.bookSerialNo === bookSerialNo)
+      return true;
+  })
+  return false;
+} 
