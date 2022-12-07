@@ -11,7 +11,7 @@ function addUser(){
   const lastname = document.getElementById("lastname").value;
   const role = document.getElementById("role").value;
   const password = document.getElementById("passwd").value;
-  let url = BASE_URL+"/loginController/createUser";
+  let url = BASE_URL+"/loginController/createUserData";
   const body = {
             "mailId"   : email ,
             "password" : password,
@@ -21,6 +21,7 @@ function addUser(){
   const xhttp = new XMLHttpRequest();
   xhttp.open("POST", url);
   xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+  xhttp.setRequestHeader("token",jwt);
   xhttp.send(JSON.stringify(body));
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4) {
@@ -35,7 +36,8 @@ function addUser(){
           confirmButtonText: 'OK'
         }).then((result) => {
           if (result.isConfirmed) {
-            window.location.href = 'login.html';
+            document.getElementById("userRegForm").reset();
+            window.location.href = 'users-reg.html';
           }
         });
       } else {

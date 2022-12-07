@@ -12,7 +12,6 @@ if (jwt == null || userRole != "Admin"){
 
 // function logout() {
 //   localStorage.removeItem("jwt");
-//   localStorage.clear("userRole");
 //   window.location.href = './login.html';
 // }
 
@@ -40,6 +39,7 @@ async function getapi(url) {
 
 async function getBookByBookId(){
   let bookSerialId = document.getElementById("bookId").value;
+  let issueType = document.getElementById("issueType").value;
   var data = await getapi(BASE_URL+"/issuedBook/returnBookFindByBookId/"+bookSerialId);
   var userId = document.getElementById("student-id").value;
   var tbl = document.getElementById("bookList").getElementsByTagName('tbody')[0];
@@ -56,7 +56,7 @@ async function getBookByBookId(){
     return false;
   }
   var book = data.response;
-  if(userId != ""  && book.userId != userId ){
+  if(userId != ""  &&  userId != (book.issuedType === 'Department' ? book.departmentId : book.userId)){
     Swal.fire({
       text: "Book is issued to different user",
       icon: 'error',
@@ -68,7 +68,7 @@ async function getBookByBookId(){
     });
     return false;
   }
-    if(!BookSerialArray.includes(bookSerialId)){
+    if(!bookSerialNoExist(bookSerialId)){
       let row = tbl.insertRow();
       let cell1 = row.insertCell(0);
       let cell2 = row.insertCell(1);
@@ -99,7 +99,15 @@ async function getBookByBookId(){
       cell10.innerHTML = `<i class="fa fa-trash trash-icon" onclick="deleteRow(${rowIndex})"></i>`;
       BookSerialArray[rowIndex-1] = {bookSerialNo: bookSerialId , waveOffAmount : 0 };
       feesDayArray[rowIndex-1] = {lateFees : book.totalPenalty , delayDays : parseInt(book.totalDueDay)};
-      getUserOrDepartment(book.issuedType,book.userId);
+      if(book.issuedType === 'Department'){
+        document.getElementById("user-id").value = book.departmentId;
+        document.getElementById("student-name").value =  book.departmentName;
+        document.getElementById("student-id").value =  book.departmentId;
+        document.getElementById("issueType").options.selectedIndex = 1;
+      }else {
+        document.getElementById("issueType").options.selectedIndex = 0;
+        getUserByUserId(book.userId);
+      }
       lateFees +=book.totalPenalty;
       noDays += parseInt(book.totalDueDay);
       document.getElementById("late-fee").value = lateFees;
@@ -142,23 +150,19 @@ async function getUserByUserId(id){
 
 function addReturnBook(){
     const userId = document.getElementById("student-id").value;
-    //const departmentId = document.getElementById("departmentId").value;
-    const reissuedTo = document.getElementById("student-name").value;
-    const reissueDateTime = document.getElementById("redatetime").value;
-    //const userType = document.getElementById("userType").value;
+    const returnDateTime = document.getElementById("redatetime").value;
     const waveOff = document.getElementById("waveoffInput").value;
     
     const body = {
           "userOrDepartmentId":userId,
-          "reIssuedTo":reissuedTo,
           "penaltyPerBook":"10",
           "waveOff":waveOff,
-          "reIssueDateTime":reissueDateTime,
+          "returnDateTime":returnDateTime,
           "bookSerialNo":BookSerialArray
         }
 
     console.log(JSON.stringify(body));    
-    let url = BASE_URL+"/issuedBook/reIssuedBook";
+    let url = BASE_URL+"/issuedBook/returnIssuedBook";
     const xhttp = new XMLHttpRequest();
     xhttp.open("POST", url);
     xhttp.setRequestHeader("Content-Type", "application/json");
@@ -172,13 +176,13 @@ function addReturnBook(){
         console.log(response);
         if (objects['status'] == '200') {
           Swal.fire({
-            text: 'Book return successfully',
+            text: 'Book Return successfully',
             icon: 'success',
             confirmButtonText: 'OK'
           }).then((result) => {
             if (result.isConfirmed) {
               document.getElementById("returnBookform").reset();
-              window.location.href = './return-book.html';
+              window.location.href = './return-books.html';
             }
           });
         } else {
@@ -214,9 +218,10 @@ function checkforPastDate(id){
   var today = new Date();
   today.setHours(0, 0, 0, 0);
   date.setHours(0, 0, 0, 0);
-  if (date <= today) {
+ 
+  if (today < date || today === date) {
     Swal.fire({
-      text: 'Only future date is allowed',
+      text: 'Only Current/Past  date is allowed',
       icon: 'error',
       confirmButtonText: 'OK',
       showCancelButton: true,
@@ -243,3 +248,14 @@ function deleteRow(ele){
   document.getElementById("delayDays").value = noDays;
   feesDayArray.splice(ele-1,1);
 }
+
+function bookSerialNoExist(bookSerialid){
+  var flag = false;
+  for(var i=0; i<BookSerialArray.length;i++){
+    if(BookSerialArray[i].bookSerialNo === bookSerialid){
+      flag = true;
+      break;
+    }  
+  }  
+  return flag;
+} 

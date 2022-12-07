@@ -40,12 +40,7 @@ async function getapi(url) {
 async function getBookByBookId(){
   let bookSerialId = document.getElementById("bookId").value;
   let issueType = document.getElementById("issueType").value;
-  if(issueType=="001")
-    var url = BASE_URL+"/issuedBook/returnBookFindByBookId";
-  else 
-    var url = BASE_URL+"/issuedBook/returnBookFindByDepartmentId";
-
-  var data = await getapi(url+"/"+bookSerialId);
+  var data = await getapi(BASE_URL+"/issuedBook/returnBookFindByBookId/"+bookSerialId);
   var userId = document.getElementById("student-id").value;
   var tbl = document.getElementById("bookList").getElementsByTagName('tbody')[0];
   if(data.status != 200){
@@ -108,7 +103,9 @@ async function getBookByBookId(){
         document.getElementById("user-id").value = book.departmentId;
         document.getElementById("student-name").value =  book.departmentName;
         document.getElementById("student-id").value =  book.departmentId;
+        document.getElementById("issueType").options.selectedIndex = 1;
       }else {
+        document.getElementById("issueType").options.selectedIndex = 0;
         getUserByUserId(book.userId);
       }
       lateFees +=book.totalPenalty;
@@ -255,10 +252,13 @@ function deleteRow(ele){
   feesDayArray.splice(ele-1,1);
 }
 
-function bookSerialNoExist(bookSerialNo){
-  BookSerialArray.forEach(e =>{
-    if(e.bookSerialNo === bookSerialNo)
-      return true;
-  })
-  return false;
+function bookSerialNoExist(bookSerialid){
+  var flag = false;
+  for(var i=0; i<BookSerialArray.length;i++){
+    if(BookSerialArray[i].bookSerialNo === bookSerialid){
+      flag = true;
+      break;
+    }  
+  }  
+  return flag;
 } 

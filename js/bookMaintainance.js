@@ -62,7 +62,6 @@ async function loadBookDetail(bookSerialId){
       document.getElementById("localNo").value = e.addBook.assignLocalNo; 
       document.getElementById("itemType").value = e.bookType.bookTypeName;  
   });
-    document.getElementById("bookId").value ="";
 };
 
 
@@ -71,7 +70,7 @@ function deleteRow(ele){
   BookSerialArray.splice(ele-1,1);
 }
 
-function submitDamageBook(){
+function submitBookMaintainance(){
 const bookSerialId = document.getElementById("bookSerialNo").value;
     if(bookSerialId===""){
         Swal.fire({
@@ -86,6 +85,10 @@ const bookSerialId = document.getElementById("bookSerialNo").value;
     const maintenanceCost = document.getElementById("maintenance-cost").value;
     const remarks = document.getElementById("remark").value;
     const body = {
+          remark:remarks,
+          returnDate: returnDate,
+          maintenanceCost: maintenanceCost,
+          serialNo: bookSerialId
         }
     console.log(JSON.stringify(body));    
     let url = BASE_URL+"/damageOrMaintenance/addMaintenance";
