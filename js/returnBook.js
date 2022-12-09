@@ -182,7 +182,7 @@ function addReturnBook(){
           }).then((result) => {
             if (result.isConfirmed) {
               document.getElementById("returnBookform").reset();
-              window.location.href = './return-books.html';
+              window.location.href = './return-book.html';
             }
           });
         } else {

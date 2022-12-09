@@ -33,6 +33,8 @@
         <script src="js/main.js"></script>
         <!--search jQuery-->
         <script src="js/header.js"></script>
+        <script src="js/subscription.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.all.min.js"></script>
 </head>
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
         <div id="home">
@@ -73,14 +75,15 @@
                               </div>
                             <div style="padding-top:30px" class="panel-body">
                                 <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
-                                <form id="loginform" class="form-horizontal" action="#" method="post">
+                                <form id="subscriptionform" class="form-horizontal" action="#" method="post">
 
                                         <div class="col-md-4">
                                             <div class="input-group">
                                               <span class="input-group-addon">
                                                 <i class="glyphicon glyphicon-book"></i>
                                               </span>
-                                              <select class="form-control select2" id="bookJournelType">
+                                              <select class="form-control select2" id="bookJournelType" onchange="showCategorySelect()">                    
+                                              </select>
                             
                                               </select>
                                             </div>
@@ -91,6 +94,7 @@
                                                         <i class="glyphicon glyphicon-book"></i>
                                                     </span>
                                                     <select class="form-control select2" id="category">
+                                                        <option value="">Select Category</option>
                                                     </select>
                                                     
                                                 </div>
@@ -100,7 +104,7 @@
                                                     <span class="input-group-addon">
                                                         <i class="glyphicon glyphicon-book"></i>
                                                     </span>
-                                                    <select class="form-control" id="authorName"></select>
+                                                    <select class="form-control" id="authorName" onchange="getPublication()"></select>
                                                 </div>
                                             </div>
                                     <div class="col-md-4">
@@ -142,16 +146,7 @@
                                                placeholder="Publish Date" required >
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
-                                        <div style="margin-bottom: 25px" class="input-group">
-                                            <span class="input-group-addon">
-                                                <i class="glyphicon glyphicon-book"></i>
-                                            </span>
-                                            <select class="form-control select2" id="category">
-                                            </select>
-                                            
-                                        </div>
-                                    </div>
+                    
                                     <div class="col-md-4">
                                         <div style="margin-bottom: 25px" class="input-group">
                                             <span class="input-group-addon">
@@ -169,7 +164,7 @@
                                                 <i class="glyphicon glyphicon-book"></i>
                                             </span>
                                             <input id="no-pages"  type="number" class="form-control"
-                                                name="no-pages"   placeholder="Number of Pages"
+                                                name="no-pages"   placeholder="Number of Pages" min="1"
                                                 required pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==5) return false;" >
                                         </div>
                                     </div>
@@ -179,7 +174,7 @@
                                                 <i class="glyphicon glyphicon-book"></i>
                                             </span>
                                             <input id="quantity" type="number" class="form-control"
-                                                name="quantity"   placeholder="Quantity"
+                                                name="quantity"   placeholder="Quantity" min=1
                                                 required pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==4) return false;" >
                                         </div>
                                     </div>
@@ -188,9 +183,9 @@
                                             <span class="input-group-addon">
                                                 <i class="glyphicon glyphicon-book"></i>
                                             </span>
-                                            <input id="dateTime" type="text" class="form-control date"
-                                                name="dateTime"   placeholder="Adding Date and Time to Library"
-                                                required >
+                                            <input id="adddateTime" type="text" class="form-control date"
+                                                name="adddateTime"   placeholder="Adding Date and Time to Library"
+                                                required  onchange="checkForFutureDate(this.id)">
                                         </div>
                                     </div>
 
@@ -199,11 +194,11 @@
                                             <span class="input-group-addon">
                                                 <i class="glyphicon glyphicon-book"></i>
                                             </span>
-                                            <select class="form-control select2" id="purchased">
-                                                <option> Purchased?</option>
-                                                <option>Purchased</option>
-                                                <option>Promotional</option>
-                                                <option>Donated</option>
+                                            <select class="form-control" id="purchased">
+                                                <option value=""> Purchased?</option>
+                                                <option value="Purchased">Purchased</option>
+                                                <option value="Promotional">Promotional</option>
+                                                <option value="Donated">Donated</option>
                                             </select>
                                         </div>
                                     </div>
@@ -233,46 +228,54 @@
                                                 <i class="glyphicon glyphicon-book"></i>
                                             </span>
                                             <input id="sourceContactNo" type="number" class="form-control"
-                                                name="sourceContactNo"   placeholder="Source Contact Number"
+                                                name="sourceContactNo"   placeholder="Source Contact Number" min="0"
                                                 required pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;">
                                         </div>
                                     </div>
-
+                                    <div class="col-md-4">
+                                        <div style="margin-bottom: 25px" class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="glyphicon glyphicon-book"></i>
+                                            </span>
+                                            <input id="purchasedBy" type="text" class="form-control"
+                                                name="purchasedBy"   placeholder="Purchase Made By"
+                                                required="text" maxlength="30">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div style="margin-bottom: 25px" class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="glyphicon glyphicon-book"></i>
+                                            </span>
+                                            <input id="billNum" type="text" class="form-control"
+                                                name="billNum"   placeholder="Bill Number"
+                                                required="" maxlength="30">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div style="margin-bottom: 25px" class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="glyphicon glyphicon-book"></i>
+                                            </span>
+                                            <input id="bookcondition" type="text" class="form-control"
+                                                name="bookcondition"   placeholder="Book Condition"
+                                                required="">
+                                        </div>
+                                    </div>
                                     <div class="col-md-4">
                                     <div style="margin-bottom: 25px" class="input-group">
                                         <span class="input-group-addon">
                                             <i class="glyphicon glyphicon-book"></i>
                                         </span>
-                                        <input id="category-name" type="number" class="form-control" name="Subscription Fees" value="" placeholder="Subscription Fees" required pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==5) return false;">
-                                    </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                    <div style="margin-bottom: 25px" class="input-group">
-                                        <span class="input-group-addon">
-                                            <i class="glyphicon glyphicon-book"></i>
-                                        </span>
-                                        <input id="category-name" type="text" class="form-control date" name="Publication Date" value="" placeholder="Publication Date" required>
-                                    </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                    <div style="margin-bottom: 25px" class="input-group">
-                                        <span class="input-group-addon">
-                                            <i class="glyphicon glyphicon-book"></i>
-                                        </span>
-                                        <select class="form-control select2" id="category">
-                                            <option> Select Category</option>
-                                            <option>Technology</option>
-                                            <option>Science</option>
-                                            <option>Maths</option>
-                                        </select>
+                                        <input min ="1" id="subscription-fees" type="number" class="form-control" name="Subscription Fees" value="" placeholder="Subscription Fees" required pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==5) return false;">
                                     </div>
                                     </div>
                                     <div style="margin-top:10px" class="form-group">
                                         <!-- Button -->
                                         <div class="col-sm-12 controls">
-                                            <a href="#" class="btn btn-success float-right">Subcribe Now </a>
+                                            <a href="#" class="btn btn-success float-right" onclick="addSubscription()">Subcribe Now </a>
                                         </div>
-                                    </div>
+                                    </div> 
 
                                 </form>
                                 <script>

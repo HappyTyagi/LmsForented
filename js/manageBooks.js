@@ -10,6 +10,10 @@ if (jwt == null || userRole != "Admin"){
 //   window.location.href = './login.html';
 // }
 
+const bookList=[];
+var currentPage = 1; 
+var totalPage = 0;
+var pageDivision = 5;
 async function getapi(url) {
   const response = await fetch(url,{
           method : 'GET',
@@ -36,41 +40,34 @@ getBooks();
 
 async function getBooks(data) {
   var data = await getapi(BASE_URL+"/book/getAllBook");   
-  let tab = 
-        `<thead class="thead-dark">
-        <tr>
-          <th scope="col">S.No.</th>
-          <th scope="col">Book/Journal Name</th>
-          <th scope="col">Publication</th>
-          <th scope="col">Category</th>
-          <th scope="col">Status</th>
-          <th scope="col">Action</th>
-        </tr>
-      </thead>
-        <tbody>`;
-    
     // Loop to access all rows 
     let sr = 0;
     //for (let r of data.list) 
+    //for (let r of data.list) 
     data.response.bookResponseList.forEach(e => {
-        sr++;
-        //alert();
-        //var isActive = (e.addBook.isActive == 1 ? 'Active' : 'Inactive');
-        tab += `<tr>
-        <th scope="row">${sr}</th>
-        <td>${e.addBook.bookName}</td>
-        <td>${e.author.fullName}</td>
-        <td>${e.categories.categories}</td>
-        <td>${e.addBook.isActive === 1? 'Active' : 'Inactive'}</td>
-        <td> 
-            <button type="button" class="btn btn-primary" onClick ="updateBookShow('${e.addBook.bookId}')"><i class="fa fa-edit"></i></button>
-            <button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#myModal" onclick="loadBookDataModal('${e.addBook.bookId}')"><i class="fa fa-eye"></i></button>
-         </td>
-      </tr>`;
+      bookList[sr] = e;
+      sr++;
     });
-    tab += `</tbody>`;
-        document.getElementById("bookList").innerHTML = tab;
+     
+    var tab = `<li class="page-item disabled">
+                  <a class="page-link" href="#" tabindex="-1" onclick="populatebookDetailsTable(${currentPage--})">Previous</a>
+              </li>
+              <li class="page-item active" id ="nav">
+                <a class="page-link" href="#" value="1" onclick="populatebookDetailsTable(1)">1</a>
+              </li>`;
+    
+    for(var i=2;i<=bookList.length%pageDivision;i++){
+      tab += `<li class="page-item" id ="nav">
+                <a class="page-link" href="#" value="1" onclick= "populatebookDetailsTable(${i})">${i}</a>
+              </li>`;
+      totalPage = i;        
     }
+    tab +=`<li class="page-item">
+              <a class="page-link" href="#" onclick="populatebookDetailsTable(${currentPage++})">Next</a>
+            </li>`;
+    document.getElementById("paginationL").innerHTML = tab;        
+    populatebookDetailsTable(1);
+  }
 
 async function changeActiveInactiveBook(){
   Swal.fire({
@@ -160,3 +157,25 @@ async function changeActiveInactiveBook(){
     });
   }
 
+function populatebookDetailsTable(gotoPage){
+  alert(gotoPage === 1? 1 : ((gotoPage*pageDivision)/pageDivision)+1);
+  var startFrom = (gotoPage === 1? 1 : ((gotoPage*pageDivision)/pageDivision)+1);
+  var endAt = gotoPage*pageDivision;
+  var tab = ``;
+  for(; startFrom <= endAt && startFrom <= bookList.length ; startFrom++){
+    var e = bookList[startFrom - 1];
+      tab += `<tr>
+      <th scope="row">${startFrom}</th>
+      <td>${e.addBook.bookName}</td>
+      <td>${e.author.fullName}</td>
+      <td>${e.categories.categories}</td>
+      <td>${e.addBook.isActive === 1? 'Active' : 'Inactive'}</td>
+      <td> 
+          <button type="button" class="btn btn-primary" onClick ="updateBookShow('${e.addBook.bookId}')"><i class="fa fa-edit"></i></button>
+          <button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#myModal" onclick="loadBookDataModal('${e.addBook.bookId}')"><i class="fa fa-eye"></i></button>
+       </td>
+    </tr>`;
+  }
+  document.getElementById("bookList").getElementsByTagName('tbody')[0].innerHTML = tab;
+
+}

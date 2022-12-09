@@ -81,7 +81,7 @@ function deleteRow(ele){
 }
 
 function submitDamageBook(){
-    const bookSerialId = document.getElementById("repairable").value;
+    const repairable = document.getElementById("repairable").value;
     const replacement = document.getElementById("replacement").value;
    
     const body = {
