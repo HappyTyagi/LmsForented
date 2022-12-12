@@ -61,7 +61,7 @@ async function getBookByBookId(){
       cell2.innerHTML = e.addBook.bookName;
       cell3.innerHTML = itemType;
       cell4.innerHTML = e.author.publication;
-      cell5.innerHTML = `<i class="fa fa-trash trash-icon" onclick="deleteRow(${rowIndex})"></i>`;
+      cell5.innerHTML = `<i class="fa fa-trash trash-icon" onclick="deleteRow(this)"></i>`;
       BookSerialArray[rowIndex-1] = bookSerialId;  
   }else{
     Swal.fire({
@@ -75,7 +75,8 @@ document.getElementById("bookId").value ="";
 };
 
 
-function deleteRow(ele){
+function deleteRow(element){
+  var ele =  element.parentElement.parentElement.rowIndex;
   document.getElementById("bookList").deleteRow(ele);
   BookSerialArray.splice(ele-1,1);
 }

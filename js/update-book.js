@@ -192,13 +192,13 @@ const showBookData = (async() =>{
         const objects = JSON.parse(this.responseText);
         const response = objects['response'];
         if (objects['status'] == '200') {
-          document.getElementById("addBookform").reset(); 
           Swal.fire({
             text: 'Book updated successfully',
             icon: 'success',
             confirmButtonText: 'OK'
           }).then((result) => {
             if (result.isConfirmed) {
+              window.location.href = './manage-books.html'; 
               window.open(response.filePath, "_blank")
             }
           });

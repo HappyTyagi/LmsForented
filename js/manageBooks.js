@@ -82,6 +82,7 @@ function populatebookDetailsTable(gotoPage){
       <td>${e.addBook.bookName}</td>
       <td>${e.author.fullName}</td>
       <td>${e.categories.categories}</td>
+      <td>${e.addBook.quantity}</td>
       <td>${e.addBook.isActive === 1? 'Active' : 'Inactive'}</td>
       <td> 
           <button type="button" class="btn btn-primary" onClick ="updateBookShow('${e.addBook.bookId}')"><i class="fa fa-edit"></i></button>

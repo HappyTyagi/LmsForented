@@ -66,7 +66,7 @@ async function getBookByBookId(){
       cell2.innerHTML = e.addBook.bookName;
       cell3.innerHTML = e.categories.bookJournel;
       cell4.innerHTML = e.author.publication;
-      cell5.innerHTML = `<i class="fa fa-trash trash-icon" onclick="deleteRow(${rowIndex})"></i>`;
+      cell5.innerHTML = `<i class="fa fa-trash trash-icon" onclick="deleteRow(this)"></i>`;
       BookSerialArray[rowIndex-1] = bookSerialId;
       BookIDs[rowIndex-1] = e.addBook.bookId;
   }else{
@@ -152,7 +152,8 @@ const showDepartmentList = (async() =>{
 showDepartmentList();
 
 
-function deleteRow(ele){
+function deleteRow(element){
+  var ele =  element.parentElement.parentElement.rowIndex;
   document.getElementById("bookList").deleteRow(ele);
   BookSerialArray.splice(ele-1,1);
   BookIDs.splice(ele-1,1);

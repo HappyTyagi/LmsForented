@@ -96,7 +96,7 @@ async function getBookByBookId(){
       }else{
         cell9.innerHTML = `<input id="${bookSerialId}" type="text" class="form-control" name="wave off" value="0"  placeholder="Enter Amount" onchange="addWaveoff(this.value,${rowIndex})">`;
       }
-      cell10.innerHTML = `<i class="fa fa-trash trash-icon" onclick="deleteRow(${rowIndex})"></i>`;
+      cell10.innerHTML = `<i class="fa fa-trash trash-icon" onclick="deleteRow(this)"></i>`;
       BookSerialArray[rowIndex-1] = {bookSerialNo: bookSerialId , waveOffAmount : 0 };
       feesDayArray[rowIndex-1] = {lateFees : book.totalPenalty , delayDays : parseInt(book.totalDueDay)};
       if(book.issuedType === 'Department'){
@@ -238,7 +238,8 @@ function addWaveoff(value, rowIndex){
   BookSerialArray[rowIndex-1] = {bookSerialNo: objValue.bookSerialNo , waveOffAmount : value};
 }
 
-function deleteRow(ele){
+function deleteRow(element){
+  var ele =  element.parentElement.parentElement.rowIndex;
   document.getElementById("bookList").deleteRow(ele);
   BookSerialArray.splice(ele-1,1);
   var varFeesDays = feesDayArray[ele-1];
