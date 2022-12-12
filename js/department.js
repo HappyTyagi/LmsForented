@@ -50,33 +50,7 @@ function addDepartment(){
     return false;
   }
 
-  function getCategories(){
-    const category = document.getElementById("category-name").value;
-    const body = {"categories": category  };
-    console.log(jwt);    
-    let url = BASE_URL+"/category/getAllCategories";
-    
-    const xhttp = new XMLHttpRequest();
-    xhttp.open("GET", url);
-    xhttp.setRequestHeader("Content-Type", "application/json");
-    xhttp.setRequestHeader("token",jwt);
-    xhttp.send(JSON.stringify(body));
-    xhttp.onreadystatechange = function () {
-      if (this.readyState == 4) {
-        const objects = JSON.parse(this.responseText);
-        console.log(objects)
-        const response = objects['response'];
-        console.log(response);
-        if (objects['status'] == '200') {
-          
-        } else {
-        
-        }
-      }
-    };
-    return false;
-  }
-
+ 
   async function getapi(url) {
     const response = await fetch(url,{
             method : 'GET',

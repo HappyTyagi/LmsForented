@@ -177,13 +177,23 @@ function showGraphChart(dashboardData){
     
     
  /*--Total Maintenance Books--*/
+ const dashboardMaintainanceBook = dashboardData.response.maintainersBooKList;
+      var months=[];
+      var totalMaintainanceRecords = [];
+      var i = 0;
+      dashboardMaintainanceBook.forEach(e => {
+        months[i] = e.monthName;
+        totalMaintainanceRecords[i] = e.books;
+        i++;
+      });
+
  const dataMaintenance = {
   labels: months,
   datasets: [{
     label: 'Maintenance Books',
     backgroundColor: '#343A40',
     borderColor: '#343A40',
-    data: [20,25,30,40,50,70],
+    data: totalMaintainanceRecords,
     cubicInterpolationMode: 'monotone',
   },
 ]
@@ -201,13 +211,23 @@ function showGraphChart(dashboardData){
   configMaintenance
   );
 /*--Total damages Books--*/
+const dashboardDamageBook = dashboardData.response.damageBooksList;
+      var months=[];
+      var totalDamageRecords = [];
+      var i = 0;
+      dashboardDamageBook.forEach(e => {
+        months[i] = e.monthName;
+        totalDamageRecords[i] = e.books;
+        i++;
+      });
+
 const dataDamaged = {
   labels: months,
   datasets: [{
     label: 'Damaged Books',
     backgroundColor: '#F0AD4E',
     borderColor: '#F0AD4E',
-    data: [20,25,30,40,50,70],
+    data: totalDamageRecords,
     cubicInterpolationMode: 'monotone',
   },
 ]
@@ -226,13 +246,24 @@ const dataDamaged = {
   );
 
 /*--Total damages Books--*/
+const dashboardOverDueBook = dashboardData.response.overDueBooksList;
+      var months=[];
+      var totalOverdueRecords = [];
+      var i = 0;
+      dashboardOverDueBook.forEach(e => {
+        months[i] = e.monthName;
+        totalOverdueRecords[i] = e.books;
+        i++;
+      });
+
+
 const dataOverdue = {
   labels: months,
   datasets: [{
     label: 'Damaged Books',
     backgroundColor: '#D9534F',
     borderColor: '#D9534F',
-    data: [20,25,30,40,50,70],
+    data: totalOverdueRecords,
     cubicInterpolationMode: 'monotone',
   },
 ]
@@ -334,7 +365,7 @@ async function refreshDashboardData() {
   const url = BASE_URL+"/dashboard/getDashboardData";
   const fromDate = document.getElementById("fromDate").value;
   const toDate = document.getElementById("toDate").value;
-  const itemType = document.getElementById("itemType").value;
+  const itemType = document.getElementById("bookJournelType").value;
   const body = {
       toDate:toDate,
       fromDate:fromDate,
@@ -362,3 +393,25 @@ async function refreshDashboardData() {
       }
       showDashboardData(data);
     }
+
+    const showBookType = (async() =>{
+      var data = await getapi(BASE_URL+"/bookType/getAllBookType");
+      console.log(data);
+      let tab = ``;
+      let sr = 0; 
+      data.response.forEach(e => {
+        tab += `<option value ="${e.bookTypeId}">${e.bookTypeName}</option>`;
+      });
+      document.getElementById("bookJournelType").innerHTML = tab;
+      document.getElementById("bookJournelType").options.selectedIndex = 0;
+    });
+
+    showBookType();
+
+    
+function resetDashboardData(){
+  document.getElementById("fromDate").value = "";
+  document.getElementById("toDate").value = "";
+  document.getElementById("bookJournelType").options.selectedIndex = 0;
+  getDashboardData()
+}

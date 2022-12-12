@@ -51,13 +51,13 @@ data.forEach(e => {
   var tab = `<li class="page-item disabled" onclick="populatePreviousPage()" id="page-1">
                 <a class="page-link" href="#" tabindex="-1" >Previous</a>
             </li>
-            <li class="page-item" onclick="populatebookDetailsTable(1)" id ="page1">
+            <li class="page-item" onclick="populateCategoryDetailsTable(1)" id ="page1">
               <a class="page-link" href="#" value="1" >1</a>
             </li>`;
   var noPages = Math.ceil(categoryList.length/pageDivision);
   console.log(noPages);
   for(var i=2;i<=noPages;i++){
-    tab += `<li class="page-item" onclick= "populatebookDetailsTable(${i})" id="page${i}">
+    tab += `<li class="page-item" onclick= "populateCategoryDetailsTable(${i})" id="page${i}">
               <a class="page-link" href="#" value="1" >${i}</a>
             </li>`;
     totalPage = i;        
@@ -71,7 +71,7 @@ data.forEach(e => {
 
     
 function populateCategoryDetailsTable(gotoPage){
-    //alert(gotoPage === 1? 1 : ((gotoPage*pageDivision)/pageDivision)+1);
+    //alert(gotoPage === 1? 1 : (gotoPage*pageDivision)-pageDivision+1);
     var startFrom = (gotoPage === 1? 1 : (gotoPage*pageDivision)-pageDivision+1);
     var endAt = gotoPage*pageDivision;
     var tab = ``;
@@ -117,7 +117,7 @@ function deleteCategory(categoryId){
         showCancelButton: true,
     }).then(async (result) => {
         if (result.isConfirmed) {
-        const url = "http://35.154.104.127:8080/LMS/category/removeCategory/"+categoryId; 
+        const url = "http://35.154.104.127:8080/LMS/category/activeOrInActiveCategory/"+categoryId; 
         const response = await fetch(url,{
             method : 'GET',
             headers : {

@@ -51,12 +51,12 @@ function show(data) {
     var tab = `<li class="page-item disabled" onclick="populatePreviousPage()" id="page-1">
                   <a class="page-link" href="#" tabindex="-1" >Previous</a>
               </li>
-              <li class="page-item" onclick="populatebookDetailsTable(1)" id ="page1">
+              <li class="page-item" onclick="populateAuthorDetailsTable(1)" id ="page1">
                 <a class="page-link" href="#" value="1" >1</a>
               </li>`;
     var noPages = authorList.length/pageDivision;
     for(var i=2;i<=noPages;i++){
-      tab += `<li class="page-item" onclick= "populatebookDetailsTable(${i})" id="page${i}">
+      tab += `<li class="page-item" onclick= "populateAuthorDetailsTable(${i})" id="page${i}">
                 <a class="page-link" href="#" value="1" >${i}</a>
               </li>`;
       totalPage = i;        
