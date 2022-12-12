@@ -49,25 +49,63 @@ async function getBooks(data) {
       sr++;
     });
      
-    var tab = `<li class="page-item disabled">
-                  <a class="page-link" href="#" tabindex="-1" onclick="populatebookDetailsTable(${currentPage--})">Previous</a>
+    var tab = `<li class="page-item disabled" onclick="populatePreviousPage()" id="page-1">
+                  <a class="page-link" href="#" tabindex="-1" >Previous</a>
               </li>
-              <li class="page-item active" id ="nav">
-                <a class="page-link" href="#" value="1" onclick="populatebookDetailsTable(1)">1</a>
+              <li class="page-item" onclick="populatebookDetailsTable(1)" id ="page1">
+                <a class="page-link" href="#" value="1" >1</a>
               </li>`;
-    
-    for(var i=2;i<=bookList.length%pageDivision;i++){
-      tab += `<li class="page-item" id ="nav">
-                <a class="page-link" href="#" value="1" onclick= "populatebookDetailsTable(${i})">${i}</a>
+    var noPages = bookList.length/pageDivision;
+    for(var i=2;i<=noPages;i++){
+      tab += `<li class="page-item" onclick= "populatebookDetailsTable(${i})" id="page${i}">
+                <a class="page-link" href="#" value="1" >${i}</a>
               </li>`;
       totalPage = i;        
     }
-    tab +=`<li class="page-item">
-              <a class="page-link" href="#" onclick="populatebookDetailsTable(${currentPage++})">Next</a>
+    tab +=`<li class="page-item" onclick="populateNextPage()" id="page+1">
+              <a class="page-link" href="#">Next</a>
             </li>`;
     document.getElementById("paginationL").innerHTML = tab;        
     populatebookDetailsTable(1);
+}
+
+
+function populatebookDetailsTable(gotoPage){
+  //alert(gotoPage === 1? 1 : ((gotoPage*pageDivision)/pageDivision)+1);
+  var startFrom = (gotoPage === 1? 1 : (gotoPage*pageDivision)-pageDivision+1);
+  var endAt = gotoPage*pageDivision;
+  var tab = ``;
+  for(; startFrom <= endAt && startFrom <= bookList.length ; startFrom++){
+    var e = bookList[startFrom - 1];
+      tab += `<tr>
+      <th scope="row">${startFrom}</th>
+      <td>${e.addBook.bookName}</td>
+      <td>${e.author.fullName}</td>
+      <td>${e.categories.categories}</td>
+      <td>${e.addBook.isActive === 1? 'Active' : 'Inactive'}</td>
+      <td> 
+          <button type="button" class="btn btn-primary" onClick ="updateBookShow('${e.addBook.bookId}')"><i class="fa fa-edit"></i></button>
+          <button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#myModal" onclick="loadBookDataModal('${e.addBook.bookId}')"><i class="fa fa-eye"></i></button>
+       </td>
+    </tr>`;
   }
+  currentPage = gotoPage;
+  document.getElementById("bookList").getElementsByTagName('tbody')[0].innerHTML = tab;
+  document.getElementById("page"+gotoPage).classList.add("active");
+  document.getElementById("page"+gotoPage--).classList.remove("active");
+}
+
+function populateNextPage(){
+  if(currentPage < totalPage)
+  var gotoPage = currentPage+1
+  populatebookDetailsTable(gotoPage);
+}
+
+function populatePreviousPage(){
+  var gotoPage = currentPage-1
+  if(currentPage > 1)
+  populatebookDetailsTable(gotoPage);
+}
 
 async function changeActiveInactiveBook(){
   Swal.fire({
@@ -156,26 +194,3 @@ async function changeActiveInactiveBook(){
     }
     });
   }
-
-function populatebookDetailsTable(gotoPage){
-  alert(gotoPage === 1? 1 : ((gotoPage*pageDivision)/pageDivision)+1);
-  var startFrom = (gotoPage === 1? 1 : ((gotoPage*pageDivision)/pageDivision)+1);
-  var endAt = gotoPage*pageDivision;
-  var tab = ``;
-  for(; startFrom <= endAt && startFrom <= bookList.length ; startFrom++){
-    var e = bookList[startFrom - 1];
-      tab += `<tr>
-      <th scope="row">${startFrom}</th>
-      <td>${e.addBook.bookName}</td>
-      <td>${e.author.fullName}</td>
-      <td>${e.categories.categories}</td>
-      <td>${e.addBook.isActive === 1? 'Active' : 'Inactive'}</td>
-      <td> 
-          <button type="button" class="btn btn-primary" onClick ="updateBookShow('${e.addBook.bookId}')"><i class="fa fa-edit"></i></button>
-          <button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#myModal" onclick="loadBookDataModal('${e.addBook.bookId}')"><i class="fa fa-eye"></i></button>
-       </td>
-    </tr>`;
-  }
-  document.getElementById("bookList").getElementsByTagName('tbody')[0].innerHTML = tab;
-
-}
