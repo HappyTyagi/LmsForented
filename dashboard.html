@@ -51,7 +51,7 @@
       <div class="spacer"></div>
       <!-- //navbar ends here -->
       <div class="principles-grids principles-grids1 team-container">
-        <div class="container-fluid">
+        <div class="container-fluid pb-4">
           <div style="margin-top: 30px" class="mainbox">
             <div class="panel panel-info">
               <div class="panel-heading">
@@ -92,8 +92,10 @@
                     <span class="input-group-addon">
                       <i class="glyphicon glyphicon-book"></i>
                     </span>
-                    <select class="form-control select2" id="bookJournelType">
-                     
+                    <select class="form-control select2" id="itemType">
+                      <option>Select Item Type</option>
+                      <option>Book</option>
+                      <option>Journal</option>
                     </select>
                   </div>
                   </div>
@@ -134,7 +136,7 @@
                     <!-- Button -->
                     <div class="col-sm-12 controls">
                         <a id="btnRefresh" href="#" class="btn btn-success float-right" onclick="refreshDashboardData()">Refresh Data </a>
-                        <a id="btnRefresh" href="#" class="btn btn-success float-right mr-2" onclick="resetDashboardData()">Reset </a>
+                        <a id="btnRefresh" href="#" class="btn btn-success float-right mr-2">Reset </a>
                     </div>
                 </form>
               </div>
@@ -142,7 +144,8 @@
           </div>
           <!-- 4-blocks row start -->
           <div class="row dashboard-header">
-            <div class="col-lg-4 col-md-6">
+            <div class="col-md-8">
+            <div class="col-lg-6 col-md-6">
               <div class="card dashboard-product">
                 <span class="card-title">Total Books</span>
                 <h2 class="dashboard-total-products" id ="total-books"></h2>
@@ -152,7 +155,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-lg-4 col-md-6">
+            <div class="col-lg-6 col-md-6">
               <div class="card dashboard-product">
                 <span class="card-title">Issued Books</span>
                 <h2 class="dashboard-total-products" id = "issued-books"></h2>
@@ -162,7 +165,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-lg-4 col-md-6">
+            <div class="col-lg-6 col-md-6">
               <div class="card dashboard-product">
                 <span class="card-title">Return Books</span>
                 <h2 class="dashboard-total-products" id = "returned-books"></h2>
@@ -172,7 +175,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-lg-4 col-md-6">
+            <div class="col-lg-6 col-md-6">
               <div class="card dashboard-product">
                 <span class="card-title">Maintenance Books</span>
                 <h2 class="dashboard-total-products" id = "maintn_books"></h2>
@@ -182,7 +185,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-lg-4 col-md-6">
+            <div class="col-lg-6 col-md-6">
               <div class="card dashboard-product">
                 <span class="card-title">Book Damaged</span>
                 <h2 class="dashboard-total-products" id = "damaged-books"></h2>
@@ -192,13 +195,29 @@
                 </div>
               </div>
             </div>
-            <div class="col-lg-4 col-md-6">
+            <div class="col-lg-6 col-md-6">
               <div class="card dashboard-product">
                 <span class="card-title">Return Overdue</span>
                 <h2 class="dashboard-total-products" id="return-overdue"></h2>
                 <span class="label label-danger">Total</span> Return Overdue
                 <div class="side-box">
                   <i class="fa fa-calendar-times-o f-28 icon-danger"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+            <div class="col-md-4">
+              <!-- polar Chart -->
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h3 class="m-0 font-weight-bold text-primary">
+                    Total Comparison
+                  </h3>
+                </div>
+                <div class="card-body">
+                  <div class="chart-container">
+                    <canvas id="polarChart"></canvas>
+                  </div>
                 </div>
               </div>
             </div>
@@ -297,21 +316,7 @@
             </div>
 
 
-            <div class="col-md-4">
-              <!-- Line Chart -->
-              <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <h3 class="m-0 font-weight-bold text-primary">
-                    Total Comparison
-                  </h3>
-                </div>
-                <div class="card-body pb-6">
-                  <div class="chart-container">
-                    <canvas id="polarChart"></canvas>
-                  </div>
-                </div>
-              </div>
-            </div>
+
           </div>
         </div>
       </div>
